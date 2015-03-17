@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:task="http://www.springframework.org/schema/task" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jms="http://www.springframework.org/schema/integration/jms"
+       xmlns:stream="http://www.springframework.org/schema/integration/stream"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration 
+		http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/context     
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/integration/jms
+		http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
+		http://www.springframework.org/schema/integration/stream
+		http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd">
+
+
+    <import resource="classpath*:spring/spring-jms.xml"/>
+
+    <int:control-bus input-channel="jmsTaskInputChl"/>
+
+    <jms:message-driven-channel-adapter id="getJmsTask" channel="jmsTaskInputChl"
+    destination="inQueue" auto-startup="false"/>
+    <!-- here destination is the queue in activemq defined in spring-jms.xml, the queue's name is 'jmsQueue' defined in inQueue construct-->
+
+
+
+    <int:payload-type-router input-channel="jmsTaskInputChl">
+        <int:mapping type="com.cc.lmsfc.common.model.task.BatchArticleTaskJob" channel="batchArtTaskChl" />
+        <int:mapping type="com.cc.lmsfc.common.model.task.ArticleTaskJob" channel="singleArtTaskChl" />
+    </int:payload-type-router>
+
+    <int:service-activator id="getBatchArtTaskJobService" input-channel="batchArtTaskChl"
+                           ref="batchArtTaskJobService" method="messageHandler" output-channel="listForBatchArtTaskChl"/>
+
+    <int:splitter input-channel="listForBatchArtTaskChl"
+                  output-channel="toValidateArtChl" />
+
+
+    <int:service-activator id="getArtTaskJobService" input-channel="singleArtTaskChl"
+            ref="artTaskJobService" method="messageHandler" output-channel="toValidateArtChl"/>
+
+    <!--validate task job-->
+    <int:service-activator id="validateArtTaskJob" input-channel="toValidateArtChl"
+                           ref="artTaskJobService" method="validate" output-channel="toGetArtChl"/>
+
+    <int:service-activator id="downloadArt" input-channel="toGetArtChl"
+            ref="artTaskJobService" method="download" output-channel="toParseArtChl"/>
+
+    <int:service-activator id="parseArt" input-channel="toParseArtChl"
+            ref="parseService" method="parse" />
+
+
+
+    <!--error handler-->
+    <int:exception-type-router input-channel="errorChannel">
+        <int:mapping exception-type="java.lang.RuntimeException" channel="runtimeEptChl"/>
+    </int:exception-type-router>
+
+    <int:service-activator id="handlerRuntimeEptService" input-channel="runtimeEptChl"
+                           ref="runtimeEptService" method="handler"/>
+
+
+
+    <!--<int:service-activator id="jmsTest" input-channel="jmsTaskInputChl" ref="app" method="handleMessage"/>-->
+
+
+    <!--channels-->
+    <int:channel id="jmsTaskInputChl"/>
+    <int:channel id="singleArtTaskChl"/>
+    <int:channel id="batchArtTaskChl"/>
+    <int:channel id="listForBatchArtTaskChl"/>
+    <int:channel id="toValidateArtChl">
+        <int:dispatcher task-executor="artTaskExecutor"/>
+    </int:channel>
+    <int:channel id="toGetArtChl" />
+    <int:channel id="toParseArtChl" />
+
+    <!--<int:channel id="errorChannel">-->
+        <!--<int:queue capacity="50"/>-->
+    <!--</int:channel>-->
+    <int:channel id="runtimeEptChl"/>
+
+    <!--<int:poller default="true" fixed-delay="50"/>-->
+
+    <task:executor id="artTaskExecutor" pool-size="5-20"
+                   queue-capacity="50" keep-alive="10000" />
+
+    </beans>

@@ -1,0 +1,11 @@
+3.11
+    1. Set up the project.
+    2. Init maven project.
+    3. Init DAO layer and test.
+
+3.12
+    1. Init model for common/task
+    2. think about the login for get article page task
+
+3.13
+

@@ -2,6 +2,7 @@ package com.cc.lmsfc.common.model.task;
 
 import com.cc.lmsfc.common.model.article.ArticleElement;
 import com.cc.lmsfc.common.model.filter.FilterRule;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class ArticleTaskJob extends TaskJob {
 
     @Column(name = "url", nullable = false)
     @NotEmpty
+    @Length(max = 200)
     private String url;
 
     @OneToOne(fetch = FetchType.LAZY)

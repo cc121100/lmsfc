@@ -2,10 +2,12 @@ package com.cc.lmsfc.common.model.filter;
 
 import com.cc.lmsfc.common.model.BaseModel;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by tomchen on 15-3-12.
@@ -31,9 +33,11 @@ public class FilterDetail extends BaseModel{
 
 
     @Column(name="param_value1")
+    @Length(max = 50)
     private String paramValue1;
 
     @Column(name="param_value2")
+    @Size(max = 50)
     private String paramValue2;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -46,6 +50,7 @@ public class FilterDetail extends BaseModel{
 
     @Column(name = "category", nullable = false)
     @NotEmpty
+    @Size(max = 50)
     private String category;
 
     public String getId() {

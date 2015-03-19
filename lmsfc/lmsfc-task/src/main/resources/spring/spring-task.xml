@@ -19,24 +19,28 @@
 
     <import resource="classpath*:spring/spring-task-integration.xml"/>
 
-    <bean id="propertyConfigurerForBase"
-          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="order" value="1" />
-        <property name="ignoreUnresolvablePlaceholders" value="true" />
-        <property name="locations">
-            <list>
-                <value>classpath*:task_mac.properties</value>
-            </list>
-        </property>
+    <bean id="freemarkerConfig" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+        <property name="templateLoaderPath" value="classpath:template" />
     </bean>
 
-    <bean id="placeholderConfigMM" class="com.cc.lmsfc.common.util.SpringPropertiesUtil">
-        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
-        <property name="locations">
-            <list>
-                <value>classpath*:task_mac.properties</value>
-            </list>
-        </property>
-    </bean>
+    <!--<bean id="propertyConfigurerForBase"-->
+          <!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="order" value="1" />-->
+        <!--<property name="ignoreUnresolvablePlaceholders" value="true" />-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath*:task_mac.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="placeholderConfigMM" class="com.cc.lmsfc.common.util.SpringPropertiesUtil">-->
+        <!--<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>-->
+        <!--<property name="locations">-->
+            <!--<list>-->
+                <!--<value>classpath*:task_mac.properties</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
 
 </beans>

@@ -51,8 +51,16 @@
             ref="artTaskJobService" method="download" output-channel="toParseArtChl"/>
 
     <int:service-activator id="parseArt" input-channel="toParseArtChl"
-            ref="parseService" method="parse" />
+            ref="parseService" method="parse" output-channel="toFilterArtChl" />
 
+    <int:service-activator id="filterArt" input-channel="toFilterArtChl"
+            ref="filterService" method="filter" output-channel="toGenerateArtEleChl"/>
+
+    <int:service-activator id="generateArtEle" input-channel="toGenerateArtEleChl"
+            ref="artElementService" method="store" output-channel="toFreemarkerArtEleChl"/>
+
+    <int:service-activator id="freemarkerArt" input-channel="toFreemarkerArtEleChl"
+            ref="articleService" method="generate"/>
 
 
     <!--error handler-->
@@ -78,6 +86,9 @@
     </int:channel>
     <int:channel id="toGetArtChl" />
     <int:channel id="toParseArtChl" />
+    <int:channel id="toFilterArtChl" />
+    <int:channel id="toGenerateArtEleChl" />
+    <int:channel id="toFreemarkerArtEleChl" />
 
     <!--<int:channel id="errorChannel">-->
         <!--<int:queue capacity="50"/>-->

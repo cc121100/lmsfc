@@ -45,6 +45,9 @@ public class DataInitTest {
     @Autowired
     private BatchArticleTaskJobDAO batchArticleTaskJobDAO;
 
+    @Autowired
+    private ArticleElementDAO articleElementDAO;
+
     @Test
     public void initTaskJobTestData(){
 
@@ -150,7 +153,7 @@ public class DataInitTest {
         FilterRule r1 = new FilterRule();
         r1.setName("Filter Rule for task job1");
         r1.setFilterDetails(filterDetails);
-        r1.setSourceDomain("https://www.cnblogs.com");
+        r1.setSourceDomain("http://www.cnblogs.com");
 
         for(FilterDetail fd : filterDetails){
            fd.setFilterRule(r1);
@@ -163,7 +166,7 @@ public class DataInitTest {
         art.setState(0);
         art.setType(0);
         art.setFilterRule(r1);
-        art.setUrl("http://www.cnblogs.com/huang0925/p/3556848.html");
+        art.setUrl("http://www.cnblogs.com/huang0925/p/4069921.html");
 
         r1.setArticleTaskJob(art);
 
@@ -180,6 +183,8 @@ public class DataInitTest {
         filterDetailDAO.deleteAll();
         filterRuleDAO.deleteAll();
         articleTaskJobDAO.deleteAll();
+
+        articleElementDAO.deleteAll();
     }
 
     @Test
@@ -205,9 +210,9 @@ public class DataInitTest {
 
     @Test
     public void testtt(){
-        System.err.println("temp: " + TaskConstants.TEMP_FLODER);
-        System.err.println("name: " + TaskConstants.NAME);
-
-        System.err.println("temp:" + SpringPropertiesUtil.getProperty("TEMP_FLODER"));
+//        System.err.println("temp: " + TaskConstants.TEMP_FLODER);
+//        System.err.println("name: " + TaskConstants.NAME);
+//
+//        System.err.println("temp:" + SpringPropertiesUtil.getProperty("TEMP_FLODER"));
     }
 }

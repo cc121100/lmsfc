@@ -7,9 +7,11 @@ import org.apache.commons.collections4.Predicate;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 /**
@@ -28,6 +30,7 @@ public class FilterRule extends BaseModel{
 
     @Column(name = "name", nullable = false)
     @NotEmpty
+    @Size(max = 50)
     private String name;
 
     @Column(name="source_domain" ,nullable=false, unique = true)

@@ -33,6 +33,7 @@
         <!--<commons.util.version></commons.util.version>-->
         <commons.codec.version>1.8</commons.codec.version>
         <commons.collections.version>4.0</commons.collections.version>
+        <commons.configuration.version>1.7</commons.configuration.version>
 
         <!--log-->
         <slf4j.version>1.7.5</slf4j.version>
@@ -139,6 +140,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>${commons.collections.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-configuration</groupId>
+                <artifactId>commons-configuration</artifactId>
+                <version>${commons.configuration.version}</version>
             </dependency>
 
             <!--log-->

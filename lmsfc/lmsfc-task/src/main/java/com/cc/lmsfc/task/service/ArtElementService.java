@@ -53,6 +53,8 @@ public class ArtElementService {
                 artEle.setFileLocation(TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + artEle.getId());
             }
 
+            atj.setArticleElement(artEle);
+
 
             // 2 store related files in disk
             for (Map.Entry<String,Object> entry : atj.getTempMap().entrySet()){
@@ -61,7 +63,7 @@ public class ArtElementService {
                 FileUtils.write(new File(artEle.getFileLocation() + CommonConsts.SLASH + fileName), fileContent, CommonConsts.UTF8);
 
             }
-
+            //zhua
 
             return atj;
 

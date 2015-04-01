@@ -37,12 +37,12 @@ public class FilterRule extends BaseModel{
     @NotEmpty
     private String sourceDomain;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="filterRule",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="filterRule",fetch = FetchType.LAZY)
 //    @LazyCollection(LazyCollectionOption.FALSE)
     private List<FilterDetail> filterDetails;
 
-    @OneToOne(mappedBy = "filterRule",fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
-    private ArticleTaskJob articleTaskJob;
+    @OneToMany(mappedBy = "filterRule",fetch = FetchType.LAZY)
+    private List<ArticleTaskJob> articleTaskJobs;
 
     @Transient
     private Map<String, List<FilterDetail>> filterDetailMap;
@@ -80,12 +80,12 @@ public class FilterRule extends BaseModel{
         this.filterDetails = filterDetails;
     }
 
-    public ArticleTaskJob getArticleTaskJob() {
-        return articleTaskJob;
+    public List<ArticleTaskJob> getArticleTaskJobs() {
+        return articleTaskJobs;
     }
 
-    public void setArticleTaskJob(ArticleTaskJob articleTaskJob) {
-        this.articleTaskJob = articleTaskJob;
+    public void setArticleTaskJobs(List<ArticleTaskJob> articleTaskJobs) {
+        this.articleTaskJobs = articleTaskJobs;
     }
 
     public Map<String, List<FilterDetail>> getFilterDetailMap() {
@@ -138,4 +138,9 @@ public class FilterRule extends BaseModel{
         return filterDetailMap;
     }
 
+    @Override
+    public String[] getProperties() {
+
+        return new String[]{"name","sourceDomain"};
+    }
 }

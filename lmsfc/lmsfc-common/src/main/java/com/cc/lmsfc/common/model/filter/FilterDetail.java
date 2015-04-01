@@ -22,7 +22,7 @@ public class FilterDetail extends BaseModel{
     @GenericGenerator(name="system-uuid",strategy="uuid")
     private String id;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "filter_rule_id")
     private FilterRule filterRule;
 
@@ -115,5 +115,10 @@ public class FilterDetail extends BaseModel{
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String[] getProperties() {
+        return new String[]{"filterRule","filter","paramValue1","paramValue2","parentNode","subNum","category"};
     }
 }

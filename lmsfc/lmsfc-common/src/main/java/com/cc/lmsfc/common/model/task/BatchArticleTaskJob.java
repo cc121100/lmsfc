@@ -23,4 +23,9 @@ public class BatchArticleTaskJob extends TaskJob {
     public void setArticleTaskJobs(List<ArticleTaskJob> articleTaskJobs) {
         this.articleTaskJobs = articleTaskJobs;
     }
+
+    @Override
+    public String[] getProperties() {
+        return new String[0];
+    }
 }

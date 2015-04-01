@@ -1,8 +1,14 @@
 package com.cc.lmsfc.common.test;
 
+import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
+import com.cc.lmsfc.common.dao.FilterDAO;
 import com.cc.lmsfc.common.dao.TestModelDAO;
 import com.cc.lmsfc.common.jpa.specification.TestModelSpfc;
 import com.cc.lmsfc.common.model.TestModel;
+import com.cc.lmsfc.common.model.filter.Filter;
+import com.cc.lmsfc.common.model.security.User;
+import com.cc.lmsfc.common.service.FilterService;
+import com.cc.lmsfc.common.service.UserService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +43,19 @@ public class CommonTest {
     private TestModelDAO testModelDAO;
 
     @Autowired
-    private RedisTemplate<String, String> template; // inject the template as ListOperations
+    private ArticleTaskJobDAO articleTaskJobDAO;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private FilterService filterService;
+
+    @Autowired
+    private FilterDAO filterDAO;
+
+    @Autowired
+//    private RedisTemplate<String, String> template; // inject the template as ListOperations
 
     @Test
     public void test1(){
@@ -60,7 +78,35 @@ public class CommonTest {
         System.out.println(page.getTotalElements());
     }
 
+    @Test
+    public void test3(){
+//        User user = userService.getById("402868cc4c4e8e0d014c4e8e18390007");
+//        System.err.println("==================:" + user.getUserName());
 
+        PageRequest pr = new PageRequest(0,10, Sort.Direction.ASC,"filterName");
+        Page<Filter> page = filterService.findAll(pr);
+        System.err.println("Total count: " + page.getTotalElements());
+        System.err.println("Total page: " + page.getTotalPages() );
+        System.err.println("current page: " +page.getNumber());
+        System.err.println("current page element count:" + page.getNumberOfElements());
+        System.err.println("page size: " + page.getSize());
+        for(Filter f : page.getContent()){
+            System.err.println("........ " + f.getFilterName());
+        }
+        System.err.println();
+    }
+
+    @Test
+    public void testFilterDelete(){
+        String[] ids = new String[]{"4028819d474d2dbc01474d2dccb4000k","4028819d474d2dbc01474d2dccb4000i"};
+        filterService.deleteByIds(ids);
+//        filterDAO.delete(ids);
+    }
+
+    @Test
+    public void testUpdateAtjState(){
+        articleTaskJobDAO.updateArticleState("8ee483b14c6e5234014c6e56a3340000",110);
+    }
 
 
 }

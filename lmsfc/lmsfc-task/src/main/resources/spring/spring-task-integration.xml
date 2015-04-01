@@ -23,15 +23,19 @@
     <int:control-bus input-channel="jmsTaskInputChl"/>
 
     <jms:message-driven-channel-adapter id="getJmsTask" channel="jmsTaskInputChl"
-    destination="inQueue" auto-startup="false"/>
+    destination="inQueue"  auto-startup="false"/>
     <!-- here destination is the queue in activemq defined in spring-jms.xml, the queue's name is 'jmsQueue' defined in inQueue construct-->
 
 
+    <int:router input-channel="jmsTaskInputChl" expression="payload.type">
+        <int:mapping value="B" channel="batchArtTaskChl"/>
+        <int:mapping value="S" channel="singleArtTaskChl"/>
 
-    <int:payload-type-router input-channel="jmsTaskInputChl">
-        <int:mapping type="com.cc.lmsfc.common.model.task.BatchArticleTaskJob" channel="batchArtTaskChl" />
-        <int:mapping type="com.cc.lmsfc.common.model.task.ArticleTaskJob" channel="singleArtTaskChl" />
-    </int:payload-type-router>
+    </int:router>
+    <!--<int:payload-type-router input-channel="jmsTaskInputChl">-->
+        <!--<int:mapping type="com.cc.lmsfc.common.model.task.BatchArticleTaskJob" channel="batchArtTaskChl" />-->
+        <!--<int:mapping type="com.cc.lmsfc.common.model.task.ArticleTaskJob" channel="singleArtTaskChl" />-->
+    <!--</int:payload-type-router>-->
 
     <int:service-activator id="getBatchArtTaskJobService" input-channel="batchArtTaskChl"
                            ref="batchArtTaskJobService" method="messageHandler" output-channel="listForBatchArtTaskChl"/>
@@ -80,10 +84,10 @@
     <int:channel id="jmsTaskInputChl"/>
     <int:channel id="singleArtTaskChl"/>
     <int:channel id="batchArtTaskChl"/>
-    <int:channel id="listForBatchArtTaskChl"/>
-    <int:channel id="toValidateArtChl">
+    <int:channel id="listForBatchArtTaskChl">
         <int:dispatcher task-executor="artTaskExecutor"/>
     </int:channel>
+    <int:channel id="toValidateArtChl" />
     <int:channel id="toGetArtChl" />
     <int:channel id="toParseArtChl" />
     <int:channel id="toFilterArtChl" />
@@ -100,4 +104,6 @@
     <task:executor id="artTaskExecutor" pool-size="5-20"
                    queue-capacity="50" keep-alive="10000" />
 
+
+    <!--<jms:outbound-channel-adapter destination-expression=""/>-->
     </beans>

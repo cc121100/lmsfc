@@ -1,11 +1,8 @@
 package com.cc.lmsfc.common.model.filter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.cc.lmsfc.common.model.BaseModel;
 import org.hibernate.annotations.GenericGenerator;
@@ -22,10 +19,12 @@ public class Filter extends BaseModel{
 	
 	@Column(name="filter_name" ,nullable=false, unique = true)
 	@NotEmpty
+    @Size(max = 50,min = 2)
 	private String filterName;
 	
 	@Column(name="filter_class_name", nullable = false)
 	@NotEmpty
+    @Size(max = 100)
 	private String filterClassName;
 	
 	@Column(name="filter_class_params", nullable = false)
@@ -34,6 +33,7 @@ public class Filter extends BaseModel{
 	
 	@Column(name="param_type" ,nullable=false)
 	@NotEmpty
+    @Size(max = 50)
 	private String paramType;
 	
 	@Column(name="param_num")
@@ -41,6 +41,7 @@ public class Filter extends BaseModel{
 	
 	@Column(name="set_param_method_name")
 	@NotEmpty
+    @Size(max = 50)
 	private String setParamMethodName;
 
 	public String getId() {
@@ -98,5 +99,9 @@ public class Filter extends BaseModel{
 	public void setFilterClassParams(String filterClassParams) {
 		this.filterClassParams = filterClassParams;
 	}
-	
+
+    @Override
+    public String[] getProperties() {
+        return new String[]{"filterName","filterClassName","filterClassParams","paramType","paramNum","setParamMethodName"};
+    }
 }

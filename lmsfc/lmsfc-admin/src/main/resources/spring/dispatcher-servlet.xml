@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<beans xmlns="http://www.springframework.org/schema/beans"     
+       xmlns:aop="http://www.springframework.org/schema/aop"     
+       xmlns:context="http://www.springframework.org/schema/context"    
+       xmlns:mvc="http://www.springframework.org/schema/mvc"     
+       xmlns:tx="http://www.springframework.org/schema/tx"     
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"    
+       xsi:schemaLocation="http://www.springframework.org/schema/aop     
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context     
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc     
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx     
+        http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- 默认注解映射支持 -->
+    <mvc:annotation-driven/>
+
+    <!-- 自动扫描包 -->
+    <context:component-scan base-package="com.cc.lmsfc.admin.controller" />
+
+    <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射   请求映射-->
+    <bean
+          class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+          <property name="messageConverters">
+              <list>
+                  <ref bean="stringHttpMessageConverter" />
+                  <ref bean="jsonHttpMessageConverter" />
+              </list>
+         </property>
+     </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <!--<property name="suffix" value=".ftl"/>-->
+        <!--<property name="prefix" value="" />-->
+        <!--<property name="contentType" value="text/html;charset=UTF-8"/>-->
+        <!-- 此变量值为pageContext.request, 页面使用方法：rc.contextPath -->
+        <!--<property name="requestContextAttribute" value="rc"/>-->
+
+        <property name="cache" value="true" />
+        <property name="suffix" value=".ftl" />
+        <property name="contentType" value="text/html;charset=UTF-8"></property>
+        <property name="requestContextAttribute" value="rc" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        
+    </bean>
+ 
+    <bean id="stringHttpMessageConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter" />
+     <bean id="jsonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+
+     
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">    -->
+        <!--<property name="prefix" value="/WEB-INF/view/" />-->
+        <!--<property name="suffix" value=".jsp" />    -->
+    <!--</bean>    -->
+    
+    <mvc:resources mapping="/js/**" location="/static_resources/js/"/>
+    <mvc:resources mapping="/other/**" location="/static_resources/other/"/>
+    <mvc:resources mapping="/plugins/**" location="/static_resources/plugins/"/>
+    <mvc:resources mapping="/themes/**" location="/static_resources/themes/"/>
+    <mvc:resources mapping="/images/**" location="/static_resources/images/"/>
+    <mvc:resources mapping="/styles/**" location="/static_resources/styles/"/>
+    <!--<mvc:resources mapping="/img/**" location="/static_resources/images/"/>    -->
+    <!--<mvc:resources mapping="/fonts/**" location="/static_resources/fonts/"/>    -->
+    <!--<mvc:resources mapping="/font-awesome/**" location="/static_resources/font-awesome-4.1.0/"/>    -->
+        
+    <mvc:default-servlet-handler />
+    <import resource="spring-shiro.xml"/>
+    
+</beans> 

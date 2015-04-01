@@ -45,17 +45,12 @@ public class ArticleElement extends BaseModel {
     @Size(max = 256)
     private String files;
 
-//    @Column(name = "csss",nullable = false,length = 2000)
-//    @NotEmpty
-//    private String csss;
-//
-//    @Column(name = "imgs",nullable = false,length = 2000)
-//    @NotEmpty
-//    private String imgs;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_tkj_id")
     private ArticleTaskJob articleTaskJob;
+
+//    @OneToOne(mappedBy = "articleElement",fetch = FetchType.LAZY)
+    private Article article;
 
     @Transient
     private Map<String,Object> elementMap;
@@ -115,5 +110,18 @@ public class ArticleElement extends BaseModel {
 
     public void setElementMap(Map<String, Object> elementMap) {
         this.elementMap = elementMap;
+    }
+
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
+    @Override
+    public String[] getProperties() {
+        return new String[0];
     }
 }

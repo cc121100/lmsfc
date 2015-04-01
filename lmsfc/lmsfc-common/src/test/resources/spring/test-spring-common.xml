@@ -84,8 +84,9 @@
             <props>
                 <!-- <prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop> -->
                 <prop key="hibernate.show_sql">true</prop>
-                 <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">delete</prop>-->
                 <!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop> -->
                 <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
             </props>
@@ -99,7 +100,37 @@
 
     <!-- 使用annotation定义事务 -->
     <tx:annotation-driven transaction-manager="transactionManager"
-                          proxy-target-class="true" />
+                          proxy-target-class="true" order="0"/>
+
+    <aop:config expose-proxy="true" proxy-target-class="true">
+        <!-- 只对业务逻辑层实施事务 -->
+        <aop:pointcut id="txPointcut" expression="execution(* com.cc.lmsfc.common.service.impl..*+.*(..))"/>
+        <aop:advisor id="txAdvisor" advice-ref="txAdvice" pointcut-ref="txPointcut" order="1"/>
+    </aop:config>
+
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"
+                       rollback-for="Exception" />
+            <tx:method name="select*" propagation="REQUIRED" read-only="true"
+                       rollback-for="Exception" />
+            <tx:method name="insert*" propagation="REQUIRED"
+                       rollback-for="Exception" />
+            <tx:method name="delete*" propagation="REQUIRED"
+                       rollback-for="Exception" />
+            <tx:method name="update*" propagation="REQUIRED"
+                       rollback-for="Exception" />
+            <tx:method name="modify*" propagation="REQUIRED"
+                       rollback-for="Exception" />
+            <!--<tx:method name="*" read-only="true"-->
+            <!--rollback-for="Exception" />-->
+        </tx:attributes>
+    </tx:advice>
+
+
+
+    <!-- 开启AOP监听 只对当前配置文件有效 -->
+    <aop:aspectj-autoproxy expose-proxy="true"/>
 
     <!-- Spring Data Jpa配置 -->
     <jpa:repositories base-package="com.cc.lmsfc.common.dao.**"
@@ -111,11 +142,10 @@
     <jpa:auditing auditor-aware-ref="auditorAware" />
     <bean id="auditorAware" class="com.cc.lmsfc.common.audit.AuditorAwareImpl" />
 
-
     <!---->
     <bean id="validator"
           class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
-    <!--<import resource="test-spring-redis.xml"/>-->
+    <!--<import resource="spring-redis.xml"/>-->
 
 </beans>

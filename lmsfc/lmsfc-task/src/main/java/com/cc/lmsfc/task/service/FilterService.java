@@ -30,7 +30,7 @@ public class FilterService {
 //            class="img-responsive"
         }
 
-        //2 remove all <!-- --> in content
+        //3 remove all <!-- --> in content
 
 
 

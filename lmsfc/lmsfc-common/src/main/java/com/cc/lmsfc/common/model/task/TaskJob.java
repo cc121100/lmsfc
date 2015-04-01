@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
  * Created by tomchen on 15-3-13.
@@ -31,11 +32,14 @@ public abstract class TaskJob extends BaseModel{
 
     @Column(name = "state", nullable = false)
     @NotNull
-    private Integer state;
+    private Integer state = 0;
 
     @Column(name = "type", nullable = false)
     @NotNull
     private Integer type;
+
+    @Column(name = "finish_time")
+    private Date finishTime;
 
 
     public String getId() {
@@ -68,5 +72,13 @@ public abstract class TaskJob extends BaseModel{
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public Date getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(Date finishTime) {
+        this.finishTime = finishTime;
     }
 }

@@ -1,6 +1,7 @@
 package com.cc.lmsfc.task.test;
 
 import com.cc.lmsfc.common.dao.*;
+import com.cc.lmsfc.common.model.article.ArticleCategory;
 import com.cc.lmsfc.common.model.filter.Filter;
 import com.cc.lmsfc.common.model.filter.FilterDetail;
 import com.cc.lmsfc.common.model.filter.FilterRule;
@@ -47,6 +48,12 @@ public class DataInitTest {
 
     @Autowired
     private ArticleElementDAO articleElementDAO;
+
+    @Autowired
+    private ArticleDAO articleDAO;
+
+    @Autowired
+    private ArticleCategoryDAO articleCategoryDAO;
 
     @Test
     public void initTaskJobTestData(){
@@ -168,11 +175,22 @@ public class DataInitTest {
         art.setFilterRule(r1);
         art.setUrl("http://www.cnblogs.com/huang0925/p/4069921.html");
 
-        r1.setArticleTaskJob(art);
+//        r1.setArticleTaskJob(art);
 
 //        articleTaskJobDAO.saveAndFlush(art);
         filterRuleDAO.saveAndFlush(r1);
 
+
+
+        ArticleCategory articleCategory1 = new ArticleCategory();
+        articleCategory1.setName("默认分类");
+        articleCategory1.setPathName("default");
+        articleCategoryDAO.saveAndFlush(articleCategory1);
+
+        ArticleCategory articleCategory2 = new ArticleCategory();
+        articleCategory2.setName("我的分类");
+        articleCategory2.setPathName("mycategory1");
+        articleCategoryDAO.saveAndFlush(articleCategory2);
 
 
     }
@@ -185,6 +203,9 @@ public class DataInitTest {
         articleTaskJobDAO.deleteAll();
 
         articleElementDAO.deleteAll();
+
+        articleDAO.deleteAll();
+        articleCategoryDAO.deleteAll();
     }
 
     @Test

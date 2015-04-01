@@ -18,7 +18,7 @@ public class HttpClientTest {
     @Test
     public void test1() throws IOException, ParserException {
 
-        byte[] bytes = HttpClientUtil.httpGet("http://www.cnblogs.com/huang0925/p/3556848.html");
+        byte[] bytes = HttpClientUtil.httpGet("http://www.cnblogs.com/shenliang123/archive/2012/08/28/2660705.html");
         String htmlStr = new String(bytes,"UTF-8");
         System.out.println(htmlStr);
 
@@ -43,7 +43,7 @@ public class HttpClientTest {
     @Test
     public void test2() throws IOException, ParserException {
 
-        byte[] bytes = HttpClientUtil.httpGet("http://www.cnblogs.com/huang0925/p/3556848.html");
+        byte[] bytes = HttpClientUtil.httpGet("http://www.cnblogs.com/shenliang123/archive/2012/08/28/2660705.html");
         String htmlStr = new String(bytes,"UTF-8");
 //        System.out.println(htmlStr);
 

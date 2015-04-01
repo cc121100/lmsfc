@@ -9,13 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Post - ${title?default("")}</title>
+    <title>CC's Home - ${title?default("lmsfc")}</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link href="../css/blog-post.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,15 +19,27 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    ${outercss?default("")}
-    ${innercss?default("")}
+    <#if type=="article">
+        ${outercss?default("")}
+        ${innercss?default("")}
+    </#if>
 
-    <style type="text/css">
-        body{
-            background: #fff;
-        }
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-    </style>
+    <!-- Custom CSS -->
+    <#if type=="article">
+        <link href="../../css/blog-post.css" rel="stylesheet">
+    <#else>
+        <link href="../../css/blog-home.css" rel="stylesheet">
+    </#if>
+
+    <#--<style type="text/css">-->
+        <#--body{-->
+            <#--background: #fff;-->
+        <#--}-->
+
+    <#--</style>-->
 
 </head>
 
@@ -76,53 +83,17 @@
     <div class="row">
 
         <!-- Blog Post Content Column -->
-        <div class="col-lg-8" id="artMain">
+        <div class="col-lg-9" id="artMain">
 
-            <!-- Blog Post -->
-
-            <!-- Title -->
-            <h1>${title?default("")}</h1>
-            <p class="text-right"><span class="glyphicon glyphicon-time"></span><small> Posted on August 24, 2013 at 9:00 PM</small></p>
-            <!-- Author -->
-            <!-- <p class="lead">
-                by <a href="#">Start Bootstrap</a>
-            </p> -->
-
-            <hr>
-
-            <!-- Date/Time -->
-            <!-- <p class="text-right"><span class="glyphicon glyphicon-time"></span><small> Posted on August 24, 2013 at 9:00 PM</small></p> -->
-            <p>文章转载至：<a href="${from?default("#")}">${from?default("")}</a></p>
-            <!-- <hr> -->
-
-            <!-- Preview Image -->
-            <!-- <img class="img-responsive" src="http://placehold.it/900x300" alt=""> -->
-
-            <!-- <hr> -->
-
-            <!-- Post Content -->
-            ${content?default("")}
-            <!-- <hr> -->
-
-            <!-- Blog Comments -->
-
-            <!-- Comments Form -->
-
-
-            <!-- <hr> -->
-
-            <!-- Posted Comments -->
-
-            <!-- Comment -->
-
-
-            <!-- Comment -->
-
-
+            <#if type=="article">
+                <#include "*/article.ftl">
+            <#else >
+                <#include "*/list.ftl">
+            </#if>
         </div>
 
         <!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <!-- Blog Search Well -->
             <div class="well">
@@ -142,30 +113,26 @@
             <div class="well">
                 <h4>Blog Categories</h4>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <ul class="list-unstyled">
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
+                            <#list artCateList as artCate>
+                                <li><a href="../${artCate.pathName}/list.html">${artCate.name}</a></li>
+
+                            </#list>
                         </ul>
                     </div>
-                    <div class="col-lg-6">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                            <li><a href="#">Category Name</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <#--<div class="col-lg-6">-->
+                        <#--<ul class="list-unstyled">-->
+                            <#--<li><a href="#">Category Name</a>-->
+                            <#--</li>-->
+                            <#--<li><a href="#">Category Name</a>-->
+                            <#--</li>-->
+                            <#--<li><a href="#">Category Name</a>-->
+                            <#--</li>-->
+                            <#--<li><a href="#">Category Name</a>-->
+                            <#--</li>-->
+                        <#--</ul>-->
+                    <#--</div>-->
                 </div>
                 <!-- /.row -->
             </div>
@@ -187,7 +154,7 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <p class="text-center">Copyright &copy; CC's Home 2015</p>
             </div>
         </div>
         <!-- /.row -->
@@ -202,7 +169,9 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="http://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    $("#artMain img").addClass("img-responsive");
+    <#if type=="article">
+        $("#artMain img").addClass("img-responsive");
+    </#if>
 </script>
 </body>
 

@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,10 +21,10 @@ public class ArticleTaskJob extends TaskJob {
 
     @Column(name = "url", nullable = false)
     @NotEmpty
-    @Length(max = 200)
+    @Size(min = 1, max = 200)
     private String url;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "filter_rule_id")
     private FilterRule filterRule;
 
@@ -35,9 +36,16 @@ public class ArticleTaskJob extends TaskJob {
     private ArticleElement articleElement;
 
     //no need to load batchAtlTkj earge
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "batch_art_tkj_id")
     private BatchArticleTaskJob batchArticleTaskJob;
+
+    @Column(name = "is_whole", nullable = false)
+    private boolean isWhole = false;
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "tkj_run_log_id")
+    private TaskJobRunLog taskJobRunLog;
 
     @Transient
     private Map<String,Object> tempMap = new HashMap<>();
@@ -80,5 +88,34 @@ public class ArticleTaskJob extends TaskJob {
 
     public void setTempMap(Map<String, Object> tempMap) {
         this.tempMap = tempMap;
+    }
+
+    public boolean getIsWhole() {
+        return isWhole;
+    }
+
+    public void setIsWhole(boolean isWhole) {
+        this.isWhole = isWhole;
+    }
+
+    public boolean isWhole() {
+        return isWhole;
+    }
+
+    public void setWhole(boolean isWhole) {
+        this.isWhole = isWhole;
+    }
+
+    public TaskJobRunLog getTaskJobRunLog() {
+        return taskJobRunLog;
+    }
+
+    public void setTaskJobRunLog(TaskJobRunLog taskJobRunLog) {
+        this.taskJobRunLog = taskJobRunLog;
+    }
+
+    @Override
+    public String[] getProperties() {
+        return new String[]{"name","state","type","finishTime","url","filterRule","isWhole"};
     }
 }

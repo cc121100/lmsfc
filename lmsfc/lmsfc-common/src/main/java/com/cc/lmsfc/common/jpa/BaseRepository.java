@@ -15,4 +15,5 @@ import java.util.List;
 @NoRepositoryBean
 public interface BaseRepository<T, ID extends Serializable> extends JpaRepository<T, ID>,JpaSpecificationExecutor<T> {
 
+    void deleteByIds(Iterable<ID> ids);
 }

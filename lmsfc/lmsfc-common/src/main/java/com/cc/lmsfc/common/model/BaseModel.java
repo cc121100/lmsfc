@@ -15,12 +15,16 @@ import java.util.Date;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class BaseModel implements Serializable{
+public abstract class BaseModel implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3152132842189516704L;
+
+    public String[] getProperties(){
+        return new String[0];
+    }
 
 	@Version
 	private Integer version;

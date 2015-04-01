@@ -11,6 +11,170 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>lmsfc-admin</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.cc</groupId>
+            <artifactId>lmsfc-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-aspectj</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-quartz</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jagregory</groupId>
+            <artifactId>shiro-freemarker-tags</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-pool</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <finalName>lmsfc-admin</finalName>
+
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>src/main/web</directory>-->
+            <!--</resource>-->
+        <!--</resources>-->
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory> <!-- 拷贝所以依赖存放位置 -->
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>${project.artifactId}</warName>
+                    <!--<webXml>src/main/webapp/WEB-INF/web.xml</webXml>-->
+                    <!--<failOnMissingWebXml>false</failOnMissingWebXml>-->
+                    <!--<webXml>webapp/WEB-INF/web.xml</webXml>-->
+                    <!--<webResources>-->
+                        <!--<resource>-->
+                            <!--&lt;!&ndash; this is relative to the pom.xml directory &ndash;&gt;-->
+                            <!--<directory>resource2</directory>-->
+                            <!--&lt;!&ndash; the list has a default value of ** &ndash;&gt;-->
+                            <!--<includes>-->
+                                <!--<include>**/*</include>-->
+                            <!--</includes>-->
+                        <!--</resource>-->
+                    <!--</webResources>-->
+
+                    <!--<webResources>-->
+                        <!--<resource>-->
+                            <!--<directory>webapp/</directory>-->
+                            <!--<includes>-->
+                                <!--<include>**/*</include>-->
+                            <!--</includes>-->
+                        <!--</resource>-->
+                    <!--</webResources>-->
+
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                <path>/lmsfc-admin</path>
+                <port>8088</port>
+                <uriEncoding>UTF-8</uriEncoding>
+                <server>tomcat7</server>
+
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 
 </project>

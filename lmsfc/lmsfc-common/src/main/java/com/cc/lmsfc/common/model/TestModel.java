@@ -36,4 +36,9 @@ public class TestModel extends BaseModel {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String[] getProperties() {
+        return new String[0];
+    }
 }

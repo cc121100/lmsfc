@@ -34,6 +34,7 @@
         <commons.codec.version>1.8</commons.codec.version>
         <commons.collections.version>4.0</commons.collections.version>
         <commons.configuration.version>1.7</commons.configuration.version>
+        <commons.beanutils.version>1.9.0</commons.beanutils.version>
 
         <!--log-->
         <slf4j.version>1.7.5</slf4j.version>
@@ -147,11 +148,22 @@
                 <artifactId>commons-configuration</artifactId>
                 <version>${commons.configuration.version}</version>
             </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons.beanutils.version}</version>
+            </dependency>
 
             <!--log-->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
                 <version>${slf4j.version}</version>
             </dependency>
 
@@ -429,6 +441,22 @@
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-ehcache</artifactId>
                 <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-spring</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-quartz</artifactId>
+                <version>${shiro.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.jagregory</groupId>
+                <artifactId>shiro-freemarker-tags</artifactId>
+                <version>0.1-SNAPSHOT</version>
             </dependency>
 
             <!--freemarker-->

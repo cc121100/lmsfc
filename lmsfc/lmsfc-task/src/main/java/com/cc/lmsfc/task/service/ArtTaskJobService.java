@@ -16,6 +16,7 @@ import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by tomchen on 15-3-16.
@@ -31,8 +32,23 @@ public class ArtTaskJobService {
 
     public ArticleTaskJob messageHandler(Message<?> msg){
         logger.info("get ArticleTaskJob from jms.");
-        ArticleTaskJob atj = (ArticleTaskJob)msg.getPayload();
-        return atj;
+//        ArticleTaskJob atj = (ArticleTaskJob)msg.getPayload();
+        Map<String,Object> map = (Map<String, Object>) msg.getPayload();
+        String id = (String) map.get("id");
+        if(StringUtils.isEmpty(id)){
+            throw new RuntimeException("TaskJob id is empty.");
+        }
+
+        //load ArticleTaskJob by id
+        ArticleTaskJob art = articleTaskJobDAO.findOne(id);
+        if(art == null){
+            throw new RuntimeException("Cant find artTaskJob with id: " + id,null);
+        }
+        art.getBatchArticleTaskJob();
+        art.getArticleElement();
+        art.getFilterRule().getId();
+        art.getFilterRule().getFilterDetails().size();
+        return art;
     }
 
     public ArticleTaskJob validate(ArticleTaskJob atj){
@@ -48,11 +64,12 @@ public class ArtTaskJobService {
     public ArticleTaskJob download(ArticleTaskJob atj){
         logger.info("Download article page from: " + atj.getUrl());
 
+        //todo store in tmp/id.tmp when first time download, after that retry can get content directly from tmp
         byte[] bytes  = null;
         try {
             bytes = HttpClientUtil.httpGet(atj.getUrl());
             if(ArrayUtils.isEmpty(bytes)){
-                throw new TaskJobException("Exception occurs when downliad article page, get empty page. ");
+                throw new TaskJobException("Exception occurs when downliad article page, get empty page. ",atj);
             }
 
             atj.getTempMap().put("respBytes",bytes);
@@ -60,7 +77,7 @@ public class ArtTaskJobService {
             return atj;
         } catch (Exception e) {
             //TODO
-            throw new TaskJobException(e.getMessage(),e);
+            throw new TaskJobException(e.getMessage(),e,atj);
         }
 
 

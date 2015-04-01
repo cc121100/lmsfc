@@ -15,9 +15,11 @@ import javax.swing.*;
 public class TaskConstants {
 
     public static String ART_ELE_FLODER;
+    public static String GENERATED_FLODER;
 
     static {
         PropertyUtil.loadProperties("task_mac.properties");
         ART_ELE_FLODER =PropertyUtil.getValue("ART_ELE_FLODER");
+        GENERATED_FLODER = PropertyUtil.getValue("GENERATED_FLODER");
     }
 }

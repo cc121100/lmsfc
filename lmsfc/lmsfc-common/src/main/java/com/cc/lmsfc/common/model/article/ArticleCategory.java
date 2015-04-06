@@ -27,11 +27,10 @@ public class ArticleCategory extends BaseModel {
 
     @Column(name = "path_name",nullable = false)
     @NotNull
-    @Size(max = 20
-    )
+    @Size(max = 100)
     private String pathName;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy="articleCategory",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="articleCategory",fetch = FetchType.LAZY)
     private List<Article> articleList;
 
     public String getId() {

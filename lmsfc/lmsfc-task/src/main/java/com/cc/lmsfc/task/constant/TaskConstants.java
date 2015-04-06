@@ -22,4 +22,6 @@ public class TaskConstants {
         ART_ELE_FLODER =PropertyUtil.getValue("ART_ELE_FLODER");
         GENERATED_FLODER = PropertyUtil.getValue("GENERATED_FLODER");
     }
+
+
 }

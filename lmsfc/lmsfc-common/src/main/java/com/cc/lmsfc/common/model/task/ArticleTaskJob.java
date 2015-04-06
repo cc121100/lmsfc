@@ -2,7 +2,6 @@ package com.cc.lmsfc.common.model.task;
 
 import com.cc.lmsfc.common.model.article.ArticleElement;
 import com.cc.lmsfc.common.model.filter.FilterRule;
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -43,9 +42,12 @@ public class ArticleTaskJob extends TaskJob {
     @Column(name = "is_whole", nullable = false)
     private boolean isWhole = false;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "tkj_run_log_id")
-    private TaskJobRunLog taskJobRunLog;
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE,mappedBy = "articleTaskJob" )
+    private List<ArtTaskJobRunLog> taskJobRunLogs;
+
+    @Column(name = "target_catgory",nullable = true)
+    @Size(max = 100)
+    private String targetCategory;
 
     @Transient
     private Map<String,Object> tempMap = new HashMap<>();
@@ -106,16 +108,24 @@ public class ArticleTaskJob extends TaskJob {
         this.isWhole = isWhole;
     }
 
-    public TaskJobRunLog getTaskJobRunLog() {
-        return taskJobRunLog;
+    public List<ArtTaskJobRunLog> getTaskJobRunLogs() {
+        return taskJobRunLogs;
     }
 
-    public void setTaskJobRunLog(TaskJobRunLog taskJobRunLog) {
-        this.taskJobRunLog = taskJobRunLog;
+    public void setTaskJobRunLogs(List<ArtTaskJobRunLog> taskJobRunLogs) {
+        this.taskJobRunLogs = taskJobRunLogs;
+    }
+
+    public String getTargetCategory() {
+        return targetCategory;
+    }
+
+    public void setTargetCategory(String targetCategory) {
+        this.targetCategory = targetCategory;
     }
 
     @Override
     public String[] getProperties() {
-        return new String[]{"name","state","type","finishTime","url","filterRule","isWhole"};
+        return new String[]{"name","state","type","finishTime","url","filterRule","isWhole","targetCategory"};
     }
 }

@@ -1,10 +1,15 @@
 package com.cc.lmsfc.task.service;
 
+import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.model.filter.Filter;
 import com.cc.lmsfc.common.model.filter.FilterDetail;
 import com.cc.lmsfc.common.model.filter.FilterRule;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
+import com.cc.lmsfc.task.constant.TaskConstants;
+import com.cc.lmsfc.task.exception.GenerateArtEleException;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.htmlparser.NodeFilter;
@@ -12,6 +17,7 @@ import org.htmlparser.Parser;
 import org.htmlparser.util.ParserException;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -26,27 +32,31 @@ import java.util.Map;
 @Component
 public class ParseService {
 
-    private static Logger logger = Logger.getLogger(ParseService.class);
+    private Logger logger = Logger.getLogger(ParseService.class);
 
 
-    public ArticleTaskJob parse(ArticleTaskJob art){
-        logger.info("Start parse article for " + art.getName());
+    public ArticleTaskJob parse(ArticleTaskJob atj){
+        logger.info("Start parse article for " + atj.getName());
 
         try {
             //1 get NodeFilter for title/content/innercss/outercss
-            Map<String,NodeFilter> nodeFilterMap =  generateNodeFilter(art.getFilterRule());
+            Map<String,NodeFilter> nodeFilterMap =  generateNodeFilter(atj.getFilterRule());
+
+            byte[] bytes = (byte[])atj.getTempMap().get("respBytes");
+            if(ArrayUtils.isEmpty(bytes)){
+                String tmepFileStr = TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + atj.getId() +CommonConsts.SLASH + "art.temp";
+                File tempFile = new File(tmepFileStr);
+                bytes = FileUtils.readFileToByteArray(tempFile);
+            }
 
             //2 get html of each
-            byte[] bytes = (byte[])art.getTempMap().get("respBytes");
-            parseForEach(bytes, art.getTempMap(), nodeFilterMap);
-            logger.info("Finish parse article.");
-            return art;
 
+            parseForEach(bytes, atj.getTempMap(), nodeFilterMap);
+            logger.info("Finish parse article.");
         } catch (Exception e) {
-            //todo handler exception
-            e.printStackTrace();
+            throw new GenerateArtEleException(e,atj);
         }
-        return null;
+        return atj;
 
     }
 

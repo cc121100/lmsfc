@@ -4,9 +4,11 @@ import com.cc.lmsfc.admin.model.BjuiResponse;
 import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.model.filter.FilterDetail;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
+import com.cc.lmsfc.common.service.ArticleCategoryService;
 import com.cc.lmsfc.common.service.ArticleTaskJobService;
 import com.cc.lmsfc.common.service.FilterRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.jms.core.JmsTemplate;
@@ -44,6 +46,10 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
     private FilterRuleService filterRuleService;
 
     @Autowired
+    private ArticleCategoryService articleCategoryService;
+
+    @Autowired
+    @Qualifier("adminJmsTemplate")
     private JmsTemplate jmsTemplate;
 
     @Override
@@ -58,6 +64,11 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
         BjuiResponse br = new BjuiResponse();
         //update state
         articleTaskJobService.updateState(id,false);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("id",id);
+        map.put("type",CommonConsts.SINGLE_TSK);
+        sendTaskToRun(map);
 
         br.setMessage("Task is running, please wait!");
         return br;
@@ -104,6 +115,7 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
     @Override
     protected void initModelBeforeEdit(Model m) {
         m.addAttribute("filterRuleList",filterRuleService.findAll());
+        m.addAttribute("artCategoryList",articleCategoryService.findAll());
     }
 
     @Override

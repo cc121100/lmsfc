@@ -2,9 +2,11 @@ package com.cc.lmsfc.task.service;
 
 import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.dao.ArticleElementDAO;
+import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
 import com.cc.lmsfc.common.model.article.ArticleElement;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.task.constant.TaskConstants;
+import com.cc.lmsfc.task.exception.GenerateArtEleException;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
@@ -23,13 +25,13 @@ import java.util.Map;
 @Component
 public class ArtElementService {
 
-    private static Logger logger = Logger.getLogger(ArtElementService.class);
+    private Logger logger = Logger.getLogger(ArtElementService.class);
 
     @Autowired
     private ArticleElementDAO articleElementDAO;
 
     @Transactional
-    public ArticleTaskJob store(ArticleTaskJob atj) {
+    public ArticleTaskJob generate(ArticleTaskJob atj) {
 
         try{
             // 1 generate article element
@@ -44,7 +46,7 @@ public class ArtElementService {
                 artEle = new ArticleElement();
 
                 artEle.setArticleTaskJob(atj);
-                artEle.setName("Element of " + atj.getName());
+                artEle.setName(CommonConsts.ELE_PREFIX + atj.getName());
                 artEle.setState(0);
                 artEle.setFiles("test");
 
@@ -63,13 +65,12 @@ public class ArtElementService {
                 FileUtils.write(new File(artEle.getFileLocation() + CommonConsts.SLASH + fileName), fileContent, CommonConsts.UTF8);
 
             }
-            //zhua
 
             return atj;
 
         }catch (Exception e){
-            //TODO handler exception
-            throw new RuntimeException(e);
+            logger.error("Error occurs when generate article element for atj:" + atj.getName());
+            throw new GenerateArtEleException(e,atj);
         }
 
     }

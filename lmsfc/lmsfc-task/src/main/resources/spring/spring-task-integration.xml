@@ -18,13 +18,13 @@
 		http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd">
 
 
-    <import resource="classpath*:spring/spring-jms.xml"/>
+    <import resource="classpath*:spring/spring-task-jms.xml"/>
 
     <int:control-bus input-channel="jmsTaskInputChl"/>
 
     <jms:message-driven-channel-adapter id="getJmsTask" channel="jmsTaskInputChl"
     destination="inQueue"  auto-startup="false"/>
-    <!-- here destination is the queue in activemq defined in spring-jms.xml, the queue's name is 'jmsQueue' defined in inQueue construct-->
+    <!-- here destination is the queue in activemq defined in spring-task-jms.xml, the queue's name is 'jmsQueue' defined in inQueue construct-->
 
 
     <int:router input-channel="jmsTaskInputChl" expression="payload.type">
@@ -45,39 +45,85 @@
 
 
     <int:service-activator id="getArtTaskJobService" input-channel="singleArtTaskChl"
-            ref="artTaskJobService" method="messageHandler" output-channel="toValidateArtChl"/>
+            ref="artTaskJobService" method="messageHandler" output-channel="toArtTaskRouterChl"/>
+
+    <int:router input-channel="toArtTaskRouterChl" expression="payload.state">
+        <int:mapping value="0" channel="toValidateArtChl"/>
+        <int:mapping value="111" channel="toValidateArtChl"/>
+        <int:mapping value="112" channel="toValidateArtChl"/>
+        <int:mapping value="121" channel="toParseArtChl"/>
+        <int:mapping value="122" channel="toParseArtChl"/>
+        <int:mapping value="131" channel="toFreemarkerArtEleChl"/>
+        <int:mapping value="132" channel="toFreemarkerArtEleChl"/>
+        <int:mapping value="141" channel="toDeployArtChl"/>
+        <int:mapping value="142" channel="toDeployArtChl"/>
+    </int:router>
 
     <!--validate task job-->
     <int:service-activator id="validateArtTaskJob" input-channel="toValidateArtChl"
                            ref="artTaskJobService" method="validate" output-channel="toGetArtChl"/>
 
     <int:service-activator id="downloadArt" input-channel="toGetArtChl"
-            ref="artTaskJobService" method="download" output-channel="toParseArtChl"/>
+            ref="artTaskJobService" method="download" output-channel="updateStateChl"/>
+
+    <!--<int:router input-channel="befToParseArtChl" expression="payload.isWhole">-->
+        <!--<int:mapping value="true" channel="toParseArtChl" />-->
+        <!--<int:mapping value="false" channel="toNotifyWebChl" />-->
+    <!--</int:router>-->
 
     <int:service-activator id="parseArt" input-channel="toParseArtChl"
             ref="parseService" method="parse" output-channel="toFilterArtChl" />
 
-    <int:service-activator id="filterArt" input-channel="toFilterArtChl"
+    <int:service-activator id="filteArt" input-channel="toFilterArtChl"
             ref="filterService" method="filter" output-channel="toGenerateArtEleChl"/>
 
     <int:service-activator id="generateArtEle" input-channel="toGenerateArtEleChl"
-            ref="artElementService" method="store" output-channel="toFreemarkerArtEleChl"/>
+            ref="artElementService" method="generate" output-channel="updateStateChl"/>
+
+    <!--<int:router input-channel="befToFreemarkerArtEleChl" expression="payload.isWhole">-->
+        <!--<int:mapping value="true" channel="toFreemarkerArtEleChl" />-->
+        <!--<int:mapping value="false" channel="toNotifyWebChl" />-->
+    <!--</int:router>-->
 
     <int:service-activator id="freemarkerArt" input-channel="toFreemarkerArtEleChl"
-            ref="articleService" method="generate"/>
+            ref="articleService" method="assemble" output-channel="updateStateChl"/>
+
+    <!--<int:router input-channel="befToDeployArtChl" expression="payload.isWhole">-->
+        <!--<int:mapping value="true" channel="toDeployArtChl" />-->
+        <!--<int:mapping value="false" channel="toNotifyWebChl" />-->
+    <!--</int:router>-->
+
+    <int:service-activator id="deployArt" input-channel="toDeployArtChl"
+                           ref="articleService" method="deploy" output-channel="updateStateChl"/>
+
+    <int:service-activator id="notifyWeb" input-channel="toNotifyWebChl"
+            ref="notifyService" method="notifyWeb"/>
+
+    <int:service-activator id="updateStateAnd" input-channel="updateStateChl"
+            ref="artTaskJobService" method="updateArtState" output-channel="befToArtTaskRouterChl"/>
+
+    <!--<int:router input-channel="befToArtTaskRouterChl" expression="payload.isWhole">-->
+        <!--<int:mapping value="true" channel="toArtTaskRouterChl" />-->
+        <!--<int:mapping value="false" channel="toNotifyWebChl" />-->
+    <!--</int:router>-->
+
+    <int:recipient-list-router id="customRouter" input-channel="befToArtTaskRouterChl">
+        <int:recipient channel="toArtTaskRouterChl" selector-expression="payload.isWhole EQ true and payload.state LT 150"/>
+        <int:recipient channel="toNotifyWebChl" selector-expression="payload.isWhole EQ false or (payload.isWhole EQ true and payload.state GE 150)"/>
+    </int:recipient-list-router>
 
 
     <!--error handler-->
     <int:exception-type-router input-channel="errorChannel">
-        <int:mapping exception-type="java.lang.RuntimeException" channel="runtimeEptChl"/>
+        <int:mapping exception-type="com.cc.lmsfc.task.exception.AssembleArtException" channel="artTaskJobExceptionChl"/>
+        <int:mapping exception-type="com.cc.lmsfc.task.exception.DeployArtException" channel="artTaskJobExceptionChl"/>
+        <int:mapping exception-type="com.cc.lmsfc.task.exception.GenerateArtEleException" channel="artTaskJobExceptionChl"/>
+        <int:mapping exception-type="com.cc.lmsfc.task.exception.GetArticleException" channel="artTaskJobExceptionChl"/>
+        <int:mapping exception-type="java.lang.RuntimeException" channel="artTaskJobExceptionChl"/>
     </int:exception-type-router>
 
-    <int:service-activator id="handlerRuntimeEptService" input-channel="runtimeEptChl"
-                           ref="runtimeEptService" method="handler"/>
-
-
-
-    <!--<int:service-activator id="jmsTest" input-channel="jmsTaskInputChl" ref="app" method="handleMessage"/>-->
+    <int:service-activator id="handlerRuntimeEptService" input-channel="artTaskJobExceptionChl"
+                           ref="taskExcpHandleService" method="handler"/>
 
 
     <!--channels-->
@@ -87,17 +133,27 @@
     <int:channel id="listForBatchArtTaskChl">
         <int:dispatcher task-executor="artTaskExecutor"/>
     </int:channel>
+    <int:channel id="toArtTaskRouterChl" />
     <int:channel id="toValidateArtChl" />
     <int:channel id="toGetArtChl" />
+
     <int:channel id="toParseArtChl" />
     <int:channel id="toFilterArtChl" />
     <int:channel id="toGenerateArtEleChl" />
+
     <int:channel id="toFreemarkerArtEleChl" />
+
+    <int:channel id="toDeployArtChl" />
+
+    <int:channel id="toNotifyWebChl" />
+
+    <int:channel id="updateStateChl" />
+    <int:channel id="befToArtTaskRouterChl" />
 
     <!--<int:channel id="errorChannel">-->
         <!--<int:queue capacity="50"/>-->
     <!--</int:channel>-->
-    <int:channel id="runtimeEptChl"/>
+    <int:channel id="artTaskJobExceptionChl"/>
 
     <!--<int:poller default="true" fixed-delay="50"/>-->
 

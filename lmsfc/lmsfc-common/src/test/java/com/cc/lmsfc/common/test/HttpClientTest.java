@@ -80,4 +80,10 @@ public class HttpClientTest {
 
 
     }
+
+    @Test
+    public void testCSDN() throws IOException {
+        byte[] bytes = HttpClientUtil.httpGet("http://blog.csdn.net/walkerjong/article/details/7210727");
+        System.err.println(new String(bytes,"UTF-8"));
+    }
 }

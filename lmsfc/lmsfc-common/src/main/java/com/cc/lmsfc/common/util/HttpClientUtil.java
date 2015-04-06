@@ -1,8 +1,6 @@
 package com.cc.lmsfc.common.util;
 
-import org.apache.http.Consts;
-import org.apache.http.HttpEntity;
-import org.apache.http.NameValuePair;
+import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -22,6 +20,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.htmlparser.http.HttpHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -38,6 +37,7 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,9 +70,9 @@ public class HttpClientUtil {
 
     private static final String EMPTY = "";
 
-    private static int CONTIMEOUT = 7000;
+    private static int CONTIMEOUT = 12000;
 
-    private static int SOTIMEOUT = 7000;
+    private static int SOTIMEOUT = 12000;
 
     private static int maxConnectionPerHost = 20;
 
@@ -80,7 +80,6 @@ public class HttpClientUtil {
 
     static {
         try {
-
 
             SSLContext sslContext = new SSLContextBuilder()
                     .loadTrustMaterial(null, new TrustStrategy() {
@@ -129,11 +128,6 @@ public class HttpClientUtil {
                     .setConnectionRequestTimeout(CONTIMEOUT).build();
 
         }
-//        catch (KeyManagementException e) {
-//            logger.error("KeyManagementException", e);
-//        } catch (NoSuchAlgorithmException e) {
-//            logger.error("NoSuchAlgorithmException", e);
-//        }
         catch (Exception e){
             logger.error("Exception",e);
         }
@@ -143,6 +137,7 @@ public class HttpClientUtil {
         HttpPost post = new HttpPost(url);
         try {
             post.setHeader("Content-type", "application/json");
+            post.setHeader(HttpHeaders.USER_AGENT, "Mozilla/5.0 Firefox/26.0");
             RequestConfig requestConfig = RequestConfig.custom()
                     .setSocketTimeout(timeout)
                     .setConnectTimeout(timeout)
@@ -212,6 +207,10 @@ public class HttpClientUtil {
         logger.info("[HttpUtils Get] begin invoke:" + sb.toString());
         HttpGet get = new HttpGet(sb.toString());
         get.setConfig(getReqCfg);
+//        for(Map.Entry<String,String> entry : headerMap.entrySet()){
+//            get.setHeader(entry.getKey(),entry.getValue());
+//        }
+        get.setHeader(HttpHeaders.USER_AGENT, "Mozilla/5.0 Firefox/26.0");
 
         try {
             CloseableHttpResponse response = httpclient.execute(get);
@@ -238,126 +237,5 @@ public class HttpClientUtil {
         return responseBytes;
 
     }
-
-//    @SuppressWarnings("deprecation")
-//    public static String invokeGet(String url, Map<String, String> params, String encode, int connectTimeout,
-//                                   int soTimeout) {
-//        String responseString = null;
-//        RequestConfig requestConfig = RequestConfig.custom()
-//                .setSocketTimeout(soTimeout)
-//                .setConnectTimeout(connectTimeout)
-//                .setConnectionRequestTimeout(connectTimeout).build();
-//
-//        StringBuilder sb = new StringBuilder();
-//        sb.append(url);
-//        int i = 0;
-//        for (Map.Entry<String, String> entry : params.entrySet()) {
-//            if (i == 0 && !url.contains("?")) {
-//                sb.append("?");
-//            } else {
-//                sb.append("&");
-//            }
-//            sb.append(entry.getKey());
-//            sb.append("=");
-//            String value = entry.getValue();
-//            try {
-//                sb.append(URLEncoder.encode(value, "UTF-8"));
-//            } catch (UnsupportedEncodingException e) {
-//                logger.warn("encode http get params error, value is "+value, e);
-//                sb.append(URLEncoder.encode(value));
-//            }
-//            i++;
-//        }
-//        logger.info("[HttpUtils Get] begin invoke:" + sb.toString());
-//        HttpGet get = new HttpGet(sb.toString());
-//        get.setConfig(requestConfig);
-//
-//        try {
-//            CloseableHttpResponse response = httpclient.execute(get);
-//            try {
-//                HttpEntity entity = response.getEntity();
-//                try {
-//                    if(entity != null){
-//                        responseString = EntityUtils.toString(entity, encode);
-//                    }
-//                } finally {
-//                    if(entity != null){
-//                        entity.getContent().close();
-//                    }
-//                }
-//            } catch (Exception e) {
-//                logger.error(String.format("[HttpUtils Get]get response error, url:%s", sb.toString()), e);
-//                return responseString;
-//            } finally {
-//                if(response != null){
-//                    response.close();
-//                }
-//            }
-//            logger.info(String.format("[HttpUtils Get]Debug url:%s , response string %s:", sb.toString(), responseString));
-//        } catch (SocketTimeoutException e) {
-//            logger.error(String.format("[HttpUtils Get]invoke get timout error, url:%s", sb.toString()), e);
-//            return responseString;
-//        } catch (Exception e) {
-//            logger.error(String.format("[HttpUtils Get]invoke get error, url:%s", sb.toString()), e);
-//        } finally {
-//            get.releaseConnection();
-//        }
-//        return responseString;
-//    }
-
-//    public final static int connectTimeout = 5000;
-//    /**
-//     * HTTPS请求，默认超时为5S
-//     * @param reqURL
-//     * @param params
-//     * @return
-//     */
-//    public static String connectPostHttps(String reqURL, Map<String, String> params) {
-//
-//        String responseContent = null;
-//
-//        HttpPost httpPost = new HttpPost(reqURL);
-//        try {
-//            RequestConfig requestConfig = RequestConfig.custom()
-//                    .setSocketTimeout(connectTimeout)
-//                    .setConnectTimeout(connectTimeout)
-//                    .setConnectionRequestTimeout(connectTimeout).build();
-//
-//            List<NameValuePair> formParams = new ArrayList<>();
-//            httpPost.setEntity(new UrlEncodedFormEntity(formParams, Consts.UTF_8));
-//            httpPost.setConfig(requestConfig);
-//            // 绑定到请求 Entry
-//            for (Map.Entry<String, String> entry : params.entrySet()) {
-//                formParams.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
-//            }
-//            CloseableHttpResponse response = httpclient.execute(httpPost);
-//            try {
-//                // 执行POST请求
-//                HttpEntity entity = response.getEntity(); // 获取响应实体
-//                try {
-//                    if (null != entity) {
-//                        responseContent = EntityUtils.toString(entity, Consts.UTF_8);
-//                    }
-//                } finally {
-//                    if(entity != null){
-//                        entity.getContent().close();
-//                    }
-//                }
-//            } finally {
-//                if(response != null){
-//                    response.close();
-//                }
-//            }
-//            logger.info("requestURI : "+httpPost.getURI()+", responseContent: " + responseContent);
-//        } catch (ClientProtocolException e) {
-//            logger.error("ClientProtocolException", e);
-//        } catch (IOException e) {
-//            logger.error("IOException", e);
-//        } finally {
-//            httpPost.releaseConnection();
-//        }
-//        return responseContent;
-//
-//    }
 
 }

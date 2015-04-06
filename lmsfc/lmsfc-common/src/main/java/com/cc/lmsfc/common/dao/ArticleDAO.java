@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface ArticleDAO  extends BaseRepository<Article, String> {
 
-    @Query(value = "select a from Article a where a.articleCategory.id = :id")
-    List<Article> findByCategory(@Param("id") String cateId);
+    @Query(value = "select a from Article a where a.articleCategory.name = :name")
+    List<Article> findByCategory(@Param("name") String name);
 }

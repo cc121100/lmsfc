@@ -54,7 +54,7 @@ public class ArticleTaskJobServiceImpl extends BaseServiceImpl<ArticleTaskJob,Ar
         if(atj.getState() == 0){
             atj.setState(111);
         }else {
-            atj.setState(CommonConsts.updateArtState(atj.getState(),isSuccess));
+            atj.setState(CommonConsts.updateArtState(atj.getState(),isSuccess,atj.getIsWhole()));
         }
         getRepository().saveAndFlush(atj);
 

@@ -1,20 +1,24 @@
 package com.cc.lmsfc.task.service;
 
+import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
-import com.cc.lmsfc.common.model.article.Article;
+import com.cc.lmsfc.common.dao.FilterDetailDAO;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.common.util.HttpClientUtil;
-import com.cc.lmsfc.task.exception.TaskJobException;
+import com.cc.lmsfc.task.constant.TaskConstants;
+import com.cc.lmsfc.task.exception.ArtTaskJobException;
+import com.cc.lmsfc.task.exception.GetArticleException;
+import com.cc.lmsfc.task.helper.ArtTaskJobHelper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.MessageHandler;
-import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -24,14 +28,19 @@ import java.util.Map;
 @Component
 public class ArtTaskJobService {
 
-    private static Logger logger = Logger.getLogger(ArtTaskJobService.class);
+    private Logger logger = Logger.getLogger(ArtTaskJobService.class);
 
     @Autowired
     private ArticleTaskJobDAO articleTaskJobDAO;
 
+    @Autowired
+    private FilterDetailDAO filterDetailDAO;
+
+    @Autowired
+    private ArtTaskJobHelper artTaskJobHelper;
 
     public ArticleTaskJob messageHandler(Message<?> msg){
-        logger.info("get ArticleTaskJob from jms.");
+        logger.info("Get ArticleTaskJob from jms.");
 //        ArticleTaskJob atj = (ArticleTaskJob)msg.getPayload();
         Map<String,Object> map = (Map<String, Object>) msg.getPayload();
         String id = (String) map.get("id");
@@ -48,12 +57,16 @@ public class ArtTaskJobService {
         art.getArticleElement();
         art.getFilterRule().getId();
         art.getFilterRule().getFilterDetails().size();
+        //get common inner/outer css filter details
+        art.getFilterRule().getFilterDetails().addAll(filterDetailDAO.findCommonFilterDetais());
+
         return art;
     }
 
     public ArticleTaskJob validate(ArticleTaskJob atj){
 
         //TODO validate ArticleTaskJob
+        logger.info("Validate article task with filter rule.");
 //        String batchName = atj.getBatchArticleTaskJob() !=null ? atj.getBatchArticleTaskJob().getName() : "";
 //        System.err.println("ArticleTaskJob:" + atj.getId() + " - " + atj.getName() + " - " + batchName);
 //        throw new RuntimeException("test runtimeEpt");
@@ -63,24 +76,43 @@ public class ArtTaskJobService {
 
     public ArticleTaskJob download(ArticleTaskJob atj){
         logger.info("Download article page from: " + atj.getUrl());
+        logger.info("Chcek if exisit temp file for this article page.");
 
-        //todo store in tmp/id.tmp when first time download, after that retry can get content directly from tmp
         byte[] bytes  = null;
-        try {
-            bytes = HttpClientUtil.httpGet(atj.getUrl());
-            if(ArrayUtils.isEmpty(bytes)){
-                throw new TaskJobException("Exception occurs when downliad article page, get empty page. ",atj);
+        String tmepFileStr = TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + atj.getId() +CommonConsts.SLASH + "art.temp";
+        File tempFile = new File(tmepFileStr);
+
+        try{
+            if(tempFile.exists()){
+                logger.info("Exsit temp file: " + tmepFileStr);
+                bytes = FileUtils.readFileToByteArray(tempFile);
+            }else {
+                logger.info("No exsit temp file, get article from url:" + atj.getUrl());
+                bytes = HttpClientUtil.httpGet(atj.getUrl());
+                if(ArrayUtils.isEmpty(bytes)){
+                    throw new ArtTaskJobException("Exception occurs when downliad article page, get empty page. ",atj);
+                }
+
+                //todo store in tmp/id.tmp when first time download, after that retry can get content directly from tmp
+                FileUtils.writeByteArrayToFile(tempFile,bytes);
             }
 
-            atj.getTempMap().put("respBytes",bytes);
-            System.err.println(new String((byte[]) atj.getTempMap().get("respBytes"),"UTF-8"));
-            return atj;
-        } catch (Exception e) {
-            //TODO
-            throw new TaskJobException(e.getMessage(),e,atj);
+            atj.getTempMap().put("respBytes", bytes);
+            System.err.println(new String((byte[]) atj.getTempMap().get("respBytes"), "UTF-8"));
+
+        }catch (IOException e){
+            throw new GetArticleException(e,atj);
         }
 
+        return atj;
 
+    }
+
+    @Transactional
+    public ArticleTaskJob updateArtState(ArticleTaskJob atj){
+        // 1. update atj's state
+        artTaskJobHelper.updateAtjState(atj,articleTaskJobDAO,true);
+        return atj;
     }
 
 

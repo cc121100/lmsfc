@@ -10,9 +10,8 @@ import org.springframework.stereotype.Component;
 public class RuntimeEptService {
 
     public void handler(Message<?> msg){
-        //TODO handler exception if fail task job
-        RuntimeException e = (RuntimeException)msg.getPayload();
+
 //        e.printStackTrace();
-        System.out.println("Exception handler: " + e.getCause());
+//        System.out.println("Exception handler: " + e.getCause());
     }
 }

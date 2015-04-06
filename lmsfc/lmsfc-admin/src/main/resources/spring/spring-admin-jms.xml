@@ -11,7 +11,7 @@
 		<property name="brokerURL">
 			<value>tcp://localhost:61616</value>
 		</property>
-		<property name="useAsyncSend" value="true" />  
+		<property name="useAsyncSend" value="true" />
 	</bean>
 
 	<bean id="connectionFactory"
@@ -19,8 +19,10 @@
 		<property name="targetConnectionFactory" ref="activeMQJmsFactory" />
 		<property name="sessionCacheSize" value="10" />
 		<property name="cacheProducers" value="false" />
-		
+        <property name="clientId" value="lmsfc-admin"/>
 	</bean>
+
+
 
 	<!-- jms Queue -->
 	<bean id="inQueue" class="org.apache.activemq.command.ActiveMQQueue"
@@ -30,7 +32,7 @@
 
 
 	<!-- jms 模板 -->
-	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+	<bean id="adminJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
 		<property name="connectionFactory" ref="connectionFactory" />
 		<property name="defaultDestination" ref="inQueue" />
 		<property name="messageConverter">

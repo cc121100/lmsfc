@@ -80,8 +80,12 @@
                         <#elseif key == 121>
                             <a href="#" class="btn btn-blue disabled" data-toggle="doajax">生成</a>
                         <#elseif key == 130>
-                            <a href="${rc.contextPath}/articleTask/runTask/${c.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要发布？">发布</a>
+                            <a href="${rc.contextPath}/articleTask/runTask/${c.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要组装？">组装</a>
                         <#elseif key == 131>
+                            <a href="#" class="btn btn-blue disabled" data-toggle="doajax">组装</a>
+                        <#elseif key == 140>
+                            <a href="${rc.contextPath}/articleTask/runTask/${c.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要发布？">发布</a>
+                        <#elseif key == 141>
                             <a href="#" class="btn btn-blue disabled" data-toggle="doajax">发布</a>
                         </#if>
                         <br>

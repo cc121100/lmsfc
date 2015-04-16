@@ -2,7 +2,6 @@ package com.cc.lmsfc.task.service;
 
 import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.dao.ArticleElementDAO;
-import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
 import com.cc.lmsfc.common.model.article.ArticleElement;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.task.constant.TaskConstants;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 

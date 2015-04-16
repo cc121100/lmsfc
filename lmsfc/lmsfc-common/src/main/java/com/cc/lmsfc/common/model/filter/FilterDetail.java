@@ -26,11 +26,9 @@ public class FilterDetail extends BaseModel{
     @JoinColumn(name = "filter_rule_id")
     private FilterRule filterRule;
 
-
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "filter_id")
     private Filter filter;
-
 
     @Column(name="param_value1")
     @Length(max = 50)

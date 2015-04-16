@@ -74,7 +74,10 @@ public abstract class BaseServiceImpl<T extends BaseModel,R extends BaseReposito
 
         for(String str : properties){
             String s = str.substring(0, 1).toUpperCase() + str.substring(1);
-            BeanUtils.copyProperty(oldT,str,modelClass.getMethod("get"+s).invoke(t));
+            Object obj = modelClass.getMethod("get"+s).invoke(t);
+            if(obj != null){
+                BeanUtils.copyProperty(oldT,str,obj);
+            }
         }
         getRepository().saveAndFlush(oldT);
     }

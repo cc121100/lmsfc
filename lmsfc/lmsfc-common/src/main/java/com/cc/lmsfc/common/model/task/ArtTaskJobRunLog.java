@@ -31,8 +31,8 @@ public class ArtTaskJobRunLog extends BaseModel {
     private Integer artTaskStep;
 
     //format - date isSuccess taskStep description(optional)
-    @Column(name = "description",nullable = true)
-    @Size(max = 256)
+    @Column(name = "description",nullable = true,length = 2000)
+    @Size(max = 2000)
     private String description;
 
 

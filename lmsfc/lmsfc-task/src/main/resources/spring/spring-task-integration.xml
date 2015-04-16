@@ -23,7 +23,7 @@
     <int:control-bus input-channel="jmsTaskInputChl"/>
 
     <jms:message-driven-channel-adapter id="getJmsTask" channel="jmsTaskInputChl"
-    destination="inQueue"  auto-startup="false"/>
+    destination="inQueue"  auto-startup="false" error-channel="errorChannel"/>
     <!-- here destination is the queue in activemq defined in spring-task-jms.xml, the queue's name is 'jmsQueue' defined in inQueue construct-->
 
 
@@ -100,7 +100,7 @@
             ref="notifyService" method="notifyWeb"/>
 
     <int:service-activator id="updateStateAnd" input-channel="updateStateChl"
-            ref="artTaskJobService" method="updateArtState" output-channel="befToArtTaskRouterChl"/>
+            ref="artTaskJobService" method="updateArtStateAndLog" output-channel="befToArtTaskRouterChl"/>
 
     <!--<int:router input-channel="befToArtTaskRouterChl" expression="payload.isWhole">-->
         <!--<int:mapping value="true" channel="toArtTaskRouterChl" />-->
@@ -108,10 +108,9 @@
     <!--</int:router>-->
 
     <int:recipient-list-router id="customRouter" input-channel="befToArtTaskRouterChl">
-        <int:recipient channel="toArtTaskRouterChl" selector-expression="payload.isWhole EQ true and payload.state LT 150"/>
-        <int:recipient channel="toNotifyWebChl" selector-expression="payload.isWhole EQ false or (payload.isWhole EQ true and payload.state GE 150)"/>
+        <int:recipient channel="toArtTaskRouterChl" selector-expression="payload.isWhole EQ 1 and payload.state LT 150"/>
+        <int:recipient channel="toNotifyWebChl" selector-expression="payload.isWhole EQ 0 or (payload.isWhole EQ 1 and payload.state GE 150)"/>
     </int:recipient-list-router>
-
 
     <!--error handler-->
     <int:exception-type-router input-channel="errorChannel">
@@ -150,9 +149,9 @@
     <int:channel id="updateStateChl" />
     <int:channel id="befToArtTaskRouterChl" />
 
-    <!--<int:channel id="errorChannel">-->
+    <int:channel id="errorChannel">
         <!--<int:queue capacity="50"/>-->
-    <!--</int:channel>-->
+    </int:channel>
     <int:channel id="artTaskJobExceptionChl"/>
 
     <!--<int:poller default="true" fixed-delay="50"/>-->

@@ -25,6 +25,7 @@ public interface BaseService<T extends BaseModel,R extends BaseRepository,ID ext
 
     void save(T t);
 
+
     List<T> findAll();
 
     Page<T> findAll(Pageable p);

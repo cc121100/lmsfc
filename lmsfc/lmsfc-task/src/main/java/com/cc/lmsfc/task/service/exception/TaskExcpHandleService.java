@@ -39,22 +39,13 @@ public class TaskExcpHandleService {
         //TODO handler exception if fail task job
         try{
             logger.info("Handle Task Exception.");
-            RuntimeException e = (RuntimeException)msg.getPayload();
+            Throwable e = ((Throwable)msg.getPayload()).getCause().getCause();
 
             if(e instanceof ArtTaskJobException){
                 ArticleTaskJob atj = ((ArtTaskJobException) e).getTaskJob();
-                artTaskJobHelper.updateAtjState(atj,atjDAO,false);
 
-                ArtTaskJobRunLog artLog = new ArtTaskJobRunLog();
-                artLog.setState(1);
-                artLog.setArticleTaskJob(atj);
-                artLog.setArtTaskStep(atj.getState());
-                String message = e.getMessage();
-                if(message.length() > 100){
-                    message = message.substring(0,99);
-                }
-                artLog.setDescription(message);
-                artTaskJobHelper.updateAtjLog(null,atjLogDAO,atjDAO);
+                artTaskJobHelper.updateAtjLog(atj,atjLogDAO,atjDAO,false,e.getMessage());
+                artTaskJobHelper.updateAtjState(atj,atjDAO,false);
 
             }else {
 

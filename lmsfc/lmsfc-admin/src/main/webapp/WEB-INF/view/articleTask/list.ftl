@@ -71,19 +71,19 @@
                     <td><input type="checkbox" name="ids" data-toggle="icheck" value="${c.id}"></td>
                     <td>
                         <a href="${rc.contextPath}/articleTask/view/${c.id}" class="btn btn-default" data-toggle="dialog" data-width="800" data-height="400" data-id="dialog-mask" data-mask="true">查看</a>
-                        <#if key == 0 || key == 110>
+                        <#if key == 0 || key == 110  || key ==112>
                             <a href="${rc.contextPath}/articleTask/runTask/${c.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要开始抓取？">抓取</a>
                         <#elseif key == 111>
                             <a href="#" class="btn btn-blue disabled" data-toggle="doajax">抓取</a>
-                        <#elseif key == 120>
+                        <#elseif key == 120  || key ==122>
                             <a href="${rc.contextPath}/articleTask/runTask/${c.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要生成？">生成</a>
                         <#elseif key == 121>
                             <a href="#" class="btn btn-blue disabled" data-toggle="doajax">生成</a>
-                        <#elseif key == 130>
+                        <#elseif key == 130  || key ==132>
                             <a href="${rc.contextPath}/articleTask/runTask/${c.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要组装？">组装</a>
                         <#elseif key == 131>
                             <a href="#" class="btn btn-blue disabled" data-toggle="doajax">组装</a>
-                        <#elseif key == 140>
+                        <#elseif key == 140  || key ==142>
                             <a href="${rc.contextPath}/articleTask/runTask/${c.id}" class="btn btn-default" data-toggle="doajax" data-confirm-msg="确定要发布？">发布</a>
                         <#elseif key == 141>
                             <a href="#" class="btn btn-blue disabled" data-toggle="doajax">发布</a>

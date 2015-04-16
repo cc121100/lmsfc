@@ -30,7 +30,8 @@ public class FilterService {
             String contentStr = (String) atj.getTempMap().get("content");
             if(StringUtils.isNotEmpty(contentStr)){
                 String str  = "src=\"" + atj.getFilterRule().getSourceDomain() + "/";
-                String formatStr = contentStr.replaceAll("src=\"", str).replaceAll("","");
+                String formatStr = contentStr.replaceAll("src=\"/", str);
+                atj.getTempMap().put("content",formatStr);
 //            class="img-responsive"
             }
 

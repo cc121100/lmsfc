@@ -1,8 +1,10 @@
 package com.cc.lmsfc.task.service;
 
 import com.cc.lmsfc.common.constant.CommonConsts;
+import com.cc.lmsfc.common.dao.ArtTaskJobRunLogDAO;
 import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
 import com.cc.lmsfc.common.dao.FilterDetailDAO;
+import com.cc.lmsfc.common.model.task.ArtTaskJobRunLog;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.common.util.HttpClientUtil;
 import com.cc.lmsfc.task.constant.TaskConstants;
@@ -37,6 +39,9 @@ public class ArtTaskJobService {
     private FilterDetailDAO filterDetailDAO;
 
     @Autowired
+    private ArtTaskJobRunLogDAO logDAO;
+
+    @Autowired
     private ArtTaskJobHelper artTaskJobHelper;
 
     public ArticleTaskJob messageHandler(Message<?> msg){
@@ -54,7 +59,9 @@ public class ArtTaskJobService {
             throw new RuntimeException("Cant find artTaskJob with id: " + id,null);
         }
         art.getBatchArticleTaskJob();
-        art.getArticleElement();
+        if(art.getArticleElement() != null){
+            art.getArticleElement().getArticle();
+        }
         art.getFilterRule().getId();
         art.getFilterRule().getFilterDetails().size();
         //get common inner/outer css filter details
@@ -79,7 +86,7 @@ public class ArtTaskJobService {
         logger.info("Chcek if exisit temp file for this article page.");
 
         byte[] bytes  = null;
-        String tmepFileStr = TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + atj.getId() +CommonConsts.SLASH + "art.temp";
+        String tmepFileStr = TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + "temp" +CommonConsts.SLASH + atj.getId() +".temp";
         File tempFile = new File(tmepFileStr);
 
         try{
@@ -98,9 +105,10 @@ public class ArtTaskJobService {
             }
 
             atj.getTempMap().put("respBytes", bytes);
-            System.err.println(new String((byte[]) atj.getTempMap().get("respBytes"), "UTF-8"));
+//            System.err.println(new String((byte[]) atj.getTempMap().get("respBytes"), "UTF-8"));
 
-        }catch (IOException e){
+        }catch (Exception e){
+            logger.error("Error occurs when download article:" + atj.getUrl() + ", e:" + e.getMessage());
             throw new GetArticleException(e,atj);
         }
 
@@ -109,8 +117,11 @@ public class ArtTaskJobService {
     }
 
     @Transactional
-    public ArticleTaskJob updateArtState(ArticleTaskJob atj){
-        // 1. update atj's state
+    public ArticleTaskJob updateArtStateAndLog(ArticleTaskJob atj){
+        //  add task run log
+        artTaskJobHelper.updateAtjLog(atj,logDAO,articleTaskJobDAO,true,null);
+
+        //  update atj's state
         artTaskJobHelper.updateAtjState(atj,articleTaskJobDAO,true);
         return atj;
     }

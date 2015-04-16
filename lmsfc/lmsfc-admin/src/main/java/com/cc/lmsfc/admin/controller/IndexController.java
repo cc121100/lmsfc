@@ -9,6 +9,8 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +62,13 @@ public class IndexController extends BaseController {
         }
         model.addAttribute("error", error);
         return "login";
+    }
+
+    @RequestMapping(value = "/getNotify")
+    @ResponseBody
+    public DeferredResult<String> getNotify(){
+
+        return null;
     }
 
     @Override

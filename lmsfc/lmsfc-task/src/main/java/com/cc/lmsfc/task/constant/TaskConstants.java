@@ -16,11 +16,15 @@ public class TaskConstants {
 
     public static String ART_ELE_FLODER;
     public static String GENERATED_FLODER;
+    public static String DEPLOY_FLODER;
+
 
     static {
-        PropertyUtil.loadProperties("task_mac.properties");
+//        PropertyUtil.loadProperties("task_mac.properties");
+        PropertyUtil.loadProperties("task_production.properties");
         ART_ELE_FLODER =PropertyUtil.getValue("ART_ELE_FLODER");
         GENERATED_FLODER = PropertyUtil.getValue("GENERATED_FLODER");
+        DEPLOY_FLODER = PropertyUtil.getValue("DEPLOY_FLODER");
     }
 
 

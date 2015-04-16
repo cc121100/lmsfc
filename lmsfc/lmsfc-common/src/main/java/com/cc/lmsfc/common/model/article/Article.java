@@ -2,6 +2,8 @@ package com.cc.lmsfc.common.model.article;
 
 import com.cc.lmsfc.common.model.BaseModel;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -23,7 +25,7 @@ public class Article extends BaseModel {
 
     @Column(name = "name",nullable = false)
     @NotNull
-    @Size(max = 100)
+    @Size(max = 255)
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -38,16 +40,16 @@ public class Article extends BaseModel {
     @NotNull
     private Integer state;
 
-    @Column(name = "art_file_name",nullable = false)
+    @Column(name = "art_file_name",nullable = false,length = 255)
     @NotNull
-    @Size(max = 50)
+    @Size(max = 255)
     private String artFileName;
 
     @Column(name = "generate_time")
     private Date generateTime;
 
-    @Column(name = "description")
-    @Size(max = 100)
+    @Column(name = "description",length = 255)
+    @Size(max = 255)
     private String description;
 
     public String getId() {

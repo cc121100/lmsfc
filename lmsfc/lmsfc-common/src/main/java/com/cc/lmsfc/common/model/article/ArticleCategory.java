@@ -22,13 +22,21 @@ public class ArticleCategory extends BaseModel {
 
     @Column(name = "name",nullable = false)
     @NotNull
-    @Size(max = 20)
+    @Size(max = 50)
     private String name;
 
     @Column(name = "path_name",nullable = false)
     @NotNull
     @Size(max = 100)
     private String pathName;
+
+    @Column(name = "status",nullable = false)
+    @NotNull
+    private String status;
+
+    @Column(name = "sequence",nullable = false)
+    @NotNull
+    private Integer sequence;
 
     @OneToMany(mappedBy="articleCategory",fetch = FetchType.LAZY)
     private List<Article> articleList;
@@ -63,6 +71,22 @@ public class ArticleCategory extends BaseModel {
 
     public void setPathName(String pathName) {
         this.pathName = pathName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Integer getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(Integer sequence) {
+        this.sequence = sequence;
     }
 
     @Override

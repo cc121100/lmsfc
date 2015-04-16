@@ -180,8 +180,6 @@ public class DataInitTest {
 //        articleTaskJobDAO.saveAndFlush(art);
         filterRuleDAO.saveAndFlush(r1);
 
-
-
         ArticleCategory articleCategory1 = new ArticleCategory();
         articleCategory1.setName("默认分类");
         articleCategory1.setPathName("default");
@@ -235,5 +233,24 @@ public class DataInitTest {
 //        System.err.println("name: " + TaskConstants.NAME);
 //
 //        System.err.println("temp:" + SpringPropertiesUtil.getProperty("TEMP_FLODER"));
+    }
+
+    @Test
+    public void testAddCategory(){
+        ArticleCategory cateJava = new ArticleCategory();
+        cateJava.setName("Java");
+        cateJava.setPathName("java");
+        articleCategoryDAO.saveAndFlush(cateJava);
+
+        ArticleCategory cateJavaee = new ArticleCategory();
+        cateJavaee.setName("Java EE");
+        cateJavaee.setPathName("javaee");
+        articleCategoryDAO.saveAndFlush(cateJavaee);
+
+        ArticleCategory cateDB = new ArticleCategory();
+        cateDB.setName("数据库");
+        cateDB.setPathName("db");
+        articleCategoryDAO.saveAndFlush(cateDB);
+
     }
 }

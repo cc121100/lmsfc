@@ -7,6 +7,8 @@ import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.common.service.ArticleCategoryService;
 import com.cc.lmsfc.common.service.ArticleTaskJobService;
 import com.cc.lmsfc.common.service.FilterRuleService;
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -85,16 +87,40 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
 
     @Override
     protected BjuiResponse edit(HttpServletRequest request, @Valid @ModelAttribute() ArticleTaskJob articleTaskJob, BindingResult bindingResult) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        BjuiResponse bjuiResponse =  super.edit(request, articleTaskJob, bindingResult);
 
+        BjuiResponse br = new BjuiResponse();
+
+        if(hasError(articleTaskJob,bindingResult)){
+
+            br.setStatusCode(300);
+            br.setMessage("Validate error.");
+            return br;
+        }
+
+        String id = (String) BeanUtils.getProperty(articleTaskJob, "id");
         String isStartedNow = request.getParameter("isStartedNow");
+
+        if(StringUtils.isEmpty(id)){//add
+            articleTaskJob.setCreatedBy(getLoginUser().getUserName());
+            if("Y".equals(isStartedNow)){
+                articleTaskJob.setState(111);
+            }
+            articleTaskJob = getService().saveAndReturn(articleTaskJob);
+        }else{
+            articleTaskJob.setUpdatedBy(getLoginUser().getUserName());
+            getService().update(articleTaskJob);
+        }
+
+        br.setCloseCurrent(true);
+        br.setMessage("Edit " + modelNameLower + " successfully.");
+
         if("Y".equals(isStartedNow)){
             Map<String,Object> map = new HashMap<>();
             map.put("id",articleTaskJob.getId());
             map.put("type",CommonConsts.SINGLE_TSK);
             sendTaskToRun(map);
         }
-        return bjuiResponse;
+        return br;
     }
 
     @Override
@@ -122,7 +148,7 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
     protected void afterEdit(BjuiResponse br,Object obj) {
         //put in jms
 //        sendTaskToRun((Map<String, Object>) obj);
-        br.setMessage(br.getMessage() + " Task is running, please wait!");
+//        br.setMessage(br.getMessage() + " Task is running, please wait!");
     }
 
     private void sendTaskToRun(final Map<String,Object> map){

@@ -44,7 +44,7 @@ public class ParseService {
 
             byte[] bytes = (byte[])atj.getTempMap().get("respBytes");
             if(ArrayUtils.isEmpty(bytes)){
-                String tmepFileStr = TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + atj.getId() +CommonConsts.SLASH + "art.temp";
+                String tmepFileStr = TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + "temp" +CommonConsts.SLASH + atj.getId() + ".temp";
                 File tempFile = new File(tmepFileStr);
                 bytes = FileUtils.readFileToByteArray(tempFile);
             }
@@ -52,8 +52,13 @@ public class ParseService {
             //2 get html of each
 
             parseForEach(bytes, atj.getTempMap(), nodeFilterMap);
+            if(StringUtils.isEmpty(atj.getTempMap().get("title").toString()) ||
+                    StringUtils.isEmpty(atj.getTempMap().get("content").toString())){
+                throw new RuntimeException("Title or content is empty!");
+            }
             logger.info("Finish parse article.");
         } catch (Exception e) {
+            logger.error("Error occurs when parse atj:" + atj.getId());
             throw new GenerateArtEleException(e,atj);
         }
         return atj;
@@ -81,7 +86,7 @@ public class ParseService {
             String category = entry.getKey();
             NodeFilter nodeFilter = entry.getValue();
 
-            String html = parser.parse(nodeFilter).toHtml();
+            String html = parser.parse(nodeFilter).toHtml().trim();
 
             resultMap.put(category,html);
         }
@@ -172,90 +177,5 @@ public class ParseService {
 
         return resultMap;
     }
-
-//    public NodeFilter generateNodeFilterForSourcePageFilter(SourcePageFilter spFilter) throws Exception{
-//
-//        Map<SourcePageFilterDetail, NodeFilter> resultMap= new LinkedHashMap<SourcePageFilterDetail, NodeFilter>();
-//        List<SourcePageFilterDetail> sourcePageFilterDetails = spFilter.getSourcePageFilterDetails();
-//
-//        if (sourcePageFilterDetails == null || sourcePageFilterDetails.size() < 1) {
-//            logger.error("Error occurs when parse html, sourcePageFilterDetail list is null or empty for sourcePageFilter: " + spFilter.getSourcePageFilterName());
-//            return null;
-//        }
-//
-//        // sort sourcePageFilterDetails by subNum desc
-//        Collections.sort(sourcePageFilterDetails,new Comparator<SourcePageFilterDetail>() {
-//            @Override
-//            public int compare(SourcePageFilterDetail o1,
-//                               SourcePageFilterDetail o2) {
-//                return o2.getSubNum().compareTo(o1.getSubNum());
-//            }
-//        });
-//
-//        for (SourcePageFilterDetail spfDetail : sourcePageFilterDetails) {
-//            Filter filter = spfDetail.getFilter();
-//            //logger.info("Start generate filter [" + filter.getFilterName() + ", subNum=" + spfDetail.getSubNum() + "] for sourcePageFilter [" + spFilter.getSourcePageFilterName() + "]");
-//
-//            Class<NodeFilter> filterClass = (Class<NodeFilter>) Class.forName(filter.getFilterClassName());
-//
-//            if (BaseConstants.FILTER_REFLECT_METHOD_CONST.equals(filter.getSetParamMethodName())) {
-//                String[] classParams = filter.getFilterClassParams().split(",");
-//                if (classParams == null || classParams.length < 1) {
-//                    logger.error("Error occurs when get class params, null or empty");
-//                    return null;
-//                }
-//
-//                Class[] classParamsClass = new Class[classParams.length];
-//                for (int i = 0; i < classParams.length; i++) {
-//                    classParamsClass[i] = Class.forName(classParams[i]);
-//                }
-//
-//                Constructor<NodeFilter> cons = filterClass.getConstructor(classParamsClass);
-//                NodeFilter node = null;
-//
-//                if (StringUtils.isNotEmpty(spfDetail.getParamValue1()) && StringUtils.isNotEmpty(spfDetail.getParamValue2())) {
-//                    node = cons.newInstance(spfDetail.getParamValue1(),spfDetail.getParamValue2());
-//                } else if (StringUtils.isNotEmpty(spfDetail.getParamValue1())) {
-//                    node = cons.newInstance(spfDetail.getParamValue1());
-//                } else {
-//
-//                    List<NodeFilter> childNodelist = new ArrayList<NodeFilter>();
-//                    for (Entry<SourcePageFilterDetail, NodeFilter> entry : resultMap.entrySet()) {
-//                        if (spfDetail.getId().equals(entry.getKey().getParentNode().getId())) {
-//                            childNodelist.add(entry.getValue());
-//                        }
-//                    }
-//
-//                    if (childNodelist.size() < 1) {
-//                        logger.error("Error orrurs when get child node for parent node");
-//                        return null;
-//                    } else if (childNodelist.size() == 1) {
-//                        node = cons.newInstance(childNodelist.get(0));
-//                    } else {
-//                        NodeFilter[] nodeFilterArr = new NodeFilter[childNodelist.size()];
-//                        Object[] objs = { childNodelist.toArray(nodeFilterArr) };
-//                        node = cons.newInstance(objs);
-//                    }
-//                }
-//
-//                resultMap.put(spfDetail, node);
-//
-//            } else {//TODO use SET method to generate
-//
-//            }
-//            //logger.info("End generate filter [" + filter.getFilterName() + ", subNum=" + spfDetail.getSubNum() + "] for sourcePageFilter [" + spFilter.getSourcePageFilterName() + "]");
-//        }
-//
-//        NodeFilter nodeFilter = null;
-//        for (Entry<SourcePageFilterDetail, NodeFilter> entry : resultMap.entrySet()) {
-//            if (entry.getKey().getSubNum() == 1) {
-//                nodeFilter = entry.getValue();
-//                break;
-//            }
-//        }
-//
-//        return nodeFilter;
-//
-//    }
 
 }

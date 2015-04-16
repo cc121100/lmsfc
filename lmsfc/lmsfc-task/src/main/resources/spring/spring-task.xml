@@ -21,7 +21,7 @@
     <import resource="classpath*:spring/spring-task-integration.xml"/>
 
     <bean id="freemarkerConfig" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
-        <property name="templateLoaderPath" value="classpath:template" />
+        <property name="templateLoaderPath" value="classpath:/template/" />
     </bean>
 
     <!--<bean id="propertyConfigurerForBase"-->

@@ -39,8 +39,8 @@ public class ArticleTaskJob extends TaskJob {
     @JoinColumn(name = "batch_art_tkj_id")
     private BatchArticleTaskJob batchArticleTaskJob;
 
-    @Column(name = "is_whole", nullable = false)
-    private boolean isWhole = false;
+    @Column(name = "is_whole",columnDefinition = "int(11) default '0'")
+    private Integer isWhole;
 
     @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.REMOVE,mappedBy = "articleTaskJob" )
     private List<ArtTaskJobRunLog> taskJobRunLogs;
@@ -92,19 +92,11 @@ public class ArticleTaskJob extends TaskJob {
         this.tempMap = tempMap;
     }
 
-    public boolean getIsWhole() {
+    public Integer getIsWhole() {
         return isWhole;
     }
 
-    public void setIsWhole(boolean isWhole) {
-        this.isWhole = isWhole;
-    }
-
-    public boolean isWhole() {
-        return isWhole;
-    }
-
-    public void setWhole(boolean isWhole) {
+    public void setIsWhole(Integer isWhole) {
         this.isWhole = isWhole;
     }
 

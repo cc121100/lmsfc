@@ -30,7 +30,7 @@ public class FilterRule extends BaseModel{
 
     @Column(name = "name", nullable = false)
     @NotEmpty
-    @Size(max = 50)
+    @Size(max = 255)
     private String name;
 
     @Column(name="source_domain" ,nullable=false, unique = true)

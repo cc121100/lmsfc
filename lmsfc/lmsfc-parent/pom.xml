@@ -491,7 +491,6 @@
                 <version>${activemq.version}</version>
             </dependency>
 
-
         </dependencies>
 
     </dependencyManagement>

@@ -45,6 +45,9 @@ public class ArticleTaskJobServiceImpl extends BaseServiceImpl<ArticleTaskJob,Ar
     @Override
     public void save(ArticleTaskJob articleTaskJob) {
         retriveObj(articleTaskJob);
+        if(articleTaskJob.getState() == null){
+            articleTaskJob.setState(0);
+        }
         super.save(articleTaskJob);
     }
 
@@ -58,6 +61,22 @@ public class ArticleTaskJobServiceImpl extends BaseServiceImpl<ArticleTaskJob,Ar
         }
         getRepository().saveAndFlush(atj);
 
+    }
+
+    @Override
+    public ArticleTaskJob saveAndReturn(ArticleTaskJob atj) {
+        retriveObj(atj);
+        if(atj.getState() == null){
+            atj.setState(0);
+        }
+        return articleTaskJobDAO.saveAndFlush(atj);
+    }
+
+    @Override
+    public ArticleTaskJob getAtjAndLog(String id) {
+        ArticleTaskJob atj = articleTaskJobDAO.findOne(id);
+        atj.getTaskJobRunLogs().size();
+        return atj;
     }
 
     private void retriveObj(ArticleTaskJob articleTaskJob) {

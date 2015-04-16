@@ -70,9 +70,9 @@ public class HttpClientUtil {
 
     private static final String EMPTY = "";
 
-    private static int CONTIMEOUT = 12000;
+    private static int CONTIMEOUT = 30000;
 
-    private static int SOTIMEOUT = 12000;
+    private static int SOTIMEOUT = 30000;
 
     private static int maxConnectionPerHost = 20;
 
@@ -177,6 +177,10 @@ public class HttpClientUtil {
 
     public static byte[] httpGet(String url) throws IOException {
         return invokeGet(url, null, ENCODE_UTF8, CONTIMEOUT,SOTIMEOUT);
+    }
+
+    public static byte[] httpGet(String url,String encode) throws IOException {
+        return invokeGet(url, null, encode, CONTIMEOUT,SOTIMEOUT);
     }
 
     private static byte[] invokeGet(String url, Map<String,String> params, String encode, int conTimeout, int soTimeout) throws IOException {

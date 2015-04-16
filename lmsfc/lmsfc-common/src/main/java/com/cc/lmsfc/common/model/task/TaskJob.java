@@ -27,15 +27,13 @@ public abstract class TaskJob extends BaseModel{
 
     @Column(name = "name", nullable = false)
     @NotEmpty
-    @Size(max = 50)
+    @Size(max = 255)
     private String name;
 
-    @Column(name = "state", nullable = false)
-    @NotNull
-    private Integer state = 0;
+    @Column(name = "state",columnDefinition = "int(11) default '0'")
+    private Integer state ;
 
-    @Column(name = "type", nullable = false)
-    @NotNull
+    @Column(name = "type",columnDefinition = "int(11) default '0'")
     private Integer type;
 
     @Column(name = "finish_time")

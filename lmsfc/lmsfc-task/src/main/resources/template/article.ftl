@@ -1,7 +1,10 @@
 <!-- Blog Post -->
 <!-- Title -->
 <h1>${title?default("")}</h1>
-<p class="text-right"><span class="glyphicon glyphicon-time"></span><small> Posted on ${postDate?string("yyyy-MM-dd HH:mm:ss")}</small></p>
+<p class="text-right">
+    <small>文章分类：<a href="/${article.articleCategory.pathName}/list.html">${article.articleCategory.name}</a> </small>&nbsp;&nbsp;
+    <span class="glyphicon glyphicon-time"></span><small> 发表时间： ${postDate?string("yyyy-MM-dd HH:mm:ss")}</small>
+</p>
 
 <hr>
 

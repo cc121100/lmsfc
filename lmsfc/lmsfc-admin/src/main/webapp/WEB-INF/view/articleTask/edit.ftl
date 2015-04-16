@@ -38,7 +38,7 @@
                     </td>
                     <td>
                         <label for="j_dialog_isWhole" class="control-label x90">Is Whole:</label>
-                        <input type="checkbox" name="articleTaskJob.isWhole" id="j_dialog_isWhole" data-toggle="icheck" value="true" <#if articleTaskJob.isWhole==true>checked</#if>>
+                        <input type="checkbox" name="articleTaskJob.isWhole" id="j_dialog_isWhole" data-toggle="icheck" value="1" <#if articleTaskJob.isWhole==1>checked</#if>>
                     </td>
 
                 </tr>
@@ -60,7 +60,7 @@
                 <tr>
                     <td colspan="2">
                         <label for="j_dialog_category" class="control-label x90">Target Category:</label>
-                        <select name="articleTaskJob.targetCategory" id="j_dialog_category" data-toggle="selectpicker">
+                        <select name="articleTaskJob.targetCategory" id="j_dialog_category" data-toggle="selectpicker" data-rule="required">
                             <option value=""> -- 请选择 -- </option>
                         <#list artCategoryList as artCategory>
                             <option value="${artCategory.name}" <#if articleTaskJob.targetCategory=="${artCategory.name}">selected</#if>>${artCategory.name}</option>

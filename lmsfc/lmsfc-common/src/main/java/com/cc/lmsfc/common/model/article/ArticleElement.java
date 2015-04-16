@@ -28,12 +28,12 @@ public class ArticleElement extends BaseModel {
 
     @Column(name = "name", nullable = false)
     @NotEmpty
-    @Size(max = 50)
+    @Size(max = 255)
     private String name;
 
     @Column(name = "file_location", nullable = false)
     @NotEmpty
-    @Size(max = 100)
+    @Size(max = 255)
     private String fileLocation;
 
     @Column(name = "state", nullable = false)
@@ -49,7 +49,7 @@ public class ArticleElement extends BaseModel {
     @JoinColumn(name = "article_tkj_id")
     private ArticleTaskJob articleTaskJob;
 
-//    @OneToOne(mappedBy = "articleElement",fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "articleElement",fetch = FetchType.LAZY)
     private Article article;
 
     @Transient

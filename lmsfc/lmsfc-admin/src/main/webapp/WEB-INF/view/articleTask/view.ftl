@@ -68,20 +68,20 @@
             <tr>
                 <td width="20px"><label for="j_custom_log" class="control-label x90">Task Log:</label></td>
                 <td>
-                    <p>sdfwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewfewfwefwfwefewewfewfwefwfwefewewfewf</p>
-                    <p>sdfwefwfwefewefwefwfwefewewfewfwefwfwefewewfewwfewf</p>
-                    <p>sdfwefwfwefewefwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewwfewf</p>
-                    <p>sdfwefwfwefewfwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewewfewf</p>
-                    <p>sdfwefwfwefefwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewwewfewf</p>
-                    <p>sdfwefwfwefefwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewwewfewf</p>
-                    <p>sdfwefwfweffwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewewewfewf</p>
-                    <p>sdfwefwfwefwefwfwefewewfewfwefwfwefewewfewfwefwfwefewewfewfewewfewf</p>
-                    <p>sdfwefwfwefwefwfwefewewfewfwefwfwefewewfewfewewfewf</p>
-                    <p>sdfwefwfwefewewfewf</p>
-                    <p>sdfwefwfwefewewfewf</p>
-                    <p>sdfwefwfwefewewfewf</p>
-                    <p>sdfwefwfwefewewfewf</p>
-                    <p>sdfwefwfwefewewfewf</p>
+                    <#list articleTaskJob.taskJobRunLogs as atjLog>
+                        <p>
+                            ${atjLog.createdDt?string("yyyy-MM-dd HH:mm:ss")} -
+                            ${atjLog.artTaskStep?default("")} -
+                            <#if atjLog.state == 0>
+                                <span>Success</span> -
+                            <#elseif atjLog.state == 1>
+                                <span style="color: red;">Fail</span> -
+                            </#if>
+
+                            Log:${atjLog.description}
+                        </p>
+
+                    </#list>
                 </td>
             </tr>
         </tbody>

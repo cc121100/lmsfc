@@ -17,6 +17,10 @@ public class CommonConsts {
     public final static String BATCH_TSK = "B";
     public final static String ELE_PREFIX = "Ele_of_";
 
+    public final static String REG_HTML_TAG= "</?[^>]+>";
+    public final static String REG_HTML_CHAR= "<a>\\\\s*|\\t|\\r|\\n</a>";
+
+
 
     public static Map<String,String> artStateMap = null;
 
@@ -40,7 +44,7 @@ public class CommonConsts {
         artStateMap.put("151","Finished");
     }
 
-    public static int updateArtState(int currentState,boolean isSuccess, boolean isWhole){
+    public static int updateArtState(int currentState,boolean isSuccess, int isWhole){
         String currentStateStr = currentState+"";
         int newArtState = 0;
 
@@ -50,10 +54,11 @@ public class CommonConsts {
             newArtState = currentState - 1;
         }else if (currentStateStr.endsWith("1")){
             if(isSuccess){
-                if(isWhole){
+                if(isWhole == 1){
                     newArtState = currentState + 10;
+                }else {
+                    newArtState = currentState + 9;
                 }
-                newArtState = currentState + 9;
             }else {
                 newArtState = currentState + 1;
             }

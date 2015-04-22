@@ -76,7 +76,7 @@
                     <a href="/default/list.html">庄稼</a>
                 </li>
                 <li>
-                    <a href="/experence.html">收成</a>
+                    <a href="/exp.html">收成</a>
                 </li>
                 <li>
                     <a href="/info.html">老农</a>
@@ -110,6 +110,10 @@
             <div class="well">
                 <h4>码农田闲</h4>
                 <p>当个码农，赚点钱，结个婚。<br>生两娃，一女，一男。<br>等女娃出嫁，男娃能撸码，退休。<br>之后，每天看看妹子...</p>
+            </div>
+
+            <div class="well">
+                <img src="/img/wx_small.jpg" class="img-responsive">
             </div>
 
             <!-- Blog Categories Well -->

@@ -1,0 +1,24 @@
+cription: ActiveMQ Start Stop Restart
+# processname: activemq
+# chkconfig: 234 20 80
+JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk.x86_64
+export JAVA_HOME
+PATH=$JAVA_HOME/bin:$PATH
+export PATH
+ACTIVEMQ_HOME=/opt/apache-activemq-5.7.0
+
+case $1 in
+start)
+echo $ "Start activemq5.7.0:"
+sh $ACTIVEMQ_HOME/bin/activemq start
+;; 
+stop)  
+echo $ "Stop activemq5.7.0:" 
+sh $ACTIVEMQ_HOME/bin/activemq stop
+;; 
+restart)
+echo $ "Restart activemq5.7.0:"
+sh $ACTIVEMQ_HOME/bin/activemq restart
+;; 
+esac    
+exit 0

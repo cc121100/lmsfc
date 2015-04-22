@@ -1,0 +1,80 @@
+Production
+
+OS: CentOS 6.x
+Http Server: Nginx 1.6.x
+App Server: Tomcat 7.x
+Java: 7.x
+Mysql: 5.5.x or 5.6.x
+ActiveMQ: 5.7.x
+
+Http Server:
+        http://www.myhack58.com/Article/sort099/sort0102/2014/44894.htm
+
+App Server: Tomcat 7.x:
+        http://www.jb51.net/os/RedHat/73032.html
+
+Java: 7.x：
+          yum search jdk
+          yum -y install java-1.7.0-openjdk*
+Mysql:
+        http://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/
+        http://www.jb51.net/article/23255.htm
+        修改密码：http://www.centoscn.com/mysql/2014/0728/3368.html
+        阿里云配置mysql远程连接：http://my.oschina.net/ecnu/blog/295304
+
+        5.6 root默认密码为空 mysql -u root登录后修改密码
+
+        登录修改密码 # mysql -u root mysql mysql> UPDATE user SET Password=PASSWORD('newpassword') where USER='root'; mysql> FLUSH PRIVILEGES; mysql> quit
+
+        set utf8
+        Go to the [mysqld] section in my.cnf and add two strings:
+        collation_server=utf8_unicode_ci
+        character_set_server=utf8
+
+ActiveMQ: 5.7.x
+
+
+
+
+tips:
+
+ yum方式安装的mysql
+
+        1、yum remove mysql mysql-server mysql-libs compat-mysql51
+
+        2、rm -rf /var/lib/mysql
+        3、rm /etc/my.cnf
+
+        查看是否还有mysql软件：
+        rpm -qa|grep mysql
+        如果存在的话，继续删除即可。
+
+rpm方式安装的mysql
+
+        a）查看系统中是否以rpm包安装的mysql：
+
+        [root@localhost opt]# rpm -qa | grep -i mysql
+        MySQL-server-5.6.17-1.el6.i686
+        MySQL-client-5.6.17-1.el6.i686
+        b)卸载mysql
+
+        [root@localhost local]# rpm -e MySQL-server-5.6.17-1.el6.i686
+        [root@localhost local]# rpm -e MySQL-client-5.6.17-1.el6.i686
+
+        c)删除mysql服务
+
+        [root@localhost local]# chkconfig --list | grep -i mysql
+        [root@localhost local]# chkconfig --del mysql
+
+        d)删除分散mysql文件夹
+
+        [root@localhost local]# whereis mysql 或者 find / -name mysql
+
+        mysql: /usr/lib/mysql /usr/share/mysql
+
+        清空相关mysql的所有目录以及文件
+        rm -rf /usr/lib/mysql
+        rm -rf /usr/share/mysql
+        rm -rf /usr/my.cnf
+
+        通过以上几步，mysql应该已经完全卸载干净了

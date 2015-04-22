@@ -1,0 +1,24 @@
+cription: lmscf-task Start Stop Rsstart
+# processname: lmsfc-task
+# chkconfig: 234 20 80
+JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk.x86_64
+export JAVA_HOME
+PATH=$JAVA_HOME/bin:$PATH
+export PATH
+
+case $1 in
+start)
+echo $ "Start lmsfc-task:"
+nohup java -jar /opt/lmsfc-task/lmsfc-task.jar > /opt/lmsfc-task/task-start.log 2>&1 &
+;; 
+stop)  
+echo $ "Stop lmsfc-task:" 
+pkill -f 'java.*lmsfc-task'
+;; 
+restart)
+echo $ "Restart lmsfc-task:"
+pkill -f 'java.*lmsfc-task'
+nohup java -jar /opt/lmsfc-task/lmsfc-task.jar > /opt/lmsfc-task/task-start.log 2>&1 &
+;; 
+esac    
+exit 0

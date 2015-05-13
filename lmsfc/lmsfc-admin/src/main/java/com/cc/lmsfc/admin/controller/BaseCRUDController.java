@@ -88,6 +88,9 @@ public abstract class BaseCRUDController<T extends BaseModel,S extends BaseServi
         if(StringUtils.isEmpty(order)){
             order = "updatedDt";
         }
+        if(StringUtils.isEmpty(orderDirection)){
+            orderDirection = "desc";
+        }
 
         PageRequest pr = new PageRequest(index,pageSize,
                 "desc".equals(orderDirection) ? Sort.Direction.DESC : Sort.Direction.ASC,order);
@@ -148,8 +151,6 @@ public abstract class BaseCRUDController<T extends BaseModel,S extends BaseServi
         return br;
 
     }
-
-
 
     @RequestMapping(value = "/saveBatch",method = RequestMethod.POST)
     protected String saveBatch(HttpServletRequest request,Model model){

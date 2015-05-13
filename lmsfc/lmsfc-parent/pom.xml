@@ -16,6 +16,7 @@
         <module>../lmsfc-common</module>
         <module>../lmsfc-task</module>
         <module>../lmsfc-admin</module>
+        <module>../lmsfc-web</module>
     </modules>
 
     <properties>
@@ -85,6 +86,12 @@
 
         <!--activemq-->
         <activemq.version>5.7.0</activemq.version>
+
+        <!-- guava -->
+        <guava.version>18.0</guava.version>
+
+        <!-- jfinal -->
+        <jfinal.version>1.9</jfinal.version>
 
         <!--plugins-->
         <maven.plugin.compiler.version>3.0</maven.plugin.compiler.version>
@@ -489,6 +496,20 @@
                 <groupId>org.apache.activemq</groupId>
                 <artifactId>activemq-pool</artifactId>
                 <version>${activemq.version}</version>
+            </dependency>
+
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!-- jfinal -->
+            <dependency>
+                <groupId>com.jfinal</groupId>
+                <artifactId>jfinal</artifactId>
+                <version>${jfinal.version}</version>
             </dependency>
 
         </dependencies>

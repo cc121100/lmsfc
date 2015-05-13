@@ -1,5 +1,7 @@
 package com.cc.lmsfc.common.test;
 
+import com.cc.lmsfc.common.dao.ArticleCategoryDAO;
+import com.cc.lmsfc.common.dao.ArticleDAO;
 import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
 import com.cc.lmsfc.common.dao.FilterDAO;
 import com.cc.lmsfc.common.model.filter.Filter;
@@ -41,6 +43,9 @@ public class CommonTest {
 
     @Autowired
     private FilterDAO filterDAO;
+
+    @Autowired
+    private ArticleDAO articleDAO;
 
     @Autowired
 //    private RedisTemplate<String, String> template; // inject the template as ListOperations
@@ -96,5 +101,9 @@ public class CommonTest {
         articleTaskJobDAO.updateArticleState("8ee483b14c6e5234014c6e56a3340000",110);
     }
 
+    @Test
+    public void testAddUrlColumnForArt(){
+        articleDAO.findAll();
+    }
 
 }

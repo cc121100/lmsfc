@@ -9,6 +9,7 @@ import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.task.constant.TaskConstants;
 import com.cc.lmsfc.task.exception.AssembleArtException;
 import com.cc.lmsfc.task.exception.DeployArtException;
+import com.cc.lmsfc.task.helper.FreemarkerHelper;
 import freemarker.core.Configurable;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -34,8 +35,11 @@ public class ArticleService {
 
     private Logger logger = Logger.getLogger(ArticleService.class);
 
+//    @Autowired
+//    private Configuration configuration;
+
     @Autowired
-    private Configuration configuration;
+    private FreemarkerHelper freemarkerHelper;
 
     @Autowired
     private ArticleDAO articleDAO;
@@ -56,9 +60,10 @@ public class ArticleService {
             Article article = new Article();
             article.setName(atj.getArticleElement().getName().replaceFirst(CommonConsts.ELE_PREFIX, ""));
             article.setGenerateTime(new Date());
-            article.setState(0);
+            article.setState(1);
             article.setArtFileName(artFileName);
             article.setDescription(article.getName());
+            article.setOriginUrl(atj.getUrl());
 
             if (CollectionUtils.isNotEmpty(articleCategorys)) {
                 for (ArticleCategory artC : articleCategorys) {
@@ -69,8 +74,8 @@ public class ArticleService {
                 }
             } else {
                 article.setArticleCategory(null);//
-
             }
+
             article.setArticleElement(atj.getArticleElement());
 
             articleDAO.saveAndFlush(article);
@@ -87,7 +92,6 @@ public class ArticleService {
                 for (File f : fileList) {
                     atj.getTempMap().put(f.getName(), FileUtils.readFileToString(f, "UTF-8"));
                 }
-
             }
 
             Map<String, Object> map = new HashMap<>();
@@ -113,8 +117,9 @@ public class ArticleService {
             String destFileName = cateGeneratedFloder + CommonConsts.SLASH + artFileName;
 
 
-            Template template = configuration.getTemplate("template.ftl");
-            generateFile(template, map, destFileName);
+//            Template template = configuration.getTemplate("template.ftl");
+//            generateFile(template, map, destFileName);
+            freemarkerHelper.assemble(map,"template.ftl",destFileName);
 
             //regex all html tag and only save 100 chars.
             String contentStr = atj.getTempMap().get("content").toString().
@@ -129,7 +134,7 @@ public class ArticleService {
             articleDAO.saveAndFlush(article);
 
         }catch (Exception e){
-            logger.error("Error occurs when assemble article.");
+            logger.error("Error occurs when assemble article:" + e.getMessage());
             throw new AssembleArtException(e,atj);
         }
 
@@ -175,8 +180,10 @@ public class ArticleService {
 
             String destFileName = cateGeneratedFloder + CommonConsts.SLASH +  "list.html";
 
-            Template template = configuration.getTemplate("template.ftl");
-            generateFile(template,map,destFileName);
+//            Template template = configuration.getTemplate("template.ftl");
+//            generateFile(template,map,destFileName);
+
+            freemarkerHelper.assemble(map,"template.ftl",destFileName);
 
             //todo move categpry list.html
             // todo 2. move article.html to deployed floder
@@ -200,7 +207,7 @@ public class ArticleService {
             FileUtils.copyFileToDirectory(new File(article.getArtFileName()), destFloder, false);
 
         }catch (Exception e){
-            logger.error("Error occurs when deploy article");
+            logger.error("Error occurs when deploy article:" +e.getMessage());
             throw new DeployArtException(e,atj);
         }
         return atj;

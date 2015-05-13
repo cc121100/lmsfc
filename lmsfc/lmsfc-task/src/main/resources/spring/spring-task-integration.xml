@@ -30,12 +30,16 @@
     <int:router input-channel="jmsTaskInputChl" expression="payload.type">
         <int:mapping value="B" channel="batchArtTaskChl"/>
         <int:mapping value="S" channel="singleArtTaskChl"/>
-
+        <int:mapping value="RA" channel="toReAssembleChl"/>
     </int:router>
     <!--<int:payload-type-router input-channel="jmsTaskInputChl">-->
         <!--<int:mapping type="com.cc.lmsfc.common.model.task.BatchArticleTaskJob" channel="batchArtTaskChl" />-->
         <!--<int:mapping type="com.cc.lmsfc.common.model.task.ArticleTaskJob" channel="singleArtTaskChl" />-->
     <!--</int:payload-type-router>-->
+
+    <int:service-activator id="reassembleArtService" input-channel="toReAssembleChl"
+                           ref="reAssembleService" method="reassemble"/>
+
 
     <int:service-activator id="getBatchArtTaskJobService" input-channel="batchArtTaskChl"
                            ref="batchArtTaskJobService" method="messageHandler" output-channel="listForBatchArtTaskChl"/>
@@ -153,6 +157,8 @@
         <!--<int:queue capacity="50"/>-->
     </int:channel>
     <int:channel id="artTaskJobExceptionChl"/>
+
+    <int:channel id="toReAssembleChl"/>
 
     <!--<int:poller default="true" fixed-delay="50"/>-->
 

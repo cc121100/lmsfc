@@ -1,8 +1,10 @@
 package com.cc.lmsfc.task.test;
 
+import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.common.model.task.BatchArticleTaskJob;
+import com.google.common.collect.Maps;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -18,6 +20,7 @@ import javax.jms.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tomchen on 15-3-16.
@@ -31,7 +34,7 @@ public class JmsClientTest {
 
     @Before
     public void setUp(){
-        ctx = new ClassPathXmlApplicationContext("classpath*:spring/spring-task.xml");
+        ctx = new ClassPathXmlApplicationContext("classpath*:spring/test-spring-task-jms.xml");
     }
 
     @Test
@@ -136,6 +139,20 @@ public class JmsClientTest {
             }
         });
 
+    }
+
+    @Test
+    public void testReassebmle(){
+        JmsTemplate jmsTemplate = (JmsTemplate) ctx.getBean("jmsTemplate");
+
+        final Map<String,Object> map = Maps.newHashMap();
+        map.put("type", CommonConsts.REASSEMBLE_TSK);
+        jmsTemplate.send(new MessageCreator() {
+            @Override
+            public Message createMessage(Session session) throws JMSException {
+                return session.createObjectMessage((java.io.Serializable) map);
+            }
+        });
     }
 
     @Test

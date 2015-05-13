@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<description>jms</description>
+
+	<!-- 真正的jms 连接工厂 -->
+	<bean id="activeMQJmsFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL">
+			<value>tcp://localhost:61616</value>
+		</property>
+		<property name="useAsyncSend" value="true" />
+	</bean>
+
+    <bean id="connectionFactory"
+          class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="activeMQJmsFactory" />
+        <property name="sessionCacheSize" value="10" />
+        <property name="cacheProducers" value="false" />
+        <property name="clientId" value="lmsfc-task-test"/>
+    </bean>
+
+    <!--<bean id="connectionFactory"-->
+          <!--class="org.apache.activemq.pool.PooledConnectionFactory">-->
+        <!--<property name="connectionFactory" ref="activeMQJmsFactory" />-->
+        <!--<property name="maxConnections" value="10"/>-->
+    <!--</bean>-->
+
+	<!-- jms Queue -->
+	<bean id="inQueue" class="org.apache.activemq.command.ActiveMQQueue"
+		autowire="constructor">
+		<constructor-arg value="jmsQueue" />
+	</bean>
+
+    <bean id="atjNotifyTopic" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="atjNotifyTopic"/>
+    </bean>
+
+
+    <!-- jms 模板 -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="defaultDestination" ref="inQueue" />
+        <property name="messageConverter">
+            <bean class="org.springframework.jms.support.converter.SimpleMessageConverter" />
+        </property>
+        <property name="explicitQosEnabled" value="true" />
+        <property name="deliveryMode" value="1" /> <!--NON_PERSISTENT:1, PERSISTENT:2-->
+        <property name="sessionAcknowledgeMode" value="1" />
+        <property name="pubSubDomain" value="false" />
+    </bean>
+
+	<!-- jms 模板 -->
+	<bean id="notifyJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+		<property name="defaultDestination" ref="atjNotifyTopic" />
+		<property name="messageConverter">
+            <bean class="org.springframework.jms.support.converter.SimpleMessageConverter" />
+        </property>
+        <property name="explicitQosEnabled" value="true" />
+        <property name="deliveryMode" value="2" /> <!--NON_PERSISTENT:1, PERSISTENT:2-->
+        <property name="sessionAcknowledgeMode" value="1" />   
+        <property name="pubSubDomain" value="false" />  
+	</bean>
+
+
+</beans>

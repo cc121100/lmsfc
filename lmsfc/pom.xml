@@ -11,6 +11,7 @@
 
     <modules>
         <module>lmsfc-parent</module>
+        <!--<module>lmsfc-web</module>-->
         <!--<module>lmsfc-admin</module>-->
         <!--<module>lmsfc-task</module>-->
         <!--<module>lmsfc-common</module>-->

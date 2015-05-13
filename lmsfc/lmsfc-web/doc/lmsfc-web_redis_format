@@ -1,0 +1,17 @@
+1. Article per Category Set
+    art.set.categoryName : articleID
+
+2. Article Hash
+    art.hash.id : key : articleID (need to confirm whether needed?)
+                    jsonStr : {title,des,postDate,url}
+                    viewCount :
+                    pre : id/title
+                    next : id/title
+
+3. Category Set
+    cat.set : categoryID
+
+4. Category Hash
+
+    cat.hash.id : jsonStr : {name,url}
+                    artCount :

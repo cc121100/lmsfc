@@ -15,6 +15,7 @@ public class CommonConsts {
     public final static String UTF8 = "UTF-8";
     public final static String SINGLE_TSK = "S";
     public final static String BATCH_TSK = "B";
+    public final static String REASSEMBLE_TSK = "RA";
     public final static String ELE_PREFIX = "Ele_of_";
 
     public final static String REG_HTML_TAG= "</?[^>]+>";

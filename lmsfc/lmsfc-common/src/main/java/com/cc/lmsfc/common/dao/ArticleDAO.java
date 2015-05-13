@@ -15,4 +15,7 @@ public interface ArticleDAO  extends BaseRepository<Article, String> {
 
     @Query(value = "select a from Article a where a.articleCategory.name = :name order by a.createdDt desc")
     List<Article> findByCategory(@Param("name") String name);
+
+    @Query(value = "select a from Article a where a.state = :state order by a.generateTime desc")
+    List<Article> findByState(@Param("state") int state);
 }

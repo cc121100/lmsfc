@@ -18,31 +18,34 @@
 
     <import resource="classpath*:spring/spring-common.xml"/>
 
+    <import resource="classpath*:spring/spring-redis.xml"/>
+
     <import resource="classpath*:spring/spring-task-integration.xml"/>
 
     <bean id="freemarkerConfig" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
-        <property name="templateLoaderPath" value="classpath:/template/" />
+        <!--<property name="templateLoaderPath" value="classpath:/template/" />-->
+        <property name="templateLoaderPath" value="file:${TEMPLATE_FILE}" />
         <property name="defaultEncoding" value="UTF-8"></property>
     </bean>
 
-    <!--<bean id="propertyConfigurerForBase"-->
-          <!--class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
-        <!--<property name="order" value="1" />-->
-        <!--<property name="ignoreUnresolvablePlaceholders" value="true" />-->
-        <!--<property name="locations">-->
-            <!--<list>-->
-                <!--<value>classpath*:task.properties</value>-->
-            <!--</list>-->
-        <!--</property>-->
+    <!--<bean id="freemarkerConfig" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">-->
+        <!--&lt;!&ndash;<property name="templateLoaderPath" value="classpath:/template/" />&ndash;&gt;-->
+        <!--<property name="templateLoaderPath" value="${TEMPLATE_FILE}" />-->
+        <!--<property name="defaultEncoding" value="UTF-8"></property>-->
     <!--</bean>-->
 
-    <!--<bean id="placeholderConfigMM" class="com.cc.lmsfc.common.util.SpringPropertiesUtil">-->
-        <!--<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>-->
-        <!--<property name="locations">-->
-            <!--<list>-->
-                <!--<value>classpath*:task.properties</value>-->
-            <!--</list>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <!--<bean id="freemarkerFileSystemResourceLoader" class="org.springframework.core.io.FileSystemResourceLoader"></bean>-->
+
+    <bean id="propertyConfigurerForBase"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="order" value="2" />
+        <property name="ignoreUnresolvablePlaceholders" value="true" />
+        <property name="locations">
+            <list>
+                <value>classpath*:task.properties</value>
+                <value>classpath*:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>

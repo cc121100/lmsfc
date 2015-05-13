@@ -40,17 +40,17 @@
 
 
     <!-- jms 模板 -->
-    <!--<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">-->
-        <!--<property name="connectionFactory" ref="connectionFactory" />-->
-        <!--<property name="defaultDestination" ref="inQueue" />-->
-        <!--<property name="messageConverter">-->
-            <!--<bean class="org.springframework.jms.support.converter.SimpleMessageConverter" />-->
-        <!--</property>-->
-        <!--<property name="explicitQosEnabled" value="true" />-->
-        <!--<property name="deliveryMode" value="1" /> &lt;!&ndash;NON_PERSISTENT:1, PERSISTENT:2&ndash;&gt;-->
-        <!--<property name="sessionAcknowledgeMode" value="1" />-->
-        <!--<property name="pubSubDomain" value="false" />-->
-    <!--</bean>-->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="defaultDestination" ref="inQueue" />
+        <property name="messageConverter">
+            <bean class="org.springframework.jms.support.converter.SimpleMessageConverter" />
+        </property>
+        <property name="explicitQosEnabled" value="true" />
+        <property name="deliveryMode" value="1" /> <!--NON_PERSISTENT:1, PERSISTENT:2-->
+        <property name="sessionAcknowledgeMode" value="1" />
+        <property name="pubSubDomain" value="false" />
+    </bean>
 
 	<!-- jms 模板 -->
 	<bean id="notifyJmsTemplate" class="org.springframework.jms.core.JmsTemplate">

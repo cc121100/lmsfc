@@ -1,0 +1,9 @@
+jdbcUrl = jdbc:mysql://127.0.0.1/msfc?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+user = root
+password =password
+devMode = true
+
+redisHost = 127.0.0.1
+redisPort = 6379
+redisPassword = password
+redisDB = 0

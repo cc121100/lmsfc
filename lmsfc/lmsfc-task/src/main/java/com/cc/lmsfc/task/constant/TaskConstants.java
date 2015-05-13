@@ -17,6 +17,7 @@ public class TaskConstants {
     public static String ART_ELE_FLODER;
     public static String GENERATED_FLODER;
     public static String DEPLOY_FLODER;
+    public static String REASSEMBLE_LOG;
 
 
     static {
@@ -25,6 +26,7 @@ public class TaskConstants {
         ART_ELE_FLODER =PropertyUtil.getValue("ART_ELE_FLODER");
         GENERATED_FLODER = PropertyUtil.getValue("GENERATED_FLODER");
         DEPLOY_FLODER = PropertyUtil.getValue("DEPLOY_FLODER");
+        REASSEMBLE_LOG = PropertyUtil.getValue("REASSEMBLE_LOG");
     }
 
 

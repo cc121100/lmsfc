@@ -52,6 +52,12 @@ public class Article extends BaseModel {
     @Size(max = 255)
     private String description;
 
+    @Column(name= "url")
+    private String originUrl;
+
+    @Column(name = "view_count")
+    private Integer viewCount;
+
     public String getId() {
         return id;
     }
@@ -114,6 +120,22 @@ public class Article extends BaseModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getOriginUrl() {
+        return originUrl;
+    }
+
+    public void setOriginUrl(String originUrl) {
+        this.originUrl = originUrl;
+    }
+
+    public Integer getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
     }
 
     @Override

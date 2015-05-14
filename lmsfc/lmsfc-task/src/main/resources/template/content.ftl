@@ -7,7 +7,7 @@
 
 
             <#if type=="article">
-                <div class="col-lg-9" id="artMain" aid="${article.articleElement.id}">
+                <div class="col-lg-9" id="artMain" aid="${article.id}">
                 <#include "*/article.ftl">
             <#else >
                 <div class="col-lg-9" id="artMain">
@@ -64,15 +64,18 @@
 <script src="/js/lmsfc.js"></script>
 <script type="text/javascript">
 
+    var page = 2;
     var rType = "l";
     var aid = "";
+    var cpn = $("#cpnHid").val();
+
     <#if type = "article">
         rType = "a";
         aid = $("#artMain").attr("aid");
     </#if>
 
     $(function(){
-        loadArtViewAndCat(aid,rType);
+        loadArtViewAndCat(aid,rType,cpn);
     });
 
     <#if type=="article">
@@ -84,9 +87,10 @@
                 e.preventDefault();
                 var l = Ladda.create(this);
                 l.start();
-                lmPost("/lmsfc-web/loadmore_do",{"aaa":["111","222","333"]},function(response){
+                lmPost("/lmsfc-web/loadmore_do",{"page":page,"cpn":cpn},function(response){
 //                    console.log(response);
                     appendArt(response);
+                    page = page + 1;
                 },function(response){alert("Error");},function() {console.log("Complete"); l.stop(); });
 //                return false;
             });

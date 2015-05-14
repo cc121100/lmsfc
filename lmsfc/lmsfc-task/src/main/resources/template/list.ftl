@@ -1,5 +1,6 @@
+<input type="hidden" id="cpnHid" value="${articleList[0].articleCategory.pathName}"/>
 <#list articleList as art>
-    <div aid="${art.articleElement.id}">
+    <div aid="${art.id}">
         <h3>
         <a href="${art.articleElement.id+'.html'?default("#")}">${art.name?default("")}</a>
         </h3>

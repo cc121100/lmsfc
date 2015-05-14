@@ -4,9 +4,11 @@ import com.cc.lmsfc.common.dao.ArticleCategoryDAO;
 import com.cc.lmsfc.common.dao.ArticleDAO;
 import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
 import com.cc.lmsfc.common.dao.FilterDAO;
+import com.cc.lmsfc.common.model.article.Article;
 import com.cc.lmsfc.common.model.filter.Filter;
 import com.cc.lmsfc.common.service.FilterService;
 import com.cc.lmsfc.common.service.UserService;
+import com.cc.lmsfc.common.specification.ArticleSpec;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by tomchen on 15-3-11.
@@ -104,6 +108,13 @@ public class CommonTest {
     @Test
     public void testAddUrlColumnForArt(){
         articleDAO.findAll();
+    }
+
+    @Test
+    public void testSpec(){
+
+//        Page<Article> page = articleDAO.findAll(new ArticleSpec().findByCategory("402868cf4c364e2d014c364e37a4000d"), new PageRequest(1, 10));
+//        System.out.println(page.getContent().size());
     }
 
 }

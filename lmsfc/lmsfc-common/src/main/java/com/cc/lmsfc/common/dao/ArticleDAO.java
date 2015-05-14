@@ -3,6 +3,7 @@ package com.cc.lmsfc.common.dao;
 import com.cc.lmsfc.common.jpa.BaseRepository;
 import com.cc.lmsfc.common.model.article.Article;
 import com.cc.lmsfc.common.model.article.ArticleElement;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 

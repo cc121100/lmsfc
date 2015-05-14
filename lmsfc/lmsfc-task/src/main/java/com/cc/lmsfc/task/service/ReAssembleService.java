@@ -10,6 +10,7 @@ import com.cc.lmsfc.task.helper.FreemarkerHelper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import freemarker.template.TemplateException;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -121,6 +123,9 @@ public class ReAssembleService {
                 paramMap.put("type", "list");
 
                 List<Article> list = articleDAO.findByCategory(cat.getName());
+                if(list.size() > 10){
+                    list = list.subList(0,10);
+                }
                 paramMap.put("articleList", list);
                 paramMap.put("artCateList", categories);
                 paramMap.put("title", cat.getName());
@@ -139,6 +144,8 @@ public class ReAssembleService {
                 continue;
             }
         }
+
+        //cp css/img
 
         // notify web
         System.err.println("List Reassemble Finished");

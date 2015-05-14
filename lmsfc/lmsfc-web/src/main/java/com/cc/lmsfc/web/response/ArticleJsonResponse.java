@@ -10,7 +10,9 @@ public class ArticleJsonResponse extends BaseJsonResponse {
 
     private int page;
 
-    private List<Map<String,String>> data;
+    private int isLast;
+
+    private List<Map<String,Object>> data;
 
     public int getPage() {
         return page;
@@ -20,11 +22,19 @@ public class ArticleJsonResponse extends BaseJsonResponse {
         this.page = page;
     }
 
-    public List<Map<String, String>> getData() {
+    public List<Map<String, Object>> getData() {
         return data;
     }
 
-    public void setData(List<Map<String, String>> data) {
+    public void setData(List<Map<String, Object>> data) {
         this.data = data;
+    }
+
+    public int getIsLast() {
+        return isLast;
+    }
+
+    public void setIsLast(int isLast) {
+        this.isLast = isLast;
     }
 }

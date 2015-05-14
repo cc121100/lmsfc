@@ -8,6 +8,7 @@ import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
+import com.jfinal.kit.JsonKit;
 import redis.clients.jedis.Pipeline;
 
 import java.text.SimpleDateFormat;
@@ -19,7 +20,7 @@ import java.util.*;
 
 public class IndexController extends Controller {
 
-    private static int pageCount = 5;
+    private static int pageCount = 10;
 
     public void test_do(){
         renderText("Hello JFinal");
@@ -43,24 +44,31 @@ public class IndexController extends Controller {
                 artKeys.add(key);
             }
 
-            List<Object> responseList = RedisKit.pipelinedHgetall(artKeys);
-            List<Map<String,String>> artResList = new ArrayList<>();
+            ArticleJsonResponse response = new ArticleJsonResponse();
 
-            for(int i = 0 ; i < responseList.size();i++){
-                Object res = responseList.get(i);
-                Map<String, String> map = (Map<String, String>) res;
-                map.put("aid",artIdSet[i].toString());
-                map.remove("pre");
-                map.remove("next");
-                artResList.add(map);
+            if(artIdSet != null && artIdSet.length > 0){
+                List<Object> responseList = RedisKit.pipelinedHgetall(artKeys);
+                List<Map<String,Object>> artResList = new ArrayList<>();
+
+                for(int i = 0 ; i < responseList.size();i++){
+                    Object res = responseList.get(i);
+                    Map<String, Object> map = (Map<String, Object>) res;
+                    map.put("aid",artIdSet[i].toString());
+                    map.remove("pre");
+                    map.remove("next");
+                    artResList.add(map);
+                }
+
+                response.setData(artResList);
+
+            }else {
+                response.setData(null);
+                response.setIsLast(1);
             }
 
-            //res
-            ArticleJsonResponse response = new ArticleJsonResponse();
             response.setStateCode(200);
             response.setMsg("Success");
             response.setDate(new Date());
-            response.setData(artResList);
             response.setPage(page);
 
             renderJson(response);
@@ -118,9 +126,16 @@ public class IndexController extends Controller {
                 avMap.put("aid",aid);
                 avMap.put("viewCount",list.get(0));
                 avMap.put("pre",list.get(1));
-                avMap.put("nxet",list.get(2));
+                avMap.put("next",list.get(2));
 
                 avs.add(avMap);
+
+                //add viewCount to this art.hash
+                Map<String,String> newViewCountMap = new HashMap<>();
+                int newViewCount = Integer.parseInt(list.get(0)) + 1;
+
+                newViewCountMap.put("viewCount",newViewCount + "");
+                RedisKit.hmset("art.hash." + aid,newViewCountMap);
             }
 
             // cList
@@ -139,7 +154,6 @@ public class IndexController extends Controller {
 
                 cList.add(catMap);
             }
-
 
             acResponse.setAvs(avs);
             acResponse.setcList(cList);

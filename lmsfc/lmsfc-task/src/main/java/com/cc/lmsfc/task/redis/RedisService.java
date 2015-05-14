@@ -21,6 +21,7 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -93,72 +94,100 @@ public class RedisService {
 
     private void formatDatas(List<Article> articleList,List<ArticleCategory> articleCategories, Map<String,Map<String,String>> artMap,Map<String,Map<String,String>> catMap,Map<String,List<String>> catArtMap){
 
-        for(int i = 0 ; i < articleList.size(); i++ ){
-            Article art = articleList.get(i);
-            Map map = Maps.newHashMap();
+        //format articleList to Map<cat,List<Art>>
 
-            StringBuffer sb = new StringBuffer();
-//            sb.append("{")
-//                    .append("'title':'").append(art.getName()).append("',")
-//                    .append("'des':'").append(art.getDescription()).append("',")
-//                    .append("'postTime':'").append(art.getGenerateTime()).append("',")
-//                    .append("'url':'").append(art.getArticleElement().getId()).append(".html'")
-//                    .append("}");
-            sb.append("{")
-                    .append("\"title\":\"").append(art.getName()).append("\",")
-                    .append("\"des\":\"").append(art.getDescription()).append("\",")
-                    .append("\"postTime\":\"").append(art.getGenerateTime()).append("\",")
-                    .append("\"url\":\"").append(art.getArticleElement().getId()).append(".html\"")
-                    .append("}");
-//            sb.append("{");
-//                    .append("title:").append(art.getName()).append(",")
-//                    .append("des:").append(art.getDescription()).append(",")
-//                    .append("postTime:").append(art.getGenerateTime()).append(",")
-//                    .append("url:").append(art.getArticleElement().getId()).append(".html")
-//                    .append("}");
-            map.put("jsonStr", sb.toString());
-            map.put("viewCount",art.getViewCount() == null ? "0" : "" + art.getViewCount().toString() +"");
-            if(i == 0){
-                map.put("pre", "");
-            }else{
-                Article preArt = articleList.get(i -1);
-                String str = preArt.getArticleElement().getId() + "_" +preArt.getName();
-                map.put("pre", str);
-            }
-
-            if(i == articleList.size()-1){
-                map.put("next", "");
-            }else{
-                Article nextArt = articleList.get(i + 1);
-                String str = nextArt.getArticleElement().getId() + "_" +nextArt.getName();
-                map.put("next", str);
-            }
-
-            artMap.put(art.getId(),map);
-            String aid = art.getId();
-            String catPath = art.getArticleCategory().getPathName();
-            if(catArtMap.containsKey(catPath)){
-                catArtMap.get(catPath).add(aid);
+        Map<String,List<Article>> artListOfCatMap = Maps.newHashMap();
+        for(Article art : articleList){
+            String cPathName = art.getArticleCategory().getPathName();
+            if(artListOfCatMap.containsKey(cPathName)){
+                artListOfCatMap.get(cPathName).add(art);
             }else {
-                catArtMap.put(catPath,Lists.newArrayList(aid));
+                artListOfCatMap.put(cPathName,Lists.newArrayList(art));
+            }
+
+            String aid = art.getId();
+            if(catArtMap.containsKey(cPathName)){
+                catArtMap.get(cPathName).add(aid);
+            }else {
+                catArtMap.put(cPathName,Lists.newArrayList(aid));
+            }
+
+        }
+
+        for(Map.Entry<String, List<Article>> entry : artListOfCatMap.entrySet()){
+            String cPathName = entry.getKey();
+            List<Article> list = entry.getValue();
+            for(int i = 0 ; i < list.size(); i++ ){
+                Article art = list.get(i);
+                Map map = Maps.newHashMap();
+
+                map.put("title",art.getName());
+                map.put("url",art.getArticleElement().getId() + ".html");
+                map.put("des",art.getDescription());
+                map.put("postTime",new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(art.getGenerateTime()));
+                map.put("viewCount",art.getViewCount() == null ? "0" : "" + art.getViewCount().toString() +"");
+
+                if(i == 0){
+                    map.put("next", "");
+                }else{
+                    Article nextArt = list.get(i - 1);
+                    String str = nextArt.getArticleElement().getId() + "_" +nextArt.getName();
+                    map.put("next", str);
+                }
+
+                if(i == list.size()-1){
+                    map.put("pre", "");
+                }else{
+                    Article preArt = list.get(i + 1);
+                    String str = preArt.getArticleElement().getId() + "_" +preArt.getName();
+                    map.put("pre", str);
+                }
+
+                artMap.put(art.getId(),map);
+
             }
         }
 
+//        for(int i = 0 ; i < articleList.size(); i++ ){
+//            Article art = articleList.get(i);
+//            Map map = Maps.newHashMap();
+//
+//            map.put("title",art.getName());
+//            map.put("url",art.getArticleElement().getId() + ".html");
+//            map.put("des",art.getDescription());
+//            map.put("postTime",new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(art.getGenerateTime()));
+//            map.put("viewCount",art.getViewCount() == null ? "0" : "" + art.getViewCount().toString() +"");
+//            if(i == 0){
+//                map.put("pre", "");
+//            }else{
+//                Article preArt = articleList.get(i -1);
+//                String str = preArt.getArticleElement().getId() + "_" +preArt.getName();
+//                map.put("pre", str);
+//            }
+//
+//            if(i == articleList.size()-1){
+//                map.put("next", "");
+//            }else{
+//                Article nextArt = articleList.get(i + 1);
+//                String str = nextArt.getArticleElement().getId() + "_" +nextArt.getName();
+//                map.put("next", str);
+//            }
+//
+//            artMap.put(art.getId(),map);
+////            String aid = art.getId();
+////            String catPath = art.getArticleCategory().getPathName();
+////            if(catArtMap.containsKey(catPath)){
+////                catArtMap.get(catPath).add(aid);
+////            }else {
+////                catArtMap.put(catPath,Lists.newArrayList(aid));
+////            }
+//        }
+
         for(ArticleCategory cat : articleCategories){
             Map map = Maps.newHashMap();
-            StringBuffer sb = new StringBuffer();
-            sb.append("{").append("name:").append( cat.getName()).append(",")
-                    .append("url':").append(cat.getPathName()).append("")
-                    .append("}");
-            map.put("jsonStr", sb.toString());
+            map.put("name",cat.getName());
+            map.put("cName",cat.getPathName());
             map.put("artCount", "" + cat.getArticleList().size() + "");
-
-//            sb.append("{").append("'name':").append("'" + cat.getName()).append("',")
-//                    .append("'url':").append("'" +cat.getPathName()).append("'")
-//                    .append("}");
-//            map.put("jsonStr", sb.toString());
-//            map.put("artCount", "" + cat.getArticleList().size() + "");
-
             catMap.put(cat.getId(),map);
         }
 

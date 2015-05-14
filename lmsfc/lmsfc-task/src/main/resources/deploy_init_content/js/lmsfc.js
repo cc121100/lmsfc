@@ -5,7 +5,7 @@ function lmAjax(requestUrl,method,param,successCallBack,errorCallBack,comCallBac
         cache : false,
         data : param,
         dataType : "json",
-        timeout : 10000,
+        //timeout : 10000,
         success : successCallBack,
         error : errorCallBack,
         complete : comCallBack
@@ -23,68 +23,79 @@ function lmPost(requestUrl,param,successCallBack,errorCallBack,comCallBack){
 function appendArt(response){
     var datas = response.data;
     var appendStr = "<hr>";
-    for(var i = 0; i < datas.length; i++){
-        appendStr = appendStr + "<div aid=" + datas[i].id + ">";
-        appendStr = appendStr + "<h3><a href='" + datas[i].url + "'>" + datas[i].title + "</a></h3>"
-                              + "<p>" + datas[i].description + "</p><br>"
-                              + "<p class='text-right'>" 
-                                    + "<a class='btn btn-link' href='" + datas[i].url + "'>查看全文</a>"
-                                    + "<small>阅读(<span class='avc'>" + datas[i].view + "</span>)</small>&nbsp;&nbsp;"
-                                    + "<span class='glyphicon glyphicon-time'></span>"
-                                    + "<small>&nbsp;" + datas[i].generateTime + "</small>"
-                              + "</p>";
-        appendStr = appendStr + "</div><hr>";                  
+    if(datas == null || datas.length < 1){
+        if(response.isLast == 1){
+            alert("没有更多文章了");
+        }else{
+            alert("Error");
+        }
+        return false;
+    }else{
+        for(var i = 0; i < datas.length; i++){
+            var art = datas[i];
+            appendStr = appendStr + "<div aid=" + art.aid + ">";
+            appendStr = appendStr + "<h3><a href='" + art.url + "'>" + art.title + "</a></h3>"
+                + "<p>" + art.des + "</p><br>"
+                + "<p class='text-right'>"
+                + "<a class='btn btn-link' href='" + art.url + "'>查看全文</a>"
+                + "<small>阅读(<span class='avc'>" + art.viewCount + "</span>)</small>&nbsp;&nbsp;"
+                + "<span class='glyphicon glyphicon-time'></span>"
+                + "<small>&nbsp;" + art.postTime + "</small>"
+                + "</p>";
+            appendStr = appendStr + "</div><hr>";
+        }
+        appendStr = appendStr.substr(0,appendStr.length-4);
+        $("#btnLoadMore").before(appendStr);
+        return true;
     }
-    appendStr = appendStr.substr(0,appendStr.length-4);
-//    console.log(appendStr);
-
-    $("#btnLoadMore").before(appendStr);
 }
 
-function loadArtViewAndCat(aid, type){
+function loadArtViewAndCat(aid, rType, cpn){
     var param = new Object();
     param.aid = aid;
-    param.rType = type;// l:list page, a:article page
-    lmGet("/lmsfc-web/loadArtAndCat_do",param,function(response){
-        console.log(response);
+    param.rType = rType;// l:list page, a:article page
+    param.cpn = cpn;
+    lmGet("/lmsfc-web/loadArtAndCat_do",{"aid":aid,"rType":rType,"cpn":cpn},function(response){
+        //console.log(response);
         var cList = response.cList;
         var avs = response.avs;
         // set category and view 
         var catStr = "<ul class='list-unstyled'>";
         for(var i = 0; i < cList.length; i++){
-            catStr = catStr + "<li><a href='" + cList[i].url + "'>" + cList[i].cname + "</a>&nbsp;" + "<small>(" + cList[i].view+ ")</small>" + "</li>"
+            catStr = catStr + "<li><a href='/" + cList[i].cName + "/list.html'>" + cList[i].name + "</a>&nbsp;" + "<small>(" + cList[i].artCount+ ")</small>" + "</li>"
         }
         catStr += "</ul>";
         $("#divCat").html(catStr);
 
-        if(type == "l"){
+        if(rType == "l"){
             //set art view
             for(var i = 0; i < avs.length;i++){
                 var aid = avs[i].aid;
                 var sel = "div[aid='" + aid + "'] .avc";
-                $(sel).html(avs[i].view);
+                $(sel).html(avs[i].viewCount);
             }
         }
-        
 
-        if(type == "a"){
+
+        if(rType == "a"){
             //set art view
             var sel = "#artMain .avc";
-            $(sel).html(avs[0].view);
+            $(sel).html(avs[0].viewCount);
 
             // set pre and next art
-            var pre = avs[0].pre;
-            var next = avs[0].next;
+            var preStr = avs[0].pre;
+            var nextStr = avs[0].next;
+
             var preHtml = "";
             var nextHtml = "";
-            if(pre.title != null && pre.url != null){
-                preHtml = "<a href='" + pre.url + "'>" + pre.title + "</a>";
+            if(preStr != null && preStr != ""){
+                preHtml = "<a href='" + preStr.substr(0,32) + ".html'>" + preStr.substr(33) + "</a>";
                 $(".spre").html(preHtml);
             }
-            if(next.title != null && next.url != null){
-                nextHtml =  "<a href='" + next.url + "'>" + next.title + "</a>";
+            if(nextStr != null && nextStr != ""){
+                nextHtml = "<a href='" + nextStr.substr(0,32) + ".html'>" + nextStr.substr(33) + "</a>";
                 $(".snext").html(nextHtml);
-            }            
+            }
         }
 
     },function(response){console.log(response);alert("LoadArtViewAndCat Error");},"");

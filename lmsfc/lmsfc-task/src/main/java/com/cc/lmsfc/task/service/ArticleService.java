@@ -21,9 +21,14 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.io.*;
 import java.util.*;
 
@@ -168,6 +173,9 @@ public class ArticleService {
             ArticleCategory artCate = article.getArticleCategory();
 
             List<Article> articleList = articleDAO.findByCategory(artCate.getName());
+            if(articleList.size() > 10){
+                articleList = articleList.subList(0,10);
+            }
             map.put("articleList",articleList);
             map.put("artCateList",articleCategorys);
             map.put("title",artCate.getName());

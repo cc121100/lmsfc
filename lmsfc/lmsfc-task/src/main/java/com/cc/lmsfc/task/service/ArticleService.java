@@ -10,6 +10,7 @@ import com.cc.lmsfc.task.constant.TaskConstants;
 import com.cc.lmsfc.task.exception.AssembleArtException;
 import com.cc.lmsfc.task.exception.DeployArtException;
 import com.cc.lmsfc.task.helper.FreemarkerHelper;
+import com.cc.lmsfc.task.helper.RedisHelper;
 import freemarker.core.Configurable;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -45,6 +46,9 @@ public class ArticleService {
 
     @Autowired
     private FreemarkerHelper freemarkerHelper;
+
+    @Autowired
+    private RedisHelper redisHelper;
 
     @Autowired
     private ArticleDAO articleDAO;
@@ -84,6 +88,9 @@ public class ArticleService {
             article.setArticleElement(atj.getArticleElement());
 
             articleDAO.saveAndFlush(article);
+
+            // add new article into redis
+            redisHelper.addArticle(article);
 
             atj.getArticleElement().setArticle(article);
 

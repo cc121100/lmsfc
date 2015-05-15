@@ -5,6 +5,8 @@ import com.cc.lmsfc.web.redis.plugin.RedisPlugin;
 import com.jfinal.config.*;
 import com.jfinal.core.JFinal;
 
+import java.util.Date;
+
 /**
  * Created by tomchen on 15-4-24.
  */
@@ -42,6 +44,7 @@ public class LmsfcWebConfig extends JFinalConfig {
     }
 
     public static void main(String[] args){
+
         JFinal.start("lmsfc/lmsfc-web/src/main/webapp", 8090, "/lmsfc-web", 5);
     }
 

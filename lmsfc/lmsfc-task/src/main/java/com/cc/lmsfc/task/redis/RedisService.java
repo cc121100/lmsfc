@@ -206,4 +206,5 @@ public class RedisService {
     private void  initArtHashes(String key,Map<String,String> values){
         redisTemplate.opsForHash().putAll(key,values);
     }
+
 }

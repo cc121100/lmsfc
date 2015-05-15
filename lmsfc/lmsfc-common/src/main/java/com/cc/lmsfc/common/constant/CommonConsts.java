@@ -21,6 +21,13 @@ public class CommonConsts {
     public final static String REG_HTML_TAG= "</?[^>]+>";
     public final static String REG_HTML_CHAR= "<a>\\\\s*|\\t|\\r|\\n</a>";
 
+    //redis
+
+    public final static String REDIS_ART_ZSET_PRE = "art.zset.";
+    public final static String REDIS_ART_HASH_PRE = "art.hash.";
+    public final static String REDIS_CAT_HASH_PRE = "cat.hash.";
+    public final static String REDIS_CAT_ZSET = "cat.zset";
+
 
 
     public static Map<String,String> artStateMap = null;

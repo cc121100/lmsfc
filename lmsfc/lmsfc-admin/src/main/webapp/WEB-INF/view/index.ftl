@@ -197,9 +197,9 @@ function MainMenuClick(event, treeId, treeNode) {
                                     </#if>
 
                                 </#list>
-                                    <li data-id="10" data-pid="1" data-url="${rc.contextPath}/article/index" data-tabid="form-button">按钮</li>
-                                    <li data-id="11" data-pid="1" data-url="form-input.html" data-tabid="form-input">文本框</li>
-                                    <li data-id="1" data-pid="0">表单元素</li>
+                                    <#--<li data-id="10" data-pid="1" data-url="${rc.contextPath}/article/index" data-tabid="form-button">按钮</li>-->
+                                    <#--<li data-id="11" data-pid="1" data-url="form-input.html" data-tabid="form-input">文本框</li>-->
+                                    <#--<li data-id="1" data-pid="0">表单元素</li>-->
                                     <#--<li data-id="12" data-pid="1" data-url="form-select.html" data-tabid="form-select">下拉选择框</li>-->
                                     <#--<li data-id="13" data-pid="1" data-url="form-checkbox.html" data-tabid="table">复选、单选框</li>-->
                                     <#--<li data-id="14" data-pid="1" data-url="form.html" data-tabid="form">表单综合演示</li>-->

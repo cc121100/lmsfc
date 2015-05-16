@@ -1,0 +1,875 @@
+[ INFO][ 49][org.springframework.test.context.support.DefaultTestContextBootstrapper][main][2015-04-05 15:00:55 641]Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+[ INFO][ 55][org.springframework.test.context.support.DefaultTestContextBootstrapper][main][2015-04-05 15:00:55 647]Could not instantiate TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener]. Specify custom listener classes or make the default listener classes (and their required dependencies) available. Offending class: [javax/servlet/ServletContext]
+[ INFO][ 67][org.springframework.test.context.support.DefaultTestContextBootstrapper][main][2015-04-05 15:00:55 659]Using TestExecutionListeners: [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@316db8d6, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1a8202f4, org.springframework.test.context.transaction.TransactionalTestExecutionListener@4d8feec4, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2484ada4]
+[ INFO][181][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:00:55 773]Loading XML bean definitions from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/spring/spring-common.xml]
+[ INFO][761][org.springframework.context.support.GenericApplicationContext][main][2015-04-05 15:00:56 353]Refreshing org.springframework.context.support.GenericApplicationContext@7c1dea5: startup date [Sun Apr 05 15:00:56 SGT 2015]; root of context hierarchy
+[ INFO][935][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer][main][2015-04-05 15:00:56 527]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/jdbc.properties]
+[ INFO][1874][com.alibaba.druid.pool.DruidDataSource][main][2015-04-05 15:00:57 466]{dataSource-1} inited
+[ INFO][2114][org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean][main][2015-04-05 15:00:57 706]Building JPA container EntityManagerFactory for persistence unit 'default'
+[ WARN][2114][org.hibernate.ejb.HibernatePersistence][main][2015-04-05 15:00:57 706]HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+[ INFO][2236][org.hibernate.Version][main][2015-04-05 15:00:57 828]HHH000412: Hibernate Core {4.3.5.Final}
+[ INFO][2237][org.hibernate.cfg.Environment][main][2015-04-05 15:00:57 829]HHH000206: hibernate.properties not found
+[ INFO][2239][org.hibernate.cfg.Environment][main][2015-04-05 15:00:57 831]HHH000021: Bytecode provider name : javassist
+[ INFO][2487][org.hibernate.annotations.common.Version][main][2015-04-05 15:00:58 079]HCANN000001: Hibernate Commons Annotations {4.0.4.Final}
+[ INFO][2556][org.hibernate.dialect.Dialect][main][2015-04-05 15:00:58 148]HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[ INFO][2938][org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory][main][2015-04-05 15:00:58 530]HHH000397: Using ASTQueryTranslatorFactory
+[ INFO][2988][org.hibernate.validator.util.Version][main][2015-04-05 15:00:58 580]Hibernate Validator 4.1.0.Final
+[ INFO][2994][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:00:58 586]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ WARN][3499][org.hibernate.id.UUIDHexGenerator][main][2015-04-05 15:00:59 091]HHH000409: Using org.hibernate.id.UUIDHexGenerator which does not generate IETF RFC 4122 compliant UUID values; consider using org.hibernate.id.UUIDGenerator instead
+[ INFO][4045][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:00:59 637]HHH000228: Running hbm2ddl schema update
+[ INFO][4045][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:00:59 637]HHH000102: Fetching database metadata
+[ INFO][4048][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:00:59 640]HHH000396: Updating schema
+[ INFO][4076][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 668]HHH000261: Table found: lmsfc.tbl_art_tkj_run_log
+[ INFO][4076][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 668]HHH000037: Columns: [created_by, id, art_task_step, description, state, updated_by, art_tkj_id, updated_dt, created_dt, version]
+[ INFO][4076][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 668]HHH000108: Foreign keys: [fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][4076][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 668]HHH000126: Indexes: [primary, fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][4082][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 674]HHH000261: Table found: lmsfc.tbl_article
+[ INFO][4082][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 674]HHH000037: Columns: [created_by, id, generate_time, description, name, state, updated_by, art_ele_id, updated_dt, art_cate_id, created_dt, art_file_name, version]
+[ INFO][4083][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 675]HHH000108: Foreign keys: [fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][4083][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 675]HHH000126: Indexes: [primary, fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][4089][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 681]HHH000261: Table found: lmsfc.tbl_article_category
+[ INFO][4089][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 681]HHH000037: Columns: [created_by, id, path_name, name, updated_by, updated_dt, created_dt, version]
+[ INFO][4089][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 681]HHH000108: Foreign keys: []
+[ INFO][4089][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 681]HHH000126: Indexes: [primary]
+[ INFO][4095][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 687]HHH000261: Table found: lmsfc.tbl_article_element
+[ INFO][4095][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 687]HHH000037: Columns: [created_by, id, files, article, name, article_tkj_id, state, updated_by, updated_dt, created_dt, file_location, version]
+[ INFO][4095][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 687]HHH000108: Foreign keys: [fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][4095][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 687]HHH000126: Indexes: [primary, fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][4102][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 694]HHH000261: Table found: lmsfc.tbl_article_tkj
+[ INFO][4103][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 695]HHH000037: Columns: [created_by, tkj_run_log_id, finish_time, state, type, created_dt, url, version, id, filter_rule_id, name, batch_art_tkj_id, target_catgory, updated_by, updated_dt, is_whole]
+[ INFO][4103][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 695]HHH000108: Foreign keys: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d]
+[ INFO][4103][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 695]HHH000126: Indexes: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d, primary]
+[ INFO][4108][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 700]HHH000261: Table found: lmsfc.tbl_batch_article_tkj
+[ INFO][4108][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 700]HHH000037: Columns: [created_by, id, finish_time, name, state, updated_by, updated_dt, type, created_dt, version]
+[ INFO][4108][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 700]HHH000108: Foreign keys: []
+[ INFO][4108][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 700]HHH000126: Indexes: [primary]
+[ INFO][4114][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 706]HHH000261: Table found: lmsfc.tbl_filter
+[ INFO][4114][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 706]HHH000037: Columns: [created_by, id, set_param_method_name, param_type, filter_name, param_num, updated_by, updated_dt, filter_class_name, filter_class_params, created_dt, version]
+[ INFO][4114][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 706]HHH000108: Foreign keys: []
+[ INFO][4114][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 706]HHH000126: Indexes: [primary]
+[ INFO][4121][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 713]HHH000261: Table found: lmsfc.tbl_filter_detail
+[ INFO][4121][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 713]HHH000037: Columns: [created_by, id, category, filter_rule_id, param_value1, param_value2, filter_id, updated_by, sub_num, updated_dt, parent_node_id, created_dt, version]
+[ INFO][4121][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 713]HHH000108: Foreign keys: [fk_r3mobl1e3y5h54wadnivvxpht, fk_8rbks35frlk90snfhx36xb8cj, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][4121][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 713]HHH000126: Indexes: [primary, fk_8rbks35frlk90snfhx36xb8cj, fk_r3mobl1e3y5h54wadnivvxpht, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][4128][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 720]HHH000261: Table found: lmsfc.tbl_filter_rule
+[ INFO][4128][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 720]HHH000037: Columns: [created_by, id, source_domain, name, updated_by, updated_dt, created_dt, version]
+[ INFO][4128][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 720]HHH000108: Foreign keys: []
+[ INFO][4129][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 721]HHH000126: Indexes: [primary]
+[ INFO][4135][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 727]HHH000261: Table found: lmsfc.tbl_sys_resource
+[ INFO][4135][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 727]HHH000037: Columns: [created_by, id, parent_resource_id, resource_name, state, updated_by, permission, updated_dt, type, created_dt, url, version]
+[ INFO][4135][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 727]HHH000108: Foreign keys: [fk_15dp836ilit7l57fu9mrdlyv]
+[ INFO][4135][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 727]HHH000126: Indexes: [fk_15dp836ilit7l57fu9mrdlyv, primary]
+[ INFO][4141][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 733]HHH000261: Table found: lmsfc.tbl_sys_role
+[ INFO][4141][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 733]HHH000037: Columns: [created_by, id, role_description, state, updated_by, updated_dt, role_name, created_dt, version]
+[ INFO][4141][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 733]HHH000108: Foreign keys: []
+[ INFO][4141][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 733]HHH000126: Indexes: [primary]
+[ INFO][4146][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 738]HHH000261: Table found: lmsfc.tbl_sys_role_res
+[ INFO][4146][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 738]HHH000037: Columns: [resource_id, role_id]
+[ INFO][4146][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 738]HHH000108: Foreign keys: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][4146][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 738]HHH000126: Indexes: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][4154][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 746]HHH000261: Table found: lmsfc.tbl_sys_user
+[ INFO][4155][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 747]HHH000037: Columns: [created_by, id, user_name, state, updated_by, updated_dt, password, created_dt, salt, version]
+[ INFO][4155][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 747]HHH000108: Foreign keys: []
+[ INFO][4155][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 747]HHH000126: Indexes: [primary]
+[ INFO][4161][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 753]HHH000261: Table found: lmsfc.tbl_sys_user_role
+[ INFO][4162][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 754]HHH000037: Columns: [role_id, user_id]
+[ INFO][4162][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 754]HHH000108: Foreign keys: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][4162][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 754]HHH000126: Indexes: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][4168][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 760]HHH000261: Table found: lmsfc.tbl_test
+[ INFO][4169][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 761]HHH000037: Columns: [created_by, id, name, updated_by, updated_dt, created_dt, version]
+[ INFO][4169][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 761]HHH000108: Foreign keys: []
+[ INFO][4169][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:00:59 761]HHH000126: Indexes: [primary]
+[ INFO][4171][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:00:59 763]HHH000232: Schema update complete
+[ INFO][5746][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:01 338]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][5879][org.springframework.test.context.transaction.TransactionContext][main][2015-04-05 15:01:01 471]Began transaction (1) for test context [DefaultTestContext@60cb9c42 testClass = DataInitTest, testInstance = com.cc.lmsfc.task.test.DataInitTest@577fe2b3, testMethod = testGet@DataInitTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@cfc82a6 testClass = DataInitTest, locations = '{classpath*:spring/spring-common.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@50a5f70c]; rollback [false]
+[ INFO][6186][org.springframework.test.context.transaction.TransactionContext][main][2015-04-05 15:01:01 778]Committed transaction for test context [DefaultTestContext@60cb9c42 testClass = DataInitTest, testInstance = com.cc.lmsfc.task.test.DataInitTest@577fe2b3, testMethod = testGet@DataInitTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@cfc82a6 testClass = DataInitTest, locations = '{classpath*:spring/spring-common.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+[ INFO][6194][org.springframework.test.context.transaction.TransactionContext][main][2015-04-05 15:01:01 786]Began transaction (1) for test context [DefaultTestContext@60cb9c42 testClass = DataInitTest, testInstance = com.cc.lmsfc.task.test.DataInitTest@6eb4b976, testMethod = testtt@DataInitTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@cfc82a6 testClass = DataInitTest, locations = '{classpath*:spring/spring-common.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@50a5f70c]; rollback [false]
+[ INFO][6196][org.springframework.test.context.transaction.TransactionContext][main][2015-04-05 15:01:01 788]Committed transaction for test context [DefaultTestContext@60cb9c42 testClass = DataInitTest, testInstance = com.cc.lmsfc.task.test.DataInitTest@6eb4b976, testMethod = testtt@DataInitTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@cfc82a6 testClass = DataInitTest, locations = '{classpath*:spring/spring-common.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+[ INFO][6211][org.springframework.test.context.transaction.TransactionContext][main][2015-04-05 15:01:01 803]Began transaction (1) for test context [DefaultTestContext@60cb9c42 testClass = DataInitTest, testInstance = com.cc.lmsfc.task.test.DataInitTest@7aea8a58, testMethod = initTaskJobTestData@DataInitTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@cfc82a6 testClass = DataInitTest, locations = '{classpath*:spring/spring-common.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@50a5f70c]; rollback [false]
+[ INFO][6330][org.springframework.test.context.transaction.TransactionContext][main][2015-04-05 15:01:01 922]Committed transaction for test context [DefaultTestContext@60cb9c42 testClass = DataInitTest, testInstance = com.cc.lmsfc.task.test.DataInitTest@7aea8a58, testMethod = initTaskJobTestData@DataInitTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@cfc82a6 testClass = DataInitTest, locations = '{classpath*:spring/spring-common.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]].
+[ INFO][6336][org.springframework.test.context.transaction.TransactionContext][main][2015-04-05 15:01:01 928]Began transaction (1) for test context [DefaultTestContext@60cb9c42 testClass = DataInitTest, testInstance = com.cc.lmsfc.task.test.DataInitTest@689181dc, testMethod = deleteTestData@DataInitTest, testException = [null], mergedContextConfiguration = [MergedContextConfiguration@cfc82a6 testClass = DataInitTest, locations = '{classpath*:spring/spring-common.xml}', classes = '{}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{}', contextLoader = 'org.springframework.test.context.support.DelegatingSmartContextLoader', parent = [null]]]; transaction manager [org.springframework.orm.jpa.JpaTransactionManager@50a5f70c]; rollback [false]
+[ WARN][6496][org.hibernate.engine.jdbc.spi.SqlExceptionHelper][main][2015-04-05 15:01:02 088]SQL Error: 1451, SQLState: 23000
+[ERROR][6496][org.hibernate.engine.jdbc.spi.SqlExceptionHelper][main][2015-04-05 15:01:02 088]Cannot delete or update a parent row: a foreign key constraint fails (`lmsfc`.`tbl_article_tkj`, CONSTRAINT `FK_lc6erf6ensv84tcl7dcwxrhee` FOREIGN KEY (`filter_rule_id`) REFERENCES `tbl_filter_rule` (`id`))
+[ WARN][6509][org.springframework.test.context.TestContextManager][main][2015-04-05 15:01:02 101]Caught exception while allowing TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener@4d8feec4] to process 'after' execution for test: method [public void com.cc.lmsfc.task.test.DataInitTest.deleteTestData()], instance [com.cc.lmsfc.task.test.DataInitTest@689181dc], exception [org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement]
+org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Transaction marked as rollbackOnly
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:526)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:757)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:726)
+	at org.springframework.test.context.transaction.TransactionContext.endTransaction(TransactionContext.java:128)
+	at org.springframework.test.context.transaction.TransactionalTestExecutionListener.afterTestMethod(TransactionalTestExecutionListener.java:224)
+	at org.springframework.test.context.TestContextManager.afterTestMethod(TestContextManager.java:297)
+	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:90)
+	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:73)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:217)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:83)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:68)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:163)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:264)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:153)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:124)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:208)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:158)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:86)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:153)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:95)
+Caused by: javax.persistence.RollbackException: Transaction marked as rollbackOnly
+	at org.hibernate.jpa.internal.TransactionImpl.commit(TransactionImpl.java:74)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:517)
+	... 31 more
+[ INFO][6553][org.springframework.context.support.ClassPathXmlApplicationContext][main][2015-04-05 15:01:02 145]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@2b025447: startup date [Sun Apr 05 15:01:02 SGT 2015]; root of context hierarchy
+[ INFO][6556][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:02 148]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task.xml]
+[ INFO][6645][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:02 237]Loading XML bean definitions from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/spring/spring-common.xml]
+[ INFO][6898][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:02 490]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task-integration.xml]
+[ INFO][6996][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:02 588]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-jms.xml]
+[ INFO][7070][org.springframework.beans.factory.config.PropertiesFactoryBean][main][2015-04-05 15:01:02 662]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/org/springframework/integration/spring-integration-core/4.1.2.RELEASE/spring-integration-core-4.1.2.RELEASE.jar!/META-INF/spring.integration.default.properties]
+[ INFO][7073][org.springframework.integration.config.IntegrationRegistrar][main][2015-04-05 15:01:02 665]No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[ INFO][7130][org.springframework.beans.factory.support.DefaultListableBeanFactory][main][2015-04-05 15:01:02 722]Overriding bean definition for bean 'generateArtEle': replacing [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] with [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null]
+[ INFO][7245][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer][main][2015-04-05 15:01:02 837]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/jdbc.properties]
+[ INFO][7279][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:02 871]No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[ INFO][7280][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:02 872]No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+[ INFO][7300][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:02 892]Bean 'txAdvisor' of type [class org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][7312][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:02 904]Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][7315][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:02 907]Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][7449][com.alibaba.druid.pool.DruidDataSource][main][2015-04-05 15:01:03 041]{dataSource-2} inited
+[ INFO][7509][org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean][main][2015-04-05 15:01:03 101]Building JPA container EntityManagerFactory for persistence unit 'default'
+[ WARN][7509][org.hibernate.ejb.HibernatePersistence][main][2015-04-05 15:01:03 101]HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+[ INFO][7550][org.hibernate.dialect.Dialect][main][2015-04-05 15:01:03 142]HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[ INFO][7663][org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory][main][2015-04-05 15:01:03 255]HHH000397: Using ASTQueryTranslatorFactory
+[ INFO][7667][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:03 259]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][7996][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:03 588]HHH000228: Running hbm2ddl schema update
+[ INFO][7997][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:03 589]HHH000102: Fetching database metadata
+[ INFO][7997][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:03 589]HHH000396: Updating schema
+[ INFO][8012][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 604]HHH000261: Table found: lmsfc.tbl_art_tkj_run_log
+[ INFO][8012][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 604]HHH000037: Columns: [created_by, id, art_task_step, description, state, updated_by, art_tkj_id, updated_dt, created_dt, version]
+[ INFO][8012][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 604]HHH000108: Foreign keys: [fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][8012][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 604]HHH000126: Indexes: [primary, fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][8021][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 613]HHH000261: Table found: lmsfc.tbl_article
+[ INFO][8021][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 613]HHH000037: Columns: [created_by, id, generate_time, description, name, state, updated_by, art_ele_id, updated_dt, art_cate_id, created_dt, art_file_name, version]
+[ INFO][8021][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 613]HHH000108: Foreign keys: [fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][8021][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 613]HHH000126: Indexes: [primary, fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][8036][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 628]HHH000261: Table found: lmsfc.tbl_article_category
+[ INFO][8036][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 628]HHH000037: Columns: [created_by, id, path_name, name, updated_by, updated_dt, created_dt, version]
+[ INFO][8037][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 629]HHH000108: Foreign keys: []
+[ INFO][8037][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 629]HHH000126: Indexes: [primary]
+[ INFO][8053][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 645]HHH000261: Table found: lmsfc.tbl_article_element
+[ INFO][8053][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 645]HHH000037: Columns: [created_by, id, files, article, name, article_tkj_id, state, updated_by, updated_dt, created_dt, file_location, version]
+[ INFO][8053][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 645]HHH000108: Foreign keys: [fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][8053][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 645]HHH000126: Indexes: [primary, fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][8061][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 653]HHH000261: Table found: lmsfc.tbl_article_tkj
+[ INFO][8061][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 653]HHH000037: Columns: [created_by, tkj_run_log_id, finish_time, state, type, created_dt, url, version, id, filter_rule_id, name, batch_art_tkj_id, target_catgory, updated_by, updated_dt, is_whole]
+[ INFO][8061][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 653]HHH000108: Foreign keys: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d]
+[ INFO][8061][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 653]HHH000126: Indexes: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d, primary]
+[ INFO][8067][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 659]HHH000261: Table found: lmsfc.tbl_batch_article_tkj
+[ INFO][8068][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 660]HHH000037: Columns: [created_by, id, finish_time, name, state, updated_by, updated_dt, type, created_dt, version]
+[ INFO][8068][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 660]HHH000108: Foreign keys: []
+[ INFO][8068][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 660]HHH000126: Indexes: [primary]
+[ INFO][8073][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 665]HHH000261: Table found: lmsfc.tbl_filter
+[ INFO][8073][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 665]HHH000037: Columns: [created_by, id, set_param_method_name, param_type, filter_name, param_num, updated_by, updated_dt, filter_class_name, filter_class_params, created_dt, version]
+[ INFO][8073][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 665]HHH000108: Foreign keys: []
+[ INFO][8073][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 665]HHH000126: Indexes: [primary]
+[ INFO][8082][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 674]HHH000261: Table found: lmsfc.tbl_filter_detail
+[ INFO][8082][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 674]HHH000037: Columns: [created_by, id, category, filter_rule_id, param_value1, param_value2, filter_id, updated_by, sub_num, updated_dt, parent_node_id, created_dt, version]
+[ INFO][8082][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 674]HHH000108: Foreign keys: [fk_r3mobl1e3y5h54wadnivvxpht, fk_8rbks35frlk90snfhx36xb8cj, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][8082][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 674]HHH000126: Indexes: [primary, fk_8rbks35frlk90snfhx36xb8cj, fk_r3mobl1e3y5h54wadnivvxpht, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][8088][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 680]HHH000261: Table found: lmsfc.tbl_filter_rule
+[ INFO][8088][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 680]HHH000037: Columns: [created_by, id, source_domain, name, updated_by, updated_dt, created_dt, version]
+[ INFO][8089][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 681]HHH000108: Foreign keys: []
+[ INFO][8089][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 681]HHH000126: Indexes: [primary]
+[ INFO][8096][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 688]HHH000261: Table found: lmsfc.tbl_sys_resource
+[ INFO][8096][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 688]HHH000037: Columns: [created_by, id, parent_resource_id, resource_name, state, updated_by, permission, updated_dt, type, created_dt, url, version]
+[ INFO][8097][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 689]HHH000108: Foreign keys: [fk_15dp836ilit7l57fu9mrdlyv]
+[ INFO][8097][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 689]HHH000126: Indexes: [fk_15dp836ilit7l57fu9mrdlyv, primary]
+[ INFO][8104][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 696]HHH000261: Table found: lmsfc.tbl_sys_role
+[ INFO][8104][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 696]HHH000037: Columns: [created_by, id, role_description, state, updated_by, updated_dt, role_name, created_dt, version]
+[ INFO][8104][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 696]HHH000108: Foreign keys: []
+[ INFO][8104][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 696]HHH000126: Indexes: [primary]
+[ INFO][8113][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 705]HHH000261: Table found: lmsfc.tbl_sys_role_res
+[ INFO][8113][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 705]HHH000037: Columns: [resource_id, role_id]
+[ INFO][8113][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 705]HHH000108: Foreign keys: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][8113][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 705]HHH000126: Indexes: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][8119][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 711]HHH000261: Table found: lmsfc.tbl_sys_user
+[ INFO][8119][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 711]HHH000037: Columns: [created_by, id, user_name, state, updated_by, updated_dt, password, created_dt, salt, version]
+[ INFO][8119][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 711]HHH000108: Foreign keys: []
+[ INFO][8119][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 711]HHH000126: Indexes: [primary]
+[ INFO][8124][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 716]HHH000261: Table found: lmsfc.tbl_sys_user_role
+[ INFO][8124][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 716]HHH000037: Columns: [role_id, user_id]
+[ INFO][8124][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 716]HHH000108: Foreign keys: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][8124][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 716]HHH000126: Indexes: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][8130][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 722]HHH000261: Table found: lmsfc.tbl_test
+[ INFO][8130][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 722]HHH000037: Columns: [created_by, id, name, updated_by, updated_dt, created_dt, version]
+[ INFO][8130][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 722]HHH000108: Foreign keys: []
+[ INFO][8130][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:03 722]HHH000126: Indexes: [primary]
+[ INFO][8131][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:03 723]HHH000232: Schema update complete
+[ WARN][8143][org.hibernate.jpa.internal.EntityManagerFactoryRegistry][main][2015-04-05 15:01:03 735]HHH000436: Entity manager factory name (default) is already registered.  If entity manager will be clustered or passivated, specify a unique value for property 'hibernate.ejb.entitymanager_factory_name'
+[ INFO][9013][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:04 605]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][9108][org.springframework.beans.factory.config.PropertiesFactoryBean][main][2015-04-05 15:01:04 700]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/org/springframework/integration/spring-integration-core/4.1.2.RELEASE/spring-integration-core-4.1.2.RELEASE.jar!/META-INF/spring.integration.default.properties]
+[ INFO][9171][org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler][main][2015-04-05 15:01:04 763]Initializing ExecutorService  'taskScheduler'
+[ INFO][9295][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor][main][2015-04-05 15:01:04 887]Initializing ExecutorService 
+[ INFO][9493][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:05 085]Starting beans in phase -2147483648
+[ INFO][9495][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:05 087]Starting beans in phase 0
+[ INFO][9495][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 087]Adding {service-activator} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][9495][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 087]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.jmsTaskInputChl' has 1 subscriber(s).
+[ INFO][9495][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 087]started org.springframework.integration.config.ConsumerEndpointFactoryBean#0
+[ INFO][9495][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 087]Adding {router} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][9495][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 087]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.jmsTaskInputChl' has 2 subscriber(s).
+[ INFO][9495][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 087]started org.springframework.integration.config.ConsumerEndpointFactoryBean#1
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]Adding {service-activator:getBatchArtTaskJobService} as a subscriber to the 'batchArtTaskChl' channel
+[ INFO][9496][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 088]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.batchArtTaskChl' has 1 subscriber(s).
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]started getBatchArtTaskJobService
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]Adding {splitter} as a subscriber to the 'listForBatchArtTaskChl' channel
+[ INFO][9496][org.springframework.integration.channel.ExecutorChannel][main][2015-04-05 15:01:05 088]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.listForBatchArtTaskChl' has 1 subscriber(s).
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]started org.springframework.integration.config.ConsumerEndpointFactoryBean#2
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]Adding {service-activator:getArtTaskJobService} as a subscriber to the 'singleArtTaskChl' channel
+[ INFO][9496][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 088]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.singleArtTaskChl' has 1 subscriber(s).
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]started getArtTaskJobService
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]Adding {router} as a subscriber to the 'toArtTaskRouterChl' channel
+[ INFO][9496][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 088]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.toArtTaskRouterChl' has 1 subscriber(s).
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]started org.springframework.integration.config.ConsumerEndpointFactoryBean#3
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]Adding {service-activator:validateArtTaskJob} as a subscriber to the 'toValidateArtChl' channel
+[ INFO][9496][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 088]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.toValidateArtChl' has 1 subscriber(s).
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]started validateArtTaskJob
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]Adding {service-activator:downloadArt} as a subscriber to the 'toGetArtChl' channel
+[ INFO][9496][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 088]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.toGetArtChl' has 1 subscriber(s).
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]started downloadArt
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]Adding {router} as a subscriber to the 'befToParseArtChl' channel
+[ INFO][9496][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 088]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.befToParseArtChl' has 1 subscriber(s).
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]started org.springframework.integration.config.ConsumerEndpointFactoryBean#4
+[ INFO][9496][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 088]Adding {service-activator:parseArt} as a subscriber to the 'toParseArtChl' channel
+[ INFO][9497][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 089]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.toParseArtChl' has 1 subscriber(s).
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]started parseArt
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]Adding {service-activator:generateArtEle} as a subscriber to the 'toGenerateArtEleChl' channel
+[ INFO][9497][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 089]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.toGenerateArtEleChl' has 1 subscriber(s).
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]started generateArtEle
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]Adding {router} as a subscriber to the 'befToFreemarkerArtEleChl' channel
+[ INFO][9497][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 089]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.befToFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]started org.springframework.integration.config.ConsumerEndpointFactoryBean#5
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]Adding {service-activator:freemarkerArt} as a subscriber to the 'toFreemarkerArtEleChl' channel
+[ INFO][9497][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 089]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.toFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]started freemarkerArt
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]Adding {router} as a subscriber to the 'befToDeployArtChl' channel
+[ INFO][9497][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 089]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.befToDeployArtChl' has 1 subscriber(s).
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]started org.springframework.integration.config.ConsumerEndpointFactoryBean#6
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]Adding {service-activator:deployArt} as a subscriber to the 'toDeployArtChl' channel
+[ INFO][9497][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 089]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.toDeployArtChl' has 1 subscriber(s).
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]started deployArt
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]Adding {service-activator:notifyWeb} as a subscriber to the 'toNotifyWebChl' channel
+[ INFO][9497][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 089]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.toNotifyWebChl' has 1 subscriber(s).
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]started notifyWeb
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]Adding {router} as a subscriber to the 'errorChannel' channel
+[ INFO][9497][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:05 089]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.errorChannel' has 1 subscriber(s).
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]started org.springframework.integration.config.ConsumerEndpointFactoryBean#7
+[ INFO][9497][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 089]Adding {service-activator:handlerRuntimeEptService} as a subscriber to the 'runtimeEptChl' channel
+[ INFO][9498][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:05 090]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.runtimeEptChl' has 1 subscriber(s).
+[ INFO][9498][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 090]started handlerRuntimeEptService
+[ INFO][9498][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 090]Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[ INFO][9498][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:05 090]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@2b025447.errorChannel' has 2 subscriber(s).
+[ INFO][9498][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:05 090]started _org.springframework.integration.errorLogger
+[ INFO][9498][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:05 090]Starting beans in phase 2147483647
+[ INFO][9705][org.springframework.jms.connection.CachingConnectionFactory][main][2015-04-05 15:01:05 297]Established shared JMS Connection: ActiveMQConnection {id=ID:ChendeMacBook-Pro.local-59406-1428217265158-1:1,clientId=lmsfc-task,started=false}
+[ INFO][9716][org.springframework.context.support.ClassPathXmlApplicationContext][main][2015-04-05 15:01:05 308]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf: startup date [Sun Apr 05 15:01:05 SGT 2015]; root of context hierarchy
+[ INFO][9718][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:05 310]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task.xml]
+[ INFO][9798][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:05 390]Loading XML bean definitions from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/spring/spring-common.xml]
+[ INFO][9963][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:05 555]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task-integration.xml]
+[ INFO][10031][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:05 623]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-jms.xml]
+[ INFO][10048][org.springframework.integration.config.IntegrationRegistrar][main][2015-04-05 15:01:05 640]No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[ INFO][10052][org.springframework.beans.factory.support.DefaultListableBeanFactory][main][2015-04-05 15:01:05 644]Overriding bean definition for bean 'generateArtEle': replacing [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] with [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null]
+[ INFO][10118][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer][main][2015-04-05 15:01:05 710]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/jdbc.properties]
+[ INFO][10150][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:05 742]No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[ INFO][10150][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:05 742]No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+[ INFO][10166][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:05 758]Bean 'txAdvisor' of type [class org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][10176][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:05 768]Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][10178][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:05 770]Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][10289][com.alibaba.druid.pool.DruidDataSource][main][2015-04-05 15:01:05 881]{dataSource-3} inited
+[ INFO][10320][org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean][main][2015-04-05 15:01:05 912]Building JPA container EntityManagerFactory for persistence unit 'default'
+[ WARN][10321][org.hibernate.ejb.HibernatePersistence][main][2015-04-05 15:01:05 913]HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+[ INFO][10362][org.hibernate.dialect.Dialect][main][2015-04-05 15:01:05 954]HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[ INFO][10485][org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory][main][2015-04-05 15:01:06 077]HHH000397: Using ASTQueryTranslatorFactory
+[ INFO][10490][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:06 082]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][10788][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:06 380]HHH000228: Running hbm2ddl schema update
+[ INFO][10789][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:06 381]HHH000102: Fetching database metadata
+[ INFO][10789][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:06 381]HHH000396: Updating schema
+[ INFO][10808][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 400]HHH000261: Table found: lmsfc.tbl_art_tkj_run_log
+[ INFO][10809][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 401]HHH000037: Columns: [created_by, id, art_task_step, description, state, updated_by, art_tkj_id, updated_dt, created_dt, version]
+[ INFO][10809][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 401]HHH000108: Foreign keys: [fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][10809][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 401]HHH000126: Indexes: [primary, fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][10814][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 406]HHH000261: Table found: lmsfc.tbl_article
+[ INFO][10814][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 406]HHH000037: Columns: [created_by, id, generate_time, description, name, state, updated_by, art_ele_id, updated_dt, art_cate_id, created_dt, art_file_name, version]
+[ INFO][10814][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 406]HHH000108: Foreign keys: [fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][10815][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 407]HHH000126: Indexes: [primary, fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][10821][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 413]HHH000261: Table found: lmsfc.tbl_article_category
+[ INFO][10821][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 413]HHH000037: Columns: [created_by, id, path_name, name, updated_by, updated_dt, created_dt, version]
+[ INFO][10821][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 413]HHH000108: Foreign keys: []
+[ INFO][10821][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 413]HHH000126: Indexes: [primary]
+[ INFO][10831][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 423]HHH000261: Table found: lmsfc.tbl_article_element
+[ INFO][10831][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 423]HHH000037: Columns: [created_by, id, files, article, name, article_tkj_id, state, updated_by, updated_dt, created_dt, file_location, version]
+[ INFO][10831][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 423]HHH000108: Foreign keys: [fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][10831][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 423]HHH000126: Indexes: [primary, fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][10839][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 431]HHH000261: Table found: lmsfc.tbl_article_tkj
+[ INFO][10839][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 431]HHH000037: Columns: [created_by, tkj_run_log_id, finish_time, state, type, created_dt, url, version, id, filter_rule_id, name, batch_art_tkj_id, target_catgory, updated_by, updated_dt, is_whole]
+[ INFO][10839][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 431]HHH000108: Foreign keys: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d]
+[ INFO][10839][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 431]HHH000126: Indexes: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d, primary]
+[ INFO][10846][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 438]HHH000261: Table found: lmsfc.tbl_batch_article_tkj
+[ INFO][10846][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 438]HHH000037: Columns: [created_by, id, finish_time, name, state, updated_by, updated_dt, type, created_dt, version]
+[ INFO][10846][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 438]HHH000108: Foreign keys: []
+[ INFO][10846][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 438]HHH000126: Indexes: [primary]
+[ INFO][10853][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 445]HHH000261: Table found: lmsfc.tbl_filter
+[ INFO][10853][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 445]HHH000037: Columns: [created_by, id, set_param_method_name, param_type, filter_name, param_num, updated_by, updated_dt, filter_class_name, filter_class_params, created_dt, version]
+[ INFO][10853][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 445]HHH000108: Foreign keys: []
+[ INFO][10853][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 445]HHH000126: Indexes: [primary]
+[ INFO][10859][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 451]HHH000261: Table found: lmsfc.tbl_filter_detail
+[ INFO][10859][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 451]HHH000037: Columns: [created_by, id, category, filter_rule_id, param_value1, param_value2, filter_id, updated_by, sub_num, updated_dt, parent_node_id, created_dt, version]
+[ INFO][10859][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 451]HHH000108: Foreign keys: [fk_r3mobl1e3y5h54wadnivvxpht, fk_8rbks35frlk90snfhx36xb8cj, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][10859][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 451]HHH000126: Indexes: [primary, fk_8rbks35frlk90snfhx36xb8cj, fk_r3mobl1e3y5h54wadnivvxpht, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][10865][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 457]HHH000261: Table found: lmsfc.tbl_filter_rule
+[ INFO][10865][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 457]HHH000037: Columns: [created_by, id, source_domain, name, updated_by, updated_dt, created_dt, version]
+[ INFO][10865][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 457]HHH000108: Foreign keys: []
+[ INFO][10865][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 457]HHH000126: Indexes: [primary]
+[ INFO][10873][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 465]HHH000261: Table found: lmsfc.tbl_sys_resource
+[ INFO][10873][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 465]HHH000037: Columns: [created_by, id, parent_resource_id, resource_name, state, updated_by, permission, updated_dt, type, created_dt, url, version]
+[ INFO][10873][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 465]HHH000108: Foreign keys: [fk_15dp836ilit7l57fu9mrdlyv]
+[ INFO][10873][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 465]HHH000126: Indexes: [fk_15dp836ilit7l57fu9mrdlyv, primary]
+[ INFO][10879][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 471]HHH000261: Table found: lmsfc.tbl_sys_role
+[ INFO][10879][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 471]HHH000037: Columns: [created_by, id, role_description, state, updated_by, updated_dt, role_name, created_dt, version]
+[ INFO][10879][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 471]HHH000108: Foreign keys: []
+[ INFO][10879][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 471]HHH000126: Indexes: [primary]
+[ INFO][10885][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 477]HHH000261: Table found: lmsfc.tbl_sys_role_res
+[ INFO][10885][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 477]HHH000037: Columns: [resource_id, role_id]
+[ INFO][10885][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 477]HHH000108: Foreign keys: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][10885][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 477]HHH000126: Indexes: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][10891][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 483]HHH000261: Table found: lmsfc.tbl_sys_user
+[ INFO][10892][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 484]HHH000037: Columns: [created_by, id, user_name, state, updated_by, updated_dt, password, created_dt, salt, version]
+[ INFO][10892][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 484]HHH000108: Foreign keys: []
+[ INFO][10892][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 484]HHH000126: Indexes: [primary]
+[ INFO][10897][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 489]HHH000261: Table found: lmsfc.tbl_sys_user_role
+[ INFO][10897][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 489]HHH000037: Columns: [role_id, user_id]
+[ INFO][10897][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 489]HHH000108: Foreign keys: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][10898][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 490]HHH000126: Indexes: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][10904][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 496]HHH000261: Table found: lmsfc.tbl_test
+[ INFO][10904][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 496]HHH000037: Columns: [created_by, id, name, updated_by, updated_dt, created_dt, version]
+[ INFO][10904][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 496]HHH000108: Foreign keys: []
+[ INFO][10904][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:06 496]HHH000126: Indexes: [primary]
+[ INFO][10905][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:06 497]HHH000232: Schema update complete
+[ WARN][10916][org.hibernate.jpa.internal.EntityManagerFactoryRegistry][main][2015-04-05 15:01:06 508]HHH000436: Entity manager factory name (default) is already registered.  If entity manager will be clustered or passivated, specify a unique value for property 'hibernate.ejb.entitymanager_factory_name'
+[ INFO][11463][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:07 055]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][11484][org.springframework.beans.factory.config.PropertiesFactoryBean][main][2015-04-05 15:01:07 076]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/org/springframework/integration/spring-integration-core/4.1.2.RELEASE/spring-integration-core-4.1.2.RELEASE.jar!/META-INF/spring.integration.default.properties]
+[ INFO][11505][org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler][main][2015-04-05 15:01:07 097]Initializing ExecutorService  'taskScheduler'
+[ INFO][11546][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor][main][2015-04-05 15:01:07 138]Initializing ExecutorService 
+[ INFO][11659][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:07 251]Starting beans in phase -2147483648
+[ INFO][11660][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:07 252]Starting beans in phase 0
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]Adding {service-activator} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][11660][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 252]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.jmsTaskInputChl' has 1 subscriber(s).
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]started org.springframework.integration.config.ConsumerEndpointFactoryBean#0
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]Adding {router} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][11660][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 252]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.jmsTaskInputChl' has 2 subscriber(s).
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]started org.springframework.integration.config.ConsumerEndpointFactoryBean#1
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]Adding {service-activator:getBatchArtTaskJobService} as a subscriber to the 'batchArtTaskChl' channel
+[ INFO][11660][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 252]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.batchArtTaskChl' has 1 subscriber(s).
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]started getBatchArtTaskJobService
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]Adding {splitter} as a subscriber to the 'listForBatchArtTaskChl' channel
+[ INFO][11660][org.springframework.integration.channel.ExecutorChannel][main][2015-04-05 15:01:07 252]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.listForBatchArtTaskChl' has 1 subscriber(s).
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]started org.springframework.integration.config.ConsumerEndpointFactoryBean#2
+[ INFO][11660][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 252]Adding {service-activator:getArtTaskJobService} as a subscriber to the 'singleArtTaskChl' channel
+[ INFO][11660][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 252]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.singleArtTaskChl' has 1 subscriber(s).
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]started getArtTaskJobService
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]Adding {router} as a subscriber to the 'toArtTaskRouterChl' channel
+[ INFO][11661][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 253]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.toArtTaskRouterChl' has 1 subscriber(s).
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]started org.springframework.integration.config.ConsumerEndpointFactoryBean#3
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]Adding {service-activator:validateArtTaskJob} as a subscriber to the 'toValidateArtChl' channel
+[ INFO][11661][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 253]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.toValidateArtChl' has 1 subscriber(s).
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]started validateArtTaskJob
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]Adding {service-activator:downloadArt} as a subscriber to the 'toGetArtChl' channel
+[ INFO][11661][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 253]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.toGetArtChl' has 1 subscriber(s).
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]started downloadArt
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]Adding {router} as a subscriber to the 'befToParseArtChl' channel
+[ INFO][11661][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 253]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.befToParseArtChl' has 1 subscriber(s).
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]started org.springframework.integration.config.ConsumerEndpointFactoryBean#4
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]Adding {service-activator:parseArt} as a subscriber to the 'toParseArtChl' channel
+[ INFO][11661][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 253]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.toParseArtChl' has 1 subscriber(s).
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]started parseArt
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]Adding {service-activator:generateArtEle} as a subscriber to the 'toGenerateArtEleChl' channel
+[ INFO][11661][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 253]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.toGenerateArtEleChl' has 1 subscriber(s).
+[ INFO][11661][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 253]started generateArtEle
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]Adding {router} as a subscriber to the 'befToFreemarkerArtEleChl' channel
+[ INFO][11662][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 254]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.befToFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]started org.springframework.integration.config.ConsumerEndpointFactoryBean#5
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]Adding {service-activator:freemarkerArt} as a subscriber to the 'toFreemarkerArtEleChl' channel
+[ INFO][11662][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 254]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.toFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]started freemarkerArt
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]Adding {router} as a subscriber to the 'befToDeployArtChl' channel
+[ INFO][11662][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 254]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.befToDeployArtChl' has 1 subscriber(s).
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]started org.springframework.integration.config.ConsumerEndpointFactoryBean#6
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]Adding {service-activator:deployArt} as a subscriber to the 'toDeployArtChl' channel
+[ INFO][11662][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 254]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.toDeployArtChl' has 1 subscriber(s).
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]started deployArt
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]Adding {service-activator:notifyWeb} as a subscriber to the 'toNotifyWebChl' channel
+[ INFO][11662][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 254]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.toNotifyWebChl' has 1 subscriber(s).
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]started notifyWeb
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]Adding {router} as a subscriber to the 'errorChannel' channel
+[ INFO][11662][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:07 254]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.errorChannel' has 1 subscriber(s).
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]started org.springframework.integration.config.ConsumerEndpointFactoryBean#7
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]Adding {service-activator:handlerRuntimeEptService} as a subscriber to the 'runtimeEptChl' channel
+[ INFO][11662][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:07 254]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.runtimeEptChl' has 1 subscriber(s).
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]started handlerRuntimeEptService
+[ INFO][11662][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 254]Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[ INFO][11662][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:07 254]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@35f02fbf.errorChannel' has 2 subscriber(s).
+[ INFO][11663][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:07 255]started _org.springframework.integration.errorLogger
+[ INFO][11663][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:07 255]Starting beans in phase 2147483647
+[ INFO][11674][org.springframework.context.support.ClassPathXmlApplicationContext][main][2015-04-05 15:01:07 266]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3: startup date [Sun Apr 05 15:01:07 SGT 2015]; root of context hierarchy
+[ INFO][11676][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:07 268]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task.xml]
+[ INFO][11708][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:07 300]Loading XML bean definitions from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/spring/spring-common.xml]
+[ INFO][11856][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:07 448]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task-integration.xml]
+[ INFO][11908][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:07 500]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-jms.xml]
+[ INFO][11926][org.springframework.integration.config.IntegrationRegistrar][main][2015-04-05 15:01:07 518]No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[ INFO][11930][org.springframework.beans.factory.support.DefaultListableBeanFactory][main][2015-04-05 15:01:07 522]Overriding bean definition for bean 'generateArtEle': replacing [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] with [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null]
+[ INFO][11994][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer][main][2015-04-05 15:01:07 586]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/jdbc.properties]
+[ INFO][12018][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:07 610]No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[ INFO][12018][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:07 610]No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+[ INFO][12030][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:07 622]Bean 'txAdvisor' of type [class org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][12037][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:07 629]Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][12039][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:07 631]Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][12143][com.alibaba.druid.pool.DruidDataSource][main][2015-04-05 15:01:07 735]{dataSource-4} inited
+[ INFO][12177][org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean][main][2015-04-05 15:01:07 769]Building JPA container EntityManagerFactory for persistence unit 'default'
+[ WARN][12177][org.hibernate.ejb.HibernatePersistence][main][2015-04-05 15:01:07 769]HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+[ INFO][12204][org.hibernate.dialect.Dialect][main][2015-04-05 15:01:07 796]HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[ INFO][12299][org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory][main][2015-04-05 15:01:07 891]HHH000397: Using ASTQueryTranslatorFactory
+[ INFO][12303][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:07 895]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][12547][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:08 139]HHH000228: Running hbm2ddl schema update
+[ INFO][12547][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:08 139]HHH000102: Fetching database metadata
+[ INFO][12547][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:08 139]HHH000396: Updating schema
+[ INFO][12562][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 154]HHH000261: Table found: lmsfc.tbl_art_tkj_run_log
+[ INFO][12563][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 155]HHH000037: Columns: [created_by, id, art_task_step, description, state, updated_by, art_tkj_id, updated_dt, created_dt, version]
+[ INFO][12563][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 155]HHH000108: Foreign keys: [fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][12563][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 155]HHH000126: Indexes: [primary, fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][12568][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 160]HHH000261: Table found: lmsfc.tbl_article
+[ INFO][12568][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 160]HHH000037: Columns: [created_by, id, generate_time, description, name, state, updated_by, art_ele_id, updated_dt, art_cate_id, created_dt, art_file_name, version]
+[ INFO][12568][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 160]HHH000108: Foreign keys: [fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][12568][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 160]HHH000126: Indexes: [primary, fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][12573][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 165]HHH000261: Table found: lmsfc.tbl_article_category
+[ INFO][12573][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 165]HHH000037: Columns: [created_by, id, path_name, name, updated_by, updated_dt, created_dt, version]
+[ INFO][12573][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 165]HHH000108: Foreign keys: []
+[ INFO][12573][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 165]HHH000126: Indexes: [primary]
+[ INFO][12578][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 170]HHH000261: Table found: lmsfc.tbl_article_element
+[ INFO][12578][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 170]HHH000037: Columns: [created_by, id, files, article, name, article_tkj_id, state, updated_by, updated_dt, created_dt, file_location, version]
+[ INFO][12578][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 170]HHH000108: Foreign keys: [fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][12578][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 170]HHH000126: Indexes: [primary, fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][12584][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 176]HHH000261: Table found: lmsfc.tbl_article_tkj
+[ INFO][12584][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 176]HHH000037: Columns: [created_by, tkj_run_log_id, finish_time, state, type, created_dt, url, version, id, filter_rule_id, name, batch_art_tkj_id, target_catgory, updated_by, updated_dt, is_whole]
+[ INFO][12584][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 176]HHH000108: Foreign keys: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d]
+[ INFO][12584][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 176]HHH000126: Indexes: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d, primary]
+[ INFO][12589][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 181]HHH000261: Table found: lmsfc.tbl_batch_article_tkj
+[ INFO][12589][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 181]HHH000037: Columns: [created_by, id, finish_time, name, state, updated_by, updated_dt, type, created_dt, version]
+[ INFO][12589][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 181]HHH000108: Foreign keys: []
+[ INFO][12589][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 181]HHH000126: Indexes: [primary]
+[ INFO][12594][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 186]HHH000261: Table found: lmsfc.tbl_filter
+[ INFO][12594][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 186]HHH000037: Columns: [created_by, id, set_param_method_name, param_type, filter_name, param_num, updated_by, updated_dt, filter_class_name, filter_class_params, created_dt, version]
+[ INFO][12594][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 186]HHH000108: Foreign keys: []
+[ INFO][12594][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 186]HHH000126: Indexes: [primary]
+[ INFO][12600][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 192]HHH000261: Table found: lmsfc.tbl_filter_detail
+[ INFO][12600][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 192]HHH000037: Columns: [created_by, id, category, filter_rule_id, param_value1, param_value2, filter_id, updated_by, sub_num, updated_dt, parent_node_id, created_dt, version]
+[ INFO][12600][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 192]HHH000108: Foreign keys: [fk_r3mobl1e3y5h54wadnivvxpht, fk_8rbks35frlk90snfhx36xb8cj, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][12600][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 192]HHH000126: Indexes: [primary, fk_8rbks35frlk90snfhx36xb8cj, fk_r3mobl1e3y5h54wadnivvxpht, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][12604][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 196]HHH000261: Table found: lmsfc.tbl_filter_rule
+[ INFO][12605][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 197]HHH000037: Columns: [created_by, id, source_domain, name, updated_by, updated_dt, created_dt, version]
+[ INFO][12605][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 197]HHH000108: Foreign keys: []
+[ INFO][12605][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 197]HHH000126: Indexes: [primary]
+[ INFO][12610][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 202]HHH000261: Table found: lmsfc.tbl_sys_resource
+[ INFO][12610][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 202]HHH000037: Columns: [created_by, id, parent_resource_id, resource_name, state, updated_by, permission, updated_dt, type, created_dt, url, version]
+[ INFO][12610][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 202]HHH000108: Foreign keys: [fk_15dp836ilit7l57fu9mrdlyv]
+[ INFO][12610][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 202]HHH000126: Indexes: [fk_15dp836ilit7l57fu9mrdlyv, primary]
+[ INFO][12616][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 208]HHH000261: Table found: lmsfc.tbl_sys_role
+[ INFO][12616][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 208]HHH000037: Columns: [created_by, id, role_description, state, updated_by, updated_dt, role_name, created_dt, version]
+[ INFO][12616][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 208]HHH000108: Foreign keys: []
+[ INFO][12616][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 208]HHH000126: Indexes: [primary]
+[ INFO][12621][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 213]HHH000261: Table found: lmsfc.tbl_sys_role_res
+[ INFO][12621][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 213]HHH000037: Columns: [resource_id, role_id]
+[ INFO][12621][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 213]HHH000108: Foreign keys: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][12621][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 213]HHH000126: Indexes: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][12625][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 217]HHH000261: Table found: lmsfc.tbl_sys_user
+[ INFO][12626][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 218]HHH000037: Columns: [created_by, id, user_name, state, updated_by, updated_dt, password, created_dt, salt, version]
+[ INFO][12626][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 218]HHH000108: Foreign keys: []
+[ INFO][12626][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 218]HHH000126: Indexes: [primary]
+[ INFO][12630][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 222]HHH000261: Table found: lmsfc.tbl_sys_user_role
+[ INFO][12630][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 222]HHH000037: Columns: [role_id, user_id]
+[ INFO][12630][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 222]HHH000108: Foreign keys: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][12630][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 222]HHH000126: Indexes: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][12635][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 227]HHH000261: Table found: lmsfc.tbl_test
+[ INFO][12635][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 227]HHH000037: Columns: [created_by, id, name, updated_by, updated_dt, created_dt, version]
+[ INFO][12635][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 227]HHH000108: Foreign keys: []
+[ INFO][12635][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:08 227]HHH000126: Indexes: [primary]
+[ INFO][12636][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:08 228]HHH000232: Schema update complete
+[ WARN][12651][org.hibernate.jpa.internal.EntityManagerFactoryRegistry][main][2015-04-05 15:01:08 243]HHH000436: Entity manager factory name (default) is already registered.  If entity manager will be clustered or passivated, specify a unique value for property 'hibernate.ejb.entitymanager_factory_name'
+[ INFO][13142][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:08 734]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][13160][org.springframework.beans.factory.config.PropertiesFactoryBean][main][2015-04-05 15:01:08 752]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/org/springframework/integration/spring-integration-core/4.1.2.RELEASE/spring-integration-core-4.1.2.RELEASE.jar!/META-INF/spring.integration.default.properties]
+[ INFO][13178][org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler][main][2015-04-05 15:01:08 770]Initializing ExecutorService  'taskScheduler'
+[ INFO][13223][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor][main][2015-04-05 15:01:08 815]Initializing ExecutorService 
+[ INFO][13340][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:08 932]Starting beans in phase -2147483648
+[ INFO][13341][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:08 933]Starting beans in phase 0
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]Adding {service-activator} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][13341][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 933]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.jmsTaskInputChl' has 1 subscriber(s).
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]started org.springframework.integration.config.ConsumerEndpointFactoryBean#0
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]Adding {router} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][13341][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 933]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.jmsTaskInputChl' has 2 subscriber(s).
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]started org.springframework.integration.config.ConsumerEndpointFactoryBean#1
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]Adding {service-activator:getBatchArtTaskJobService} as a subscriber to the 'batchArtTaskChl' channel
+[ INFO][13341][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 933]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.batchArtTaskChl' has 1 subscriber(s).
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]started getBatchArtTaskJobService
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]Adding {splitter} as a subscriber to the 'listForBatchArtTaskChl' channel
+[ INFO][13341][org.springframework.integration.channel.ExecutorChannel][main][2015-04-05 15:01:08 933]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.listForBatchArtTaskChl' has 1 subscriber(s).
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]started org.springframework.integration.config.ConsumerEndpointFactoryBean#2
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]Adding {service-activator:getArtTaskJobService} as a subscriber to the 'singleArtTaskChl' channel
+[ INFO][13341][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 933]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.singleArtTaskChl' has 1 subscriber(s).
+[ INFO][13341][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 933]started getArtTaskJobService
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]Adding {router} as a subscriber to the 'toArtTaskRouterChl' channel
+[ INFO][13342][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 934]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.toArtTaskRouterChl' has 1 subscriber(s).
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]started org.springframework.integration.config.ConsumerEndpointFactoryBean#3
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]Adding {service-activator:validateArtTaskJob} as a subscriber to the 'toValidateArtChl' channel
+[ INFO][13342][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 934]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.toValidateArtChl' has 1 subscriber(s).
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]started validateArtTaskJob
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]Adding {service-activator:downloadArt} as a subscriber to the 'toGetArtChl' channel
+[ INFO][13342][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 934]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.toGetArtChl' has 1 subscriber(s).
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]started downloadArt
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]Adding {router} as a subscriber to the 'befToParseArtChl' channel
+[ INFO][13342][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 934]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.befToParseArtChl' has 1 subscriber(s).
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]started org.springframework.integration.config.ConsumerEndpointFactoryBean#4
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]Adding {service-activator:parseArt} as a subscriber to the 'toParseArtChl' channel
+[ INFO][13342][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 934]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.toParseArtChl' has 1 subscriber(s).
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]started parseArt
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]Adding {service-activator:generateArtEle} as a subscriber to the 'toGenerateArtEleChl' channel
+[ INFO][13342][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 934]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.toGenerateArtEleChl' has 1 subscriber(s).
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]started generateArtEle
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]Adding {router} as a subscriber to the 'befToFreemarkerArtEleChl' channel
+[ INFO][13342][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 934]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.befToFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][13342][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 934]started org.springframework.integration.config.ConsumerEndpointFactoryBean#5
+[ INFO][13346][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 938]Adding {service-activator:freemarkerArt} as a subscriber to the 'toFreemarkerArtEleChl' channel
+[ INFO][13346][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 938]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.toFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][13346][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 938]started freemarkerArt
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]Adding {router} as a subscriber to the 'befToDeployArtChl' channel
+[ INFO][13347][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 939]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.befToDeployArtChl' has 1 subscriber(s).
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]started org.springframework.integration.config.ConsumerEndpointFactoryBean#6
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]Adding {service-activator:deployArt} as a subscriber to the 'toDeployArtChl' channel
+[ INFO][13347][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 939]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.toDeployArtChl' has 1 subscriber(s).
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]started deployArt
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]Adding {service-activator:notifyWeb} as a subscriber to the 'toNotifyWebChl' channel
+[ INFO][13347][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 939]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.toNotifyWebChl' has 1 subscriber(s).
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]started notifyWeb
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]Adding {router} as a subscriber to the 'errorChannel' channel
+[ INFO][13347][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:08 939]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.errorChannel' has 1 subscriber(s).
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]started org.springframework.integration.config.ConsumerEndpointFactoryBean#7
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]Adding {service-activator:handlerRuntimeEptService} as a subscriber to the 'runtimeEptChl' channel
+[ INFO][13347][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:08 939]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.runtimeEptChl' has 1 subscriber(s).
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]started handlerRuntimeEptService
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[ INFO][13347][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:08 939]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@3c61a8f3.errorChannel' has 2 subscriber(s).
+[ INFO][13347][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:08 939]started _org.springframework.integration.errorLogger
+[ INFO][13347][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:08 939]Starting beans in phase 2147483647
+[ INFO][13356][org.springframework.context.support.ClassPathXmlApplicationContext][main][2015-04-05 15:01:08 948]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a: startup date [Sun Apr 05 15:01:08 SGT 2015]; root of context hierarchy
+[ INFO][13357][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:08 949]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task.xml]
+[ INFO][13378][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:08 970]Loading XML bean definitions from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/spring/spring-common.xml]
+[ INFO][13455][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:09 047]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task-integration.xml]
+[ INFO][13507][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:09 099]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-jms.xml]
+[ INFO][13518][org.springframework.integration.config.IntegrationRegistrar][main][2015-04-05 15:01:09 110]No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[ INFO][13522][org.springframework.beans.factory.support.DefaultListableBeanFactory][main][2015-04-05 15:01:09 114]Overriding bean definition for bean 'generateArtEle': replacing [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] with [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null]
+[ INFO][13550][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer][main][2015-04-05 15:01:09 142]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/jdbc.properties]
+[ INFO][13559][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:09 151]No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[ INFO][13559][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:09 151]No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+[ INFO][13566][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:09 158]Bean 'txAdvisor' of type [class org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][13569][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:09 161]Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][13570][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:09 162]Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][13659][com.alibaba.druid.pool.DruidDataSource][main][2015-04-05 15:01:09 251]{dataSource-5} inited
+[ INFO][13689][org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean][main][2015-04-05 15:01:09 281]Building JPA container EntityManagerFactory for persistence unit 'default'
+[ WARN][13689][org.hibernate.ejb.HibernatePersistence][main][2015-04-05 15:01:09 281]HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+[ INFO][13709][org.hibernate.dialect.Dialect][main][2015-04-05 15:01:09 301]HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[ INFO][13785][org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory][main][2015-04-05 15:01:09 377]HHH000397: Using ASTQueryTranslatorFactory
+[ INFO][13789][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:09 381]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][14013][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:09 605]HHH000228: Running hbm2ddl schema update
+[ INFO][14013][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:09 605]HHH000102: Fetching database metadata
+[ INFO][14013][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:09 605]HHH000396: Updating schema
+[ INFO][14026][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 618]HHH000261: Table found: lmsfc.tbl_art_tkj_run_log
+[ INFO][14027][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 619]HHH000037: Columns: [created_by, id, art_task_step, description, state, updated_by, art_tkj_id, updated_dt, created_dt, version]
+[ INFO][14027][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 619]HHH000108: Foreign keys: [fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][14027][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 619]HHH000126: Indexes: [primary, fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][14032][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 624]HHH000261: Table found: lmsfc.tbl_article
+[ INFO][14032][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 624]HHH000037: Columns: [created_by, id, generate_time, description, name, state, updated_by, art_ele_id, updated_dt, art_cate_id, created_dt, art_file_name, version]
+[ INFO][14032][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 624]HHH000108: Foreign keys: [fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][14032][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 624]HHH000126: Indexes: [primary, fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][14037][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 629]HHH000261: Table found: lmsfc.tbl_article_category
+[ INFO][14037][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 629]HHH000037: Columns: [created_by, id, path_name, name, updated_by, updated_dt, created_dt, version]
+[ INFO][14037][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 629]HHH000108: Foreign keys: []
+[ INFO][14037][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 629]HHH000126: Indexes: [primary]
+[ INFO][14042][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 634]HHH000261: Table found: lmsfc.tbl_article_element
+[ INFO][14042][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 634]HHH000037: Columns: [created_by, id, files, article, name, article_tkj_id, state, updated_by, updated_dt, created_dt, file_location, version]
+[ INFO][14042][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 634]HHH000108: Foreign keys: [fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][14042][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 634]HHH000126: Indexes: [primary, fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][14048][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 640]HHH000261: Table found: lmsfc.tbl_article_tkj
+[ INFO][14048][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 640]HHH000037: Columns: [created_by, tkj_run_log_id, finish_time, state, type, created_dt, url, version, id, filter_rule_id, name, batch_art_tkj_id, target_catgory, updated_by, updated_dt, is_whole]
+[ INFO][14048][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 640]HHH000108: Foreign keys: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d]
+[ INFO][14048][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 640]HHH000126: Indexes: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d, primary]
+[ INFO][14054][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 646]HHH000261: Table found: lmsfc.tbl_batch_article_tkj
+[ INFO][14054][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 646]HHH000037: Columns: [created_by, id, finish_time, name, state, updated_by, updated_dt, type, created_dt, version]
+[ INFO][14054][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 646]HHH000108: Foreign keys: []
+[ INFO][14054][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 646]HHH000126: Indexes: [primary]
+[ INFO][14060][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 652]HHH000261: Table found: lmsfc.tbl_filter
+[ INFO][14060][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 652]HHH000037: Columns: [created_by, id, set_param_method_name, param_type, filter_name, param_num, updated_by, updated_dt, filter_class_name, filter_class_params, created_dt, version]
+[ INFO][14060][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 652]HHH000108: Foreign keys: []
+[ INFO][14060][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 652]HHH000126: Indexes: [primary]
+[ INFO][14065][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 657]HHH000261: Table found: lmsfc.tbl_filter_detail
+[ INFO][14065][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 657]HHH000037: Columns: [created_by, id, category, filter_rule_id, param_value1, param_value2, filter_id, updated_by, sub_num, updated_dt, parent_node_id, created_dt, version]
+[ INFO][14065][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 657]HHH000108: Foreign keys: [fk_r3mobl1e3y5h54wadnivvxpht, fk_8rbks35frlk90snfhx36xb8cj, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][14065][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 657]HHH000126: Indexes: [primary, fk_8rbks35frlk90snfhx36xb8cj, fk_r3mobl1e3y5h54wadnivvxpht, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][14069][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 661]HHH000261: Table found: lmsfc.tbl_filter_rule
+[ INFO][14069][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 661]HHH000037: Columns: [created_by, id, source_domain, name, updated_by, updated_dt, created_dt, version]
+[ INFO][14069][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 661]HHH000108: Foreign keys: []
+[ INFO][14069][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 661]HHH000126: Indexes: [primary]
+[ INFO][14073][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 665]HHH000261: Table found: lmsfc.tbl_sys_resource
+[ INFO][14073][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 665]HHH000037: Columns: [created_by, id, parent_resource_id, resource_name, state, updated_by, permission, updated_dt, type, created_dt, url, version]
+[ INFO][14073][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 665]HHH000108: Foreign keys: [fk_15dp836ilit7l57fu9mrdlyv]
+[ INFO][14073][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 665]HHH000126: Indexes: [fk_15dp836ilit7l57fu9mrdlyv, primary]
+[ INFO][14077][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 669]HHH000261: Table found: lmsfc.tbl_sys_role
+[ INFO][14077][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 669]HHH000037: Columns: [created_by, id, role_description, state, updated_by, updated_dt, role_name, created_dt, version]
+[ INFO][14077][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 669]HHH000108: Foreign keys: []
+[ INFO][14077][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 669]HHH000126: Indexes: [primary]
+[ INFO][14080][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 672]HHH000261: Table found: lmsfc.tbl_sys_role_res
+[ INFO][14080][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 672]HHH000037: Columns: [resource_id, role_id]
+[ INFO][14080][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 672]HHH000108: Foreign keys: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][14080][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 672]HHH000126: Indexes: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][14086][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 678]HHH000261: Table found: lmsfc.tbl_sys_user
+[ INFO][14086][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 678]HHH000037: Columns: [created_by, id, user_name, state, updated_by, updated_dt, password, created_dt, salt, version]
+[ INFO][14086][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 678]HHH000108: Foreign keys: []
+[ INFO][14086][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 678]HHH000126: Indexes: [primary]
+[ INFO][14090][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 682]HHH000261: Table found: lmsfc.tbl_sys_user_role
+[ INFO][14090][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 682]HHH000037: Columns: [role_id, user_id]
+[ INFO][14090][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 682]HHH000108: Foreign keys: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][14090][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 682]HHH000126: Indexes: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][14093][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 685]HHH000261: Table found: lmsfc.tbl_test
+[ INFO][14093][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 685]HHH000037: Columns: [created_by, id, name, updated_by, updated_dt, created_dt, version]
+[ INFO][14094][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 686]HHH000108: Foreign keys: []
+[ INFO][14094][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:09 686]HHH000126: Indexes: [primary]
+[ INFO][14094][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:09 686]HHH000232: Schema update complete
+[ WARN][14101][org.hibernate.jpa.internal.EntityManagerFactoryRegistry][main][2015-04-05 15:01:09 693]HHH000436: Entity manager factory name (default) is already registered.  If entity manager will be clustered or passivated, specify a unique value for property 'hibernate.ejb.entitymanager_factory_name'
+[ INFO][14378][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:09 970]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][14392][org.springframework.beans.factory.config.PropertiesFactoryBean][main][2015-04-05 15:01:09 984]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/org/springframework/integration/spring-integration-core/4.1.2.RELEASE/spring-integration-core-4.1.2.RELEASE.jar!/META-INF/spring.integration.default.properties]
+[ INFO][14403][org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler][main][2015-04-05 15:01:09 995]Initializing ExecutorService  'taskScheduler'
+[ INFO][14435][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor][main][2015-04-05 15:01:10 027]Initializing ExecutorService 
+[ INFO][14516][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:10 108]Starting beans in phase -2147483648
+[ INFO][14516][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:10 108]Starting beans in phase 0
+[ INFO][14516][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 108]Adding {service-activator} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][14516][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 108]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.jmsTaskInputChl' has 1 subscriber(s).
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]started org.springframework.integration.config.ConsumerEndpointFactoryBean#0
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]Adding {router} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][14517][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 109]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.jmsTaskInputChl' has 2 subscriber(s).
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]started org.springframework.integration.config.ConsumerEndpointFactoryBean#1
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]Adding {service-activator:getBatchArtTaskJobService} as a subscriber to the 'batchArtTaskChl' channel
+[ INFO][14517][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 109]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.batchArtTaskChl' has 1 subscriber(s).
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]started getBatchArtTaskJobService
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]Adding {splitter} as a subscriber to the 'listForBatchArtTaskChl' channel
+[ INFO][14517][org.springframework.integration.channel.ExecutorChannel][main][2015-04-05 15:01:10 109]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.listForBatchArtTaskChl' has 1 subscriber(s).
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]started org.springframework.integration.config.ConsumerEndpointFactoryBean#2
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]Adding {service-activator:getArtTaskJobService} as a subscriber to the 'singleArtTaskChl' channel
+[ INFO][14517][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 109]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.singleArtTaskChl' has 1 subscriber(s).
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]started getArtTaskJobService
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]Adding {router} as a subscriber to the 'toArtTaskRouterChl' channel
+[ INFO][14517][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 109]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.toArtTaskRouterChl' has 1 subscriber(s).
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]started org.springframework.integration.config.ConsumerEndpointFactoryBean#3
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]Adding {service-activator:validateArtTaskJob} as a subscriber to the 'toValidateArtChl' channel
+[ INFO][14517][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 109]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.toValidateArtChl' has 1 subscriber(s).
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]started validateArtTaskJob
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]Adding {service-activator:downloadArt} as a subscriber to the 'toGetArtChl' channel
+[ INFO][14517][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 109]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.toGetArtChl' has 1 subscriber(s).
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]started downloadArt
+[ INFO][14517][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 109]Adding {router} as a subscriber to the 'befToParseArtChl' channel
+[ INFO][14518][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 110]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.befToParseArtChl' has 1 subscriber(s).
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]started org.springframework.integration.config.ConsumerEndpointFactoryBean#4
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]Adding {service-activator:parseArt} as a subscriber to the 'toParseArtChl' channel
+[ INFO][14518][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 110]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.toParseArtChl' has 1 subscriber(s).
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]started parseArt
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]Adding {service-activator:generateArtEle} as a subscriber to the 'toGenerateArtEleChl' channel
+[ INFO][14518][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 110]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.toGenerateArtEleChl' has 1 subscriber(s).
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]started generateArtEle
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]Adding {router} as a subscriber to the 'befToFreemarkerArtEleChl' channel
+[ INFO][14518][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 110]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.befToFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]started org.springframework.integration.config.ConsumerEndpointFactoryBean#5
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]Adding {service-activator:freemarkerArt} as a subscriber to the 'toFreemarkerArtEleChl' channel
+[ INFO][14518][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 110]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.toFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]started freemarkerArt
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]Adding {router} as a subscriber to the 'befToDeployArtChl' channel
+[ INFO][14518][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 110]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.befToDeployArtChl' has 1 subscriber(s).
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]started org.springframework.integration.config.ConsumerEndpointFactoryBean#6
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]Adding {service-activator:deployArt} as a subscriber to the 'toDeployArtChl' channel
+[ INFO][14518][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 110]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.toDeployArtChl' has 1 subscriber(s).
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]started deployArt
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]Adding {service-activator:notifyWeb} as a subscriber to the 'toNotifyWebChl' channel
+[ INFO][14518][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 110]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.toNotifyWebChl' has 1 subscriber(s).
+[ INFO][14518][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 110]started notifyWeb
+[ INFO][14519][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 111]Adding {router} as a subscriber to the 'errorChannel' channel
+[ INFO][14519][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:10 111]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.errorChannel' has 1 subscriber(s).
+[ INFO][14519][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 111]started org.springframework.integration.config.ConsumerEndpointFactoryBean#7
+[ INFO][14519][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 111]Adding {service-activator:handlerRuntimeEptService} as a subscriber to the 'runtimeEptChl' channel
+[ INFO][14519][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:10 111]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.runtimeEptChl' has 1 subscriber(s).
+[ INFO][14519][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 111]started handlerRuntimeEptService
+[ INFO][14519][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 111]Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[ INFO][14519][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:10 111]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@1bcaf24a.errorChannel' has 2 subscriber(s).
+[ INFO][14519][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:10 111]started _org.springframework.integration.errorLogger
+[ INFO][14519][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:10 111]Starting beans in phase 2147483647
+[ INFO][14568][org.springframework.context.support.ClassPathXmlApplicationContext][main][2015-04-05 15:01:10 160]Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b: startup date [Sun Apr 05 15:01:10 SGT 2015]; root of context hierarchy
+[ INFO][14569][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:10 161]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task.xml]
+[ INFO][14590][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:10 182]Loading XML bean definitions from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/spring/spring-common.xml]
+[ INFO][14674][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:10 266]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-task-integration.xml]
+[ INFO][14715][org.springframework.beans.factory.xml.XmlBeanDefinitionReader][main][2015-04-05 15:01:10 307]Loading XML bean definitions from URL [file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/classes/spring/spring-jms.xml]
+[ INFO][14727][org.springframework.integration.config.IntegrationRegistrar][main][2015-04-05 15:01:10 319]No bean named 'integrationHeaderChannelRegistry' has been explicitly defined. Therefore, a default DefaultHeaderChannelRegistry will be created.
+[ INFO][14730][org.springframework.beans.factory.support.DefaultListableBeanFactory][main][2015-04-05 15:01:10 322]Overriding bean definition for bean 'generateArtEle': replacing [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null] with [Generic bean: class [org.springframework.integration.config.ConsumerEndpointFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null]
+[ INFO][14759][org.springframework.beans.factory.config.PropertyPlaceholderConfigurer][main][2015-04-05 15:01:10 351]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/com/cc/lmsfc-common/1.0-SNAPSHOT/lmsfc-common-1.0-SNAPSHOT.jar!/jdbc.properties]
+[ INFO][14766][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:10 358]No bean named 'errorChannel' has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.
+[ INFO][14766][org.springframework.integration.config.DefaultConfiguringBeanFactoryPostProcessor][main][2015-04-05 15:01:10 358]No bean named 'taskScheduler' has been explicitly defined. Therefore, a default ThreadPoolTaskScheduler will be created.
+[ INFO][14771][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:10 363]Bean 'txAdvisor' of type [class org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][14773][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:10 365]Bean 'org.springframework.transaction.annotation.AnnotationTransactionAttributeSource#0' of type [class org.springframework.transaction.annotation.AnnotationTransactionAttributeSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][14775][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker][main][2015-04-05 15:01:10 367]Bean 'org.springframework.transaction.config.internalTransactionAdvisor' of type [class org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[ INFO][14842][com.alibaba.druid.pool.DruidDataSource][main][2015-04-05 15:01:10 434]{dataSource-6} inited
+[ INFO][14867][org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean][main][2015-04-05 15:01:10 459]Building JPA container EntityManagerFactory for persistence unit 'default'
+[ WARN][14867][org.hibernate.ejb.HibernatePersistence][main][2015-04-05 15:01:10 459]HHH015016: Encountered a deprecated javax.persistence.spi.PersistenceProvider [org.hibernate.ejb.HibernatePersistence]; use [org.hibernate.jpa.HibernatePersistenceProvider] instead.
+[ INFO][14889][org.hibernate.dialect.Dialect][main][2015-04-05 15:01:10 481]HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[ INFO][14953][org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory][main][2015-04-05 15:01:10 545]HHH000397: Using ASTQueryTranslatorFactory
+[ INFO][14957][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:10 549]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][15129][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:10 721]HHH000228: Running hbm2ddl schema update
+[ INFO][15129][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:10 721]HHH000102: Fetching database metadata
+[ INFO][15129][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:10 721]HHH000396: Updating schema
+[ INFO][15142][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 734]HHH000261: Table found: lmsfc.tbl_art_tkj_run_log
+[ INFO][15143][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 735]HHH000037: Columns: [created_by, id, art_task_step, description, state, updated_by, art_tkj_id, updated_dt, created_dt, version]
+[ INFO][15143][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 735]HHH000108: Foreign keys: [fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][15143][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 735]HHH000126: Indexes: [primary, fk_3756tflph20ksntcl1nyo85dx]
+[ INFO][15147][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 739]HHH000261: Table found: lmsfc.tbl_article
+[ INFO][15147][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 739]HHH000037: Columns: [created_by, id, generate_time, description, name, state, updated_by, art_ele_id, updated_dt, art_cate_id, created_dt, art_file_name, version]
+[ INFO][15147][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 739]HHH000108: Foreign keys: [fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][15147][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 739]HHH000126: Indexes: [primary, fk_5exbvobr6wnhmpfdqi0l6ea8l, fk_emilslsudrvfsbvd75sjanwa3]
+[ INFO][15151][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 743]HHH000261: Table found: lmsfc.tbl_article_category
+[ INFO][15151][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 743]HHH000037: Columns: [created_by, id, path_name, name, updated_by, updated_dt, created_dt, version]
+[ INFO][15151][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 743]HHH000108: Foreign keys: []
+[ INFO][15151][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 743]HHH000126: Indexes: [primary]
+[ INFO][15156][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 748]HHH000261: Table found: lmsfc.tbl_article_element
+[ INFO][15156][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 748]HHH000037: Columns: [created_by, id, files, article, name, article_tkj_id, state, updated_by, updated_dt, created_dt, file_location, version]
+[ INFO][15156][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 748]HHH000108: Foreign keys: [fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][15156][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 748]HHH000126: Indexes: [primary, fk_n259pt2w3q3tw0t00pjo8dt83]
+[ INFO][15160][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 752]HHH000261: Table found: lmsfc.tbl_article_tkj
+[ INFO][15160][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 752]HHH000037: Columns: [created_by, tkj_run_log_id, finish_time, state, type, created_dt, url, version, id, filter_rule_id, name, batch_art_tkj_id, target_catgory, updated_by, updated_dt, is_whole]
+[ INFO][15160][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 752]HHH000108: Foreign keys: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d]
+[ INFO][15160][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 752]HHH000126: Indexes: [fk_lc6erf6ensv84tcl7dcwxrhee, fk_4i18ihgahwo25err9os7upu3, fk_kg7hl1g4jivpkdh0dloeubq1d, primary]
+[ INFO][15164][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 756]HHH000261: Table found: lmsfc.tbl_batch_article_tkj
+[ INFO][15164][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 756]HHH000037: Columns: [created_by, id, finish_time, name, state, updated_by, updated_dt, type, created_dt, version]
+[ INFO][15164][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 756]HHH000108: Foreign keys: []
+[ INFO][15164][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 756]HHH000126: Indexes: [primary]
+[ INFO][15168][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 760]HHH000261: Table found: lmsfc.tbl_filter
+[ INFO][15168][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 760]HHH000037: Columns: [created_by, id, set_param_method_name, param_type, filter_name, param_num, updated_by, updated_dt, filter_class_name, filter_class_params, created_dt, version]
+[ INFO][15168][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 760]HHH000108: Foreign keys: []
+[ INFO][15168][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 760]HHH000126: Indexes: [primary]
+[ INFO][15171][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 763]HHH000261: Table found: lmsfc.tbl_filter_detail
+[ INFO][15171][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 763]HHH000037: Columns: [created_by, id, category, filter_rule_id, param_value1, param_value2, filter_id, updated_by, sub_num, updated_dt, parent_node_id, created_dt, version]
+[ INFO][15171][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 763]HHH000108: Foreign keys: [fk_r3mobl1e3y5h54wadnivvxpht, fk_8rbks35frlk90snfhx36xb8cj, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][15171][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 763]HHH000126: Indexes: [primary, fk_8rbks35frlk90snfhx36xb8cj, fk_r3mobl1e3y5h54wadnivvxpht, fk_qwaeror7r5pkhlbxu13ecbevr]
+[ INFO][15175][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 767]HHH000261: Table found: lmsfc.tbl_filter_rule
+[ INFO][15175][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 767]HHH000037: Columns: [created_by, id, source_domain, name, updated_by, updated_dt, created_dt, version]
+[ INFO][15175][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 767]HHH000108: Foreign keys: []
+[ INFO][15176][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 768]HHH000126: Indexes: [primary]
+[ INFO][15179][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 771]HHH000261: Table found: lmsfc.tbl_sys_resource
+[ INFO][15179][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 771]HHH000037: Columns: [created_by, id, parent_resource_id, resource_name, state, updated_by, permission, updated_dt, type, created_dt, url, version]
+[ INFO][15179][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 771]HHH000108: Foreign keys: [fk_15dp836ilit7l57fu9mrdlyv]
+[ INFO][15179][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 771]HHH000126: Indexes: [fk_15dp836ilit7l57fu9mrdlyv, primary]
+[ INFO][15183][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 775]HHH000261: Table found: lmsfc.tbl_sys_role
+[ INFO][15183][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 775]HHH000037: Columns: [created_by, id, role_description, state, updated_by, updated_dt, role_name, created_dt, version]
+[ INFO][15183][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 775]HHH000108: Foreign keys: []
+[ INFO][15183][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 775]HHH000126: Indexes: [primary]
+[ INFO][15187][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 779]HHH000261: Table found: lmsfc.tbl_sys_role_res
+[ INFO][15187][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 779]HHH000037: Columns: [resource_id, role_id]
+[ INFO][15187][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 779]HHH000108: Foreign keys: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][15187][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 779]HHH000126: Indexes: [fk_749rbm88ufvcd18u2u4c20mao, fk_jn00cu1cwwk4c3isopr944nwq]
+[ INFO][15190][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 782]HHH000261: Table found: lmsfc.tbl_sys_user
+[ INFO][15190][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 782]HHH000037: Columns: [created_by, id, user_name, state, updated_by, updated_dt, password, created_dt, salt, version]
+[ INFO][15190][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 782]HHH000108: Foreign keys: []
+[ INFO][15190][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 782]HHH000126: Indexes: [primary]
+[ INFO][15193][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 785]HHH000261: Table found: lmsfc.tbl_sys_user_role
+[ INFO][15193][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 785]HHH000037: Columns: [role_id, user_id]
+[ INFO][15193][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 785]HHH000108: Foreign keys: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][15193][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 785]HHH000126: Indexes: [fk_onm66br5n9tic3qd3xdtkmfd2, fk_52opresf1j8il2333dccd958w]
+[ INFO][15196][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 788]HHH000261: Table found: lmsfc.tbl_test
+[ INFO][15196][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 788]HHH000037: Columns: [created_by, id, name, updated_by, updated_dt, created_dt, version]
+[ INFO][15196][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 788]HHH000108: Foreign keys: []
+[ INFO][15196][org.hibernate.tool.hbm2ddl.TableMetadata][main][2015-04-05 15:01:10 788]HHH000126: Indexes: [primary]
+[ INFO][15197][org.hibernate.tool.hbm2ddl.SchemaUpdate][main][2015-04-05 15:01:10 789]HHH000232: Schema update complete
+[ WARN][15204][org.hibernate.jpa.internal.EntityManagerFactoryRegistry][main][2015-04-05 15:01:10 796]HHH000436: Entity manager factory name (default) is already registered.  If entity manager will be clustered or passivated, specify a unique value for property 'hibernate.ejb.entitymanager_factory_name'
+[ INFO][15579][org.hibernate.validator.engine.resolver.DefaultTraversableResolver][main][2015-04-05 15:01:11 171]Instantiated an instance of org.hibernate.validator.engine.resolver.JPATraversableResolver.
+[ INFO][15593][org.springframework.beans.factory.config.PropertiesFactoryBean][main][2015-04-05 15:01:11 185]Loading properties file from URL [jar:file:/Users/tomchen/work/tools/maven_repository/org/springframework/integration/spring-integration-core/4.1.2.RELEASE/spring-integration-core-4.1.2.RELEASE.jar!/META-INF/spring.integration.default.properties]
+[ INFO][15608][org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler][main][2015-04-05 15:01:11 200]Initializing ExecutorService  'taskScheduler'
+[ INFO][15641][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor][main][2015-04-05 15:01:11 233]Initializing ExecutorService 
+[ INFO][15724][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:11 316]Starting beans in phase -2147483648
+[ INFO][15725][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:11 317]Starting beans in phase 0
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]Adding {service-activator} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][15725][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 317]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.jmsTaskInputChl' has 1 subscriber(s).
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]started org.springframework.integration.config.ConsumerEndpointFactoryBean#0
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]Adding {router} as a subscriber to the 'jmsTaskInputChl' channel
+[ INFO][15725][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 317]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.jmsTaskInputChl' has 2 subscriber(s).
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]started org.springframework.integration.config.ConsumerEndpointFactoryBean#1
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]Adding {service-activator:getBatchArtTaskJobService} as a subscriber to the 'batchArtTaskChl' channel
+[ INFO][15725][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 317]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.batchArtTaskChl' has 1 subscriber(s).
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]started getBatchArtTaskJobService
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]Adding {splitter} as a subscriber to the 'listForBatchArtTaskChl' channel
+[ INFO][15725][org.springframework.integration.channel.ExecutorChannel][main][2015-04-05 15:01:11 317]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.listForBatchArtTaskChl' has 1 subscriber(s).
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]started org.springframework.integration.config.ConsumerEndpointFactoryBean#2
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]Adding {service-activator:getArtTaskJobService} as a subscriber to the 'singleArtTaskChl' channel
+[ INFO][15725][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 317]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.singleArtTaskChl' has 1 subscriber(s).
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]started getArtTaskJobService
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]Adding {router} as a subscriber to the 'toArtTaskRouterChl' channel
+[ INFO][15725][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 317]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.toArtTaskRouterChl' has 1 subscriber(s).
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]started org.springframework.integration.config.ConsumerEndpointFactoryBean#3
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]Adding {service-activator:validateArtTaskJob} as a subscriber to the 'toValidateArtChl' channel
+[ INFO][15725][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 317]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.toValidateArtChl' has 1 subscriber(s).
+[ INFO][15725][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 317]started validateArtTaskJob
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]Adding {service-activator:downloadArt} as a subscriber to the 'toGetArtChl' channel
+[ INFO][15726][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 318]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.toGetArtChl' has 1 subscriber(s).
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]started downloadArt
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]Adding {router} as a subscriber to the 'befToParseArtChl' channel
+[ INFO][15726][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 318]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.befToParseArtChl' has 1 subscriber(s).
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]started org.springframework.integration.config.ConsumerEndpointFactoryBean#4
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]Adding {service-activator:parseArt} as a subscriber to the 'toParseArtChl' channel
+[ INFO][15726][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 318]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.toParseArtChl' has 1 subscriber(s).
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]started parseArt
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]Adding {service-activator:generateArtEle} as a subscriber to the 'toGenerateArtEleChl' channel
+[ INFO][15726][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 318]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.toGenerateArtEleChl' has 1 subscriber(s).
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]started generateArtEle
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]Adding {router} as a subscriber to the 'befToFreemarkerArtEleChl' channel
+[ INFO][15726][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 318]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.befToFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]started org.springframework.integration.config.ConsumerEndpointFactoryBean#5
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]Adding {service-activator:freemarkerArt} as a subscriber to the 'toFreemarkerArtEleChl' channel
+[ INFO][15726][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 318]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.toFreemarkerArtEleChl' has 1 subscriber(s).
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]started freemarkerArt
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]Adding {router} as a subscriber to the 'befToDeployArtChl' channel
+[ INFO][15726][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 318]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.befToDeployArtChl' has 1 subscriber(s).
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]started org.springframework.integration.config.ConsumerEndpointFactoryBean#6
+[ INFO][15726][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 318]Adding {service-activator:deployArt} as a subscriber to the 'toDeployArtChl' channel
+[ INFO][15727][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 319]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.toDeployArtChl' has 1 subscriber(s).
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]started deployArt
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]Adding {service-activator:notifyWeb} as a subscriber to the 'toNotifyWebChl' channel
+[ INFO][15727][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 319]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.toNotifyWebChl' has 1 subscriber(s).
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]started notifyWeb
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]Adding {router} as a subscriber to the 'errorChannel' channel
+[ INFO][15727][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:11 319]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.errorChannel' has 1 subscriber(s).
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]started org.springframework.integration.config.ConsumerEndpointFactoryBean#7
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]Adding {service-activator:handlerRuntimeEptService} as a subscriber to the 'runtimeEptChl' channel
+[ INFO][15727][org.springframework.integration.channel.DirectChannel][main][2015-04-05 15:01:11 319]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.runtimeEptChl' has 1 subscriber(s).
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]started handlerRuntimeEptService
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]Adding {logging-channel-adapter:_org.springframework.integration.errorLogger} as a subscriber to the 'errorChannel' channel
+[ INFO][15727][org.springframework.integration.channel.PublishSubscribeChannel][main][2015-04-05 15:01:11 319]Channel 'org.springframework.context.support.ClassPathXmlApplicationContext@6ab8b90b.errorChannel' has 2 subscriber(s).
+[ INFO][15727][org.springframework.integration.endpoint.EventDrivenConsumer][main][2015-04-05 15:01:11 319]started _org.springframework.integration.errorLogger
+[ INFO][15727][org.springframework.context.support.DefaultLifecycleProcessor][main][2015-04-05 15:01:11 319]Starting beans in phase 2147483647
+[ INFO][15750][org.springframework.context.support.GenericApplicationContext][Thread-1][2015-04-05 15:01:11 342]Closing org.springframework.context.support.GenericApplicationContext@7c1dea5: startup date [Sun Apr 05 15:00:56 SGT 2015]; root of context hierarchy
+[ INFO][15764][org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean][Thread-1][2015-04-05 15:01:11 356]Closing JPA EntityManagerFactory for persistence unit 'default'
+[ INFO][15768][com.alibaba.druid.pool.DruidDataSource][Thread-1][2015-04-05 15:01:11 360]{dataSource-1} closed

@@ -7,12 +7,14 @@ import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.common.service.ArticleCategoryService;
 import com.cc.lmsfc.common.service.ArticleTaskJobService;
 import com.cc.lmsfc.common.service.FilterRuleService;
+import com.cc.lmsfc.common.util.JacksonUtil;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.jms.support.converter.SimpleMessageConverter;
@@ -42,6 +44,9 @@ import java.util.Map;
 public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,ArticleTaskJobService,String> {
 
     @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
     private ArticleTaskJobService articleTaskJobService;
 
     @Autowired
@@ -50,9 +55,9 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
     @Autowired
     private ArticleCategoryService articleCategoryService;
 
-    @Autowired
-    @Qualifier("adminJmsTemplate")
-    private JmsTemplate jmsTemplate;
+//    @Autowired
+//    @Qualifier("adminJmsTemplate")
+//    private JmsTemplate jmsTemplate;
 
     @Override
     protected ArticleTaskJobService getService() {
@@ -151,13 +156,16 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
 //        br.setMessage(br.getMessage() + " Task is running, please wait!");
     }
 
-    private void sendTaskToRun(final Map<String,Object> map){
-        jmsTemplate.send(new MessageCreator() {
-            @Override
-            public Message createMessage(Session session) throws JMSException {
-                return session.createObjectMessage((java.io.Serializable) map);
-            }
-        });
+//    private void sendTaskToRun(final Map<String,Object> map){
+//        jmsTemplate.send(new MessageCreator() {
+//            @Override
+//            public Message createMessage(Session session) throws JMSException {
+//                return session.createObjectMessage((java.io.Serializable) map);
+//            }
+//        });
+//    }
+    private void sendTaskToRun(Map<String,Object> map){
+        redisTemplate.convertAndSend("dd",JacksonUtil.toJSon(map));
     }
 
 }

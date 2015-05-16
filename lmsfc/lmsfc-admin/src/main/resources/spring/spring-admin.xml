@@ -25,7 +25,8 @@
 	<!-- <context:property-placeholder location="classpath:application.properties"/> -->
 
 	<import resource="classpath*:spring/spring-common.xml"/>
-	<import resource="classpath*:spring/spring-admin-jms.xml"/>
+	<!--<import resource="classpath*:spring/spring-admin-jms.xml"/>-->
+    <import resource="classpath*:spring/spring-redis.xml"/>
 
     <!--<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
         <!--<property name="templateLoaderPath" value="WEB-INF/ftl/" />-->

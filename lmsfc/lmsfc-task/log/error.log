@@ -1,0 +1,1 @@
+[ERROR][6496][org.hibernate.engine.jdbc.spi.SqlExceptionHelper][main][2015-04-05 15:01:02 088]Cannot delete or update a parent row: a foreign key constraint fails (`lmsfc`.`tbl_article_tkj`, CONSTRAINT `FK_lc6erf6ensv84tcl7dcwxrhee` FOREIGN KEY (`filter_rule_id`) REFERENCES `tbl_filter_rule` (`id`))

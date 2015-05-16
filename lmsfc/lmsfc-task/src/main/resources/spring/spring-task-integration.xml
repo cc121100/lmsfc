@@ -4,6 +4,7 @@
        xmlns:task="http://www.springframework.org/schema/task" xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jms="http://www.springframework.org/schema/integration/jms"
        xmlns:stream="http://www.springframework.org/schema/integration/stream"
+       xmlns:redis="http://www.springframework.org/schema/integration/redis"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/integration 
@@ -15,15 +16,24 @@
         http://www.springframework.org/schema/integration/jms
 		http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
 		http://www.springframework.org/schema/integration/stream
-		http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd">
+		http://www.springframework.org/schema/integration/stream/spring-integration-stream.xsd
+		http://www.springframework.org/schema/integration/redis
+		http://www.springframework.org/schema/integration/redis/spring-integration-redis.xsd">
 
 
-    <import resource="classpath*:spring/spring-task-jms.xml"/>
+    <!--<import resource="classpath*:spring/spring-task-jms.xml"/>-->
+
 
     <int:control-bus input-channel="jmsTaskInputChl"/>
 
-    <jms:message-driven-channel-adapter id="getJmsTask" channel="jmsTaskInputChl"
-    destination="inQueue"  auto-startup="false" error-channel="errorChannel"/>
+
+    <redis:inbound-channel-adapter id="getRedisTask" channel="jmsTaskInputChl"
+                                   auto-startup="false" error-channel="errorChannel"
+                                   connection-factory="jedisConnectionFactory" topics="dd" message-converter="redisMessageConverter"/>
+
+
+    <!--<jms:message-driven-channel-adapter id="getJmsTask" channel="jmsTaskInputChl"-->
+    <!--destination="inQueue"  auto-startup="false" error-channel="errorChannel"/>-->
     <!-- here destination is the queue in activemq defined in spring-task-jms.xml, the queue's name is 'jmsQueue' defined in inQueue construct-->
 
 

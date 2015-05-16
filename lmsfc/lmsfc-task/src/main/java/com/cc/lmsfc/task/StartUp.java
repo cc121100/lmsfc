@@ -19,7 +19,8 @@ public class StartUp {
         ApplicationContext ac = new ClassPathXmlApplicationContext("classpath*:spring/spring-task.xml");
 
         MessageChannel controlChannel = ac.getBean("jmsTaskInputChl", MessageChannel.class);
-        controlChannel.send(new GenericMessage<Object>("@getJmsTask.start()"));
+        controlChannel.send(new GenericMessage<Object>("@getRedisTask.start()"));
+//        controlChannel.send(new GenericMessage<Object>("@getJmsTask.start()"));
 
 
     }

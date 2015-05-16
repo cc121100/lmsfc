@@ -5,17 +5,8 @@ import com.cc.lmsfc.common.dao.ArtTaskJobRunLogDAO;
 import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
 import com.cc.lmsfc.common.model.task.ArtTaskJobRunLog;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Component;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-import java.util.Map;
 
 /**
  * Created by tomchen on 15-4-3.

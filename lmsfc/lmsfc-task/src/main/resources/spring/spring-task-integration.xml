@@ -29,7 +29,7 @@
 
     <redis:inbound-channel-adapter id="getRedisTask" channel="jmsTaskInputChl"
                                    auto-startup="false" error-channel="errorChannel"
-                                   connection-factory="jedisConnectionFactory" topics="dd" message-converter="redisMessageConverter"/>
+                                   connection-factory="jedisConnectionFactory" topics="${topic.name}" message-converter="redisMessageConverter"/>
 
 
     <!--<jms:message-driven-channel-adapter id="getJmsTask" channel="jmsTaskInputChl"-->
@@ -41,6 +41,8 @@
         <int:mapping value="B" channel="batchArtTaskChl"/>
         <int:mapping value="S" channel="singleArtTaskChl"/>
         <int:mapping value="RA" channel="toReAssembleChl"/>
+        <int:mapping value="IPR" channel="toReAssembleChl"/>
+        <int:mapping value="IR" channel="toReInitRedisChl"/>
     </int:router>
     <!--<int:payload-type-router input-channel="jmsTaskInputChl">-->
         <!--<int:mapping type="com.cc.lmsfc.common.model.task.BatchArticleTaskJob" channel="batchArtTaskChl" />-->
@@ -48,7 +50,10 @@
     <!--</int:payload-type-router>-->
 
     <int:service-activator id="reassembleArtService" input-channel="toReAssembleChl"
-                           ref="reAssembleService" method="reassemble"/>
+                           ref="reAssembleService" method="reassemble" output-channel="toReInitRedisChl"/>
+
+    <int:service-activator id="reInitRedisService" input-channel="toReInitRedisChl"
+                           ref="redisService" method="initLmsfcRedis"/>
 
 
     <int:service-activator id="getBatchArtTaskJobService" input-channel="batchArtTaskChl"
@@ -169,6 +174,7 @@
     <int:channel id="artTaskJobExceptionChl"/>
 
     <int:channel id="toReAssembleChl"/>
+    <int:channel id="toReInitRedisChl"/>
 
     <!--<int:poller default="true" fixed-delay="50"/>-->
 

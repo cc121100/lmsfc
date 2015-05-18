@@ -1,6 +1,7 @@
 package com.cc.lmsfc.admin.controller;
 
 import com.cc.lmsfc.admin.model.BjuiResponse;
+import com.cc.lmsfc.admin.util.RedisUtils;
 import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.model.filter.FilterDetail;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
@@ -70,12 +71,12 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
     public BjuiResponse runTask(HttpServletRequest request,@PathVariable String id){
         BjuiResponse br = new BjuiResponse();
         //update state
-        articleTaskJobService.updateState(id,false);
+        articleTaskJobService.updateState(id, false);
 
         Map<String,Object> map = new HashMap<>();
         map.put("id",id);
         map.put("type",CommonConsts.SINGLE_TSK);
-        sendTaskToRun(map);
+        RedisUtils.sendTaskToRun(redisTemplate,map);
 
         br.setMessage("Task is running, please wait!");
         return br;
@@ -123,7 +124,7 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
             Map<String,Object> map = new HashMap<>();
             map.put("id",articleTaskJob.getId());
             map.put("type",CommonConsts.SINGLE_TSK);
-            sendTaskToRun(map);
+            RedisUtils.sendTaskToRun(redisTemplate,map);
         }
         return br;
     }
@@ -164,8 +165,6 @@ public class ArticleTaskJobController extends BaseCRUDController<ArticleTaskJob,
 //            }
 //        });
 //    }
-    private void sendTaskToRun(Map<String,Object> map){
-        redisTemplate.convertAndSend("dd",JacksonUtil.toJSon(map));
-    }
+
 
 }

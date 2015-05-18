@@ -89,9 +89,6 @@ public class ArticleService {
 
             articleDAO.saveAndFlush(article);
 
-            // add new article into redis
-            redisHelper.addArticle(article);
-
             atj.getArticleElement().setArticle(article);
 
             if (MapUtils.isEmpty(atj.getTempMap())) {
@@ -144,6 +141,9 @@ public class ArticleService {
             article.setDescription(contentStr);
             article.setArtFileName(destFileName);
             articleDAO.saveAndFlush(article);
+
+            // add new article into redis
+            redisHelper.addArticle(article);
 
         }catch (Exception e){
             logger.error("Error occurs when assemble article:" + e.getMessage());

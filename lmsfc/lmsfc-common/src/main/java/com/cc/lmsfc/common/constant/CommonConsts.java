@@ -16,6 +16,10 @@ public class CommonConsts {
     public final static String SINGLE_TSK = "S";
     public final static String BATCH_TSK = "B";
     public final static String REASSEMBLE_TSK = "RA";
+    public final static String INIT_PAGE_REDIS_TSK = "IPR";
+    public final static String INIT_REDIS_TSK = "IR";
+
+
     public final static String ELE_PREFIX = "Ele_of_";
 
     public final static String REG_HTML_TAG= "</?[^>]+>";

@@ -42,6 +42,7 @@ public class UserRealm extends AuthorizingRealm {
             sets.add("filterDetail:*");
             sets.add("task:*");
             sets.add("batchTask:*");
+            sets.add("deploy:*");
             authorizationInfo.setStringPermissions(sets);
             return authorizationInfo;
         }

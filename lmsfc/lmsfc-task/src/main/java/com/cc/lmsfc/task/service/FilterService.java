@@ -7,6 +7,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by tomchen on 15-3-18.
  */
@@ -14,6 +17,8 @@ import org.springframework.stereotype.Component;
 public class FilterService {
 
     private Logger logger = Logger.getLogger(FilterService.class);
+
+    private final static String regxpForHtml = "<([^>]*)>"; // 过滤所有以<开头以>结尾的标签
 
     public ArticleTaskJob filter(ArticleTaskJob atj){
 
@@ -46,6 +51,16 @@ public class FilterService {
 
             //3 remove all <!-- --> in content
 
+            // if oschina , filter title
+            if(atj.getFilterRule().getName().startsWith("oschina")){
+                String regEx_html="<span.*</span>";
+                String titleStr = (String) atj.getTempMap().get("title");
+                Pattern p_html=Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
+                Matcher m_html=p_html.matcher(titleStr);
+                titleStr = m_html.replaceAll("");
+                atj.getTempMap().put("title",titleStr);
+            }
+
         }catch (Exception e){
             logger.error("Error occurs when filte atj.", e);
             throw new GenerateArtEleException(e,atj);
@@ -55,10 +70,10 @@ public class FilterService {
     }
 
     public static void main(String[] args){
-        String str = "http://jinnianshilongnian.iteye.com/blog/2018936/";
-        String[] strs = str.split("//");
-        String result = strs[0] + "//" + strs[1].substring(0,strs[1].indexOf("/"));
-        System.out.println(result);
+//        String str = "http://jinnianshilongnian.iteye.com/blog/2018936/";
+//        String[] strs = str.split("//");
+//        String result = strs[0] + "//" + strs[1].substring(0,strs[1].indexOf("/"));
+//        System.out.println(result);
 
 
 //        if(str.endsWith("/")){
@@ -66,6 +81,13 @@ public class FilterService {
 //            System.out.println(str);
 //        }
 //        System.out.println(str.substring(0, str.lastIndexOf("/")));
+
+        String htmlStr = "<span class=\"icon\" style=\"background:#44ac57;\"  title=\"原创博客\">原</span>\t\t\t<span class=\"icon\" style=\"background:#fd9c47;\" title=\"首页推荐过的博客\">荐</span>\t\t\t<span class=\"icon\" style=\"background:#fd6245;\"  title=\"个人博客列表置顶博客\">顶</span>\t\t\t\t\t\t\t\t\t分布式事务系列（1.2）Spring的事务体系";
+        String regEx_html="<span.*</span>"; //定义HTML标签的正则表达式
+        Pattern p_html=Pattern.compile(regEx_html,Pattern.CASE_INSENSITIVE);
+        Matcher m_html=p_html.matcher(htmlStr);
+        htmlStr=m_html.replaceAll(""); //过滤html标签
+        System.err.println(htmlStr.trim());
     }
 
 

@@ -7,6 +7,7 @@ import org.htmlparser.filters.*;
 import org.htmlparser.util.ParserException;
 import org.junit.Test;
 
+import javax.print.attribute.HashAttributeSet;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -85,5 +86,23 @@ public class HttpClientTest {
     public void testCSDN() throws IOException {
         byte[] bytes = HttpClientUtil.httpGet("http://blog.csdn.net/walkerjong/article/details/7210727");
         System.err.println(new String(bytes,"UTF-8"));
+    }
+
+    @Test
+    public void testOSChinaTitle() throws IOException, ParserException {
+        byte[] bytes = HttpClientUtil.httpGet("http://my.oschina.net/pingpangkuangmo/blog/416038");
+        String htmlStr = new String(bytes,"UTF-8");
+
+        Parser parser = new Parser();
+        parser.setEncoding("UTF-8");
+        parser.setResource(htmlStr);
+        NodeFilter f1 = new HasSiblingFilter(new TagNameFilter("span"));
+
+        NodeFilter f3 = new HasParentFilter(new TagNameFilter("h1"));
+
+        NodeFilter andF = new AndFilter(f1,f3);
+
+
+        System.err.println(parser.parse(andF).toHtml());
     }
 }

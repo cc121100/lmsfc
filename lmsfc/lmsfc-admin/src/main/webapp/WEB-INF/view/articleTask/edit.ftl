@@ -19,7 +19,7 @@
                     <td>
                         <label for="j_dialog_name" class="control-label x90">Name:</label>
                         <input type="text" name="articleTaskJob.name" id="j_dialog_name" value="${articleTaskJob.name?default("")}"
-                               data-rule="required;length[2~50];" size="15">
+                               data-rule="required;length[2~100];" size="15">
                     </td>
                     <td>
                         <label for="j_dialog_type" class="control-label x90">Type:</label>

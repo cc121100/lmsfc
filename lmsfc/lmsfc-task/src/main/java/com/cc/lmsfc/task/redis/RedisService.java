@@ -7,12 +7,14 @@ import com.cc.lmsfc.common.model.article.Article;
 import com.cc.lmsfc.common.model.article.ArticleCategory;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.DefaultTypedTuple;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.messaging.Message;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +24,10 @@ import java.util.*;
 /**
  * Created by tomchen on 15-5-11.
  */
-@Service
+@Component
 public class RedisService {
 
-    private static Logger logger = Logger.getLogger(RedisService.class);
+    private Logger logger = LoggerFactory.getLogger(RedisService.class);
 
     @Autowired
     private RedisTemplate redisTemplate;
@@ -38,7 +40,7 @@ public class RedisService {
 
     @Transactional
     public void initLmsfcRedis(Message msg) {
-
+        logger.info("Init LMsfc Redis data.");
 
         try{
             Map<String, Object> m = (Map<String, Object>) msg.getPayload();
@@ -105,11 +107,10 @@ public class RedisService {
                         viewCount = Integer.parseInt(viewCountStr);
                     }catch (NumberFormatException e){
                         logger.error("NumberFormatException occurs when format viewCount " + viewCountStr +" for art " + artId);
+                        viewCount = 0;
                     }
                     articleList.get(i).setViewCount(viewCount);
                 }
-
-
 
 
                 // 2 delete redis if exsited those list
@@ -128,21 +129,21 @@ public class RedisService {
                 for(Map.Entry<String,List<String>> entry : catArtMap.entrySet()){
                     String catPath = entry.getKey();
                     List<String> artIdsOfCat = entry.getValue();
-                    String key = "art.zset." + catPath;
+                    String key = CommonConsts.REDIS_ART_ZSET_PRE + catPath;
                     initLmsfcRedisList(key, artIdsOfCat.toArray());
                 }
                 for(Map.Entry<String,Map<String,String>> entry : artMap.entrySet()){
                     String aid = entry.getKey();
                     Map<String, String> hash = entry.getValue();
-                    String key = "art.hash." + aid;
+                    String key = CommonConsts.REDIS_ART_HASH_PRE + aid;
                     initArtHashes(key,hash);
                 }
 
-                initLmsfcRedisList("cat.zset", Lists.newArrayList(catMap.keySet()).toArray());
+                initLmsfcRedisList(CommonConsts.REDIS_CAT_ZSET, Lists.newArrayList(catMap.keySet()).toArray());
                 for(Map.Entry<String, Map<String,String>> entry : catMap.entrySet()){
                     String cid = entry.getKey();
                     Map<String,String> cMap = entry.getValue();
-                    String key = "cat.hash." + cid;
+                    String key = CommonConsts.REDIS_CAT_HASH_PRE + cid;
                     initArtHashes(key,cMap);
                 }
 
@@ -151,13 +152,14 @@ public class RedisService {
 //                System.err.println("");
 //
 //                Set s = redisTemplate.opsForZSet().range("art.zset.java",0,4);
-                System.err.println("Success Init lmsfc redis data");
+                System.out.println("Success Init lmsfc redis data");
+                logger.info("Success Init lmsfc redis data.");
 
             } else {
 
             }
         }catch (Exception e){
-            e.printStackTrace();;
+//            e.printStackTrace();;
             logger.error("Error occurs when init redis datas: " + e.getMessage());
         }
 

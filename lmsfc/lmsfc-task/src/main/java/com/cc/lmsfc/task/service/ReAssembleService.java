@@ -9,22 +9,25 @@ import com.cc.lmsfc.task.constant.TaskConstants;
 import com.cc.lmsfc.task.helper.FreemarkerHelper;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import freemarker.template.TemplateException;
-import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
+import sun.misc.Launcher;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.net.URLDecoder;
+import java.util.*;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 /**
  * Created by tomchen on 15-4-23.
@@ -32,7 +35,8 @@ import java.util.Map;
 @Service
 public class ReAssembleService {
 
-    private Logger logger = Logger.getLogger(ReAssembleService.class);
+    private Logger logger = LoggerFactory.getLogger(ReAssembleService.class);
+
 
     @Autowired
     private FreemarkerHelper freemarkerHelper;
@@ -44,6 +48,8 @@ public class ReAssembleService {
     private ArticleCategoryDAO articleCategoryDAO;
 
     public Message reassemble(Message<?>  msg){
+
+        logger.info("Ressemble and deploy all articles.");
 
         List<String> successList = Lists.newArrayList();
         Map<String,String> failMap = Maps.newHashMap();
@@ -162,13 +168,73 @@ public class ReAssembleService {
 
             }
         }
-        System.err.println("Article Reassemble Finished");
+//        System.err.println("Article Reassemble Finished");
+        logger.info("Article Reassemble Finished");
 
-        //cp css/img
-        URL url = this.getClass().getClassLoader().getResource("deploy_init_content");
-        String deployInitFloder = url.getFile();
         try{
-            FileUtils.copyDirectory(new File(deployInitFloder),new File(TaskConstants.DEPLOY_FLODER));
+            //cp css/img
+//            InputStream in = this.getClass().getClassLoader().getResourceAsStream("deploy_init_content");
+
+            final String path = TaskConstants.DEPLOY_INIT_CONTENT_NAME;
+            final File jarFile = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
+
+            if(jarFile.isFile()) {  // Run with JAR file
+//                System.out.println("jar");
+                logger.info("Run with jar file");
+                final JarFile jar = new JarFile(jarFile);
+                final Enumeration<JarEntry> entries = jar.entries(); //gives ALL entries in jar
+                while(entries.hasMoreElements()) {
+                    JarEntry jarEntry = entries.nextElement();
+                    final String name = jarEntry.getName();
+                    if (name.startsWith(path + "/")) { //filter according to the path
+//                        System.out.println(name);
+                        if(jarEntry.isDirectory()){
+                            // mkdirs
+                            String prefix = "";
+                            prefix = name.substring(path.length());
+//                            System.out.println("prefix:" + prefix);// suffix:/img/1.jpg
+                            File d = new File(TaskConstants.DEPLOY_FLODER + CommonConsts.SLASH + prefix);
+                            if(!d.exists()){
+                                d.mkdirs();
+                            }
+                        }else {
+                            String suffix = "";
+                            suffix = name.substring(path.length());
+//                            System.out.println("suffix:" + suffix);// suffix:/img/1.jpg
+
+                            InputStream in = this.getClass().getResourceAsStream(CommonConsts.SLASH + name);
+                            if(in ==null){
+                                throw new Exception("Cant get resource " + name );
+                            }
+                            IOUtils.copy(in,new FileOutputStream(TaskConstants.DEPLOY_FLODER + suffix));
+                        }
+//                        FileUtils.copyFileToDirectory(new File(name),new File(TaskConstants.DEPLOY_FLODER));
+                    }
+                }
+                jar.close();
+            } else { // Run with IDE
+//                System.out.println("ide");
+                logger.info("Run with ide");
+                final URL url = Launcher.class.getResource("/" + path);
+                if (url != null) {
+                    try {
+                        final File apps = new File(url.toURI());
+                        for (File app : apps.listFiles()) {
+                            System.out.println(app);
+                        }
+                    } catch (URISyntaxException ex) {
+                        // never happens
+                    }
+                }
+            }
+
+//            Enumeration<URL> resources = this.getClass().getClassLoader().getResources("deploy_init_content");
+//            if(resources.hasMoreElements()){
+//                System.out.println(resources.nextElement().getFile());
+//                FileUtils.copyDirectory(new File(resources.nextElement().getFile()),new File(TaskConstants.DEPLOY_FLODER));
+//            }
+
+//            String deployInitFloder = url.getFile();
         }catch (Exception e){
             logger.error("Error occurs when reassemble :" + e.getMessage());
         }
@@ -176,6 +242,7 @@ public class ReAssembleService {
 
         // notify web
         System.err.println("List Reassemble Finished");
+        logger.info("List Reassemble Finished");
 
 
         System.out.println("Success reassembled and redeployed pages: " + successList.size());
@@ -191,19 +258,25 @@ public class ReAssembleService {
         return msg;
     }
 
-    public static void main(String[] args){
-        String str = "/Users/tomchn/www/sss/dd/ss/wewrwrwerwerwew";
+    public static void main(String[] args) throws IOException {
+//        String str = "/Users/tomchn/www/sss/dd/ss/wewrwrwerwerwew";
+//
+//        System.out.println(str.substring(str.lastIndexOf("/") + 1));
+//
+//        URL url = ReAssembleService.class.getClassLoader().getResource("deploy_init_content");
+//        System.err.println(url.getFile());
+//
+//        try {
+//            FileUtils.copyDirectory(new File(url.getFile()),new File("/Users/tomchen/lmsfc-task/sss"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        System.out.println(str.substring(str.lastIndexOf("/") + 1));
+        Enumeration<URL> resources = ReAssembleService.class.getClassLoader().getResources("deploy_init_content");
+        System.out.println("exists = " + resources.hasMoreElements());
 
-        URL url = ReAssembleService.class.getClassLoader().getResource("deploy_init_content");
-        System.err.println(url.getFile());
-
-        try {
-            FileUtils.copyDirectory(new File(url.getFile()),new File("/Users/tomchen/lmsfc-task/sss"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        File f = new File("file:/Users/tomchen/work/lmsfc-workspace/lmsfc/lmsfc-task/target/lmsfc-task.jar!/deploy_init_content");
+        System.out.println(f.getPath());
     }
 
 }

@@ -19,6 +19,8 @@ public class TaskConstants {
     public static String DEPLOY_FLODER;
     public static String REASSEMBLE_LOG;
 
+    public static String DEPLOY_INIT_CONTENT_NAME = "deploy_init_content";
+
 
     static {
 //        PropertyUtil.loadProperties("task.properties");

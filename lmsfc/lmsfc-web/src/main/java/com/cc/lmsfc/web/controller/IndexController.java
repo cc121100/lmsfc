@@ -9,6 +9,7 @@ import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
 import com.jfinal.kit.JsonKit;
+import com.jfinal.log.Logger;
 import redis.clients.jedis.Pipeline;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +20,8 @@ import java.util.*;
  */
 
 public class IndexController extends Controller {
+
+    private static Logger logger = Logger.getLogger(IndexController.class);
 
     private static int pageCount = 10;
 
@@ -73,6 +76,7 @@ public class IndexController extends Controller {
 
             renderJson(response);
         }catch (Exception e){
+            logger.error("Error occurs when loadmore," + e.getMessage());
             ArticleJsonResponse response = new ArticleJsonResponse();
             response.setStateCode(500);
             response.setMsg("Error");
@@ -83,7 +87,7 @@ public class IndexController extends Controller {
     }
 
     @ActionKey("loadArtAndCat_do")
-    public void loadArtAndCat_do(){
+    public void loadArtAndCat(){
 
         ArtAndCatJsonResponse acResponse = null;
 
@@ -124,11 +128,9 @@ public class IndexController extends Controller {
                 List<String> list = RedisKit.hmget("art.hash." + aid,"viewCount","pre","next");
                 avMap = new HashMap<>();
                 avMap.put("aid",aid);
-                avMap.put("viewCount",list.get(0));
+//                avMap.put("viewCount",list.get(0));
                 avMap.put("pre",list.get(1));
                 avMap.put("next",list.get(2));
-
-                avs.add(avMap);
 
                 //add viewCount to this art.hash
                 Map<String,String> newViewCountMap = new HashMap<>();
@@ -136,6 +138,10 @@ public class IndexController extends Controller {
 
                 newViewCountMap.put("viewCount",newViewCount + "");
                 RedisKit.hmset("art.hash." + aid,newViewCountMap);
+
+                avMap.put("viewCount",newViewCount + "");
+
+                avs.add(avMap);
             }
 
             // cList
@@ -163,6 +169,8 @@ public class IndexController extends Controller {
             renderJson(acResponse);
 
         } catch (Exception e) {
+            logger.error("Error occurs when loadArtAndCat," + e.getMessage());
+
             acResponse.setStateCode(500);
             acResponse.setMsg("Error");
             acResponse.setDate(new Date());

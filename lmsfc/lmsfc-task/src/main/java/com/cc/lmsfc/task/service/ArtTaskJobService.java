@@ -4,7 +4,6 @@ import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.dao.ArtTaskJobRunLogDAO;
 import com.cc.lmsfc.common.dao.ArticleTaskJobDAO;
 import com.cc.lmsfc.common.dao.FilterDetailDAO;
-import com.cc.lmsfc.common.model.task.ArtTaskJobRunLog;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.common.util.HttpClientUtil;
 import com.cc.lmsfc.task.constant.TaskConstants;
@@ -14,14 +13,14 @@ import com.cc.lmsfc.task.helper.ArtTaskJobHelper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -30,7 +29,7 @@ import java.util.Map;
 @Component
 public class ArtTaskJobService {
 
-    private Logger logger = Logger.getLogger(ArtTaskJobService.class);
+    private Logger logger = LoggerFactory.getLogger(ArtTaskJobService.class);
 
     @Autowired
     private ArticleTaskJobDAO articleTaskJobDAO;
@@ -45,7 +44,7 @@ public class ArtTaskJobService {
     private ArtTaskJobHelper artTaskJobHelper;
 
     public ArticleTaskJob messageHandler(Message<?> msg){
-        logger.info("Get ArticleTaskJob from jms.");
+        logger.info("Get ArticleTaskJob from redis.");
 //        ArticleTaskJob atj = (ArticleTaskJob)msg.getPayload();
         Map<String,Object> map = (Map<String, Object>) msg.getPayload();
         String id = (String) map.get("id");
@@ -118,11 +117,15 @@ public class ArtTaskJobService {
 
     @Transactional
     public ArticleTaskJob updateArtStateAndLog(ArticleTaskJob atj){
-        //  add task run log
-        artTaskJobHelper.updateAtjLog(atj,logDAO,articleTaskJobDAO,true,null);
+        try{
+            //  add task run log
+            artTaskJobHelper.updateAtjLog(atj,logDAO,articleTaskJobDAO,true,null);
 
-        //  update atj's state
-        artTaskJobHelper.updateAtjState(atj,articleTaskJobDAO,true);
+            //  update atj's state
+            artTaskJobHelper.updateAtjState(atj,articleTaskJobDAO,true);
+        }catch (Exception e){
+            logger.error("Error when updateArtStateAndLog:" + e.getMessage(),e);
+        }
         return atj;
     }
 

@@ -2,6 +2,7 @@ package com.cc.lmsfc.task.service;
 
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class NotifyService {
 
-    Logger logger = Logger.getLogger(NotifyService.class);
+    private static org.slf4j.Logger logger = LoggerFactory.getLogger(NotifyService.class);
 
     public void notifyWeb(Message<?> msg){
         ArticleTaskJob atj = (ArticleTaskJob) msg.getPayload();

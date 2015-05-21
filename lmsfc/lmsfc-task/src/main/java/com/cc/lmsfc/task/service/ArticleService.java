@@ -11,25 +11,18 @@ import com.cc.lmsfc.task.exception.AssembleArtException;
 import com.cc.lmsfc.task.exception.DeployArtException;
 import com.cc.lmsfc.task.helper.FreemarkerHelper;
 import com.cc.lmsfc.task.helper.RedisHelper;
-import freemarker.core.Configurable;
-import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import java.io.*;
 import java.util.*;
 
@@ -39,7 +32,7 @@ import java.util.*;
 @Component
 public class ArticleService {
 
-    private Logger logger = Logger.getLogger(ArticleService.class);
+    private Logger logger = LoggerFactory.getLogger(ArticleService.class);
 
 //    @Autowired
 //    private Configuration configuration;
@@ -59,6 +52,7 @@ public class ArticleService {
     @Transactional
     public ArticleTaskJob assemble(ArticleTaskJob atj){
 
+        logger.info("Assemble page for atj " + atj.getName());
         // 1 article page
         try {
             List<ArticleCategory> articleCategorys = articleCategoryDAO.findActiveCatOrderBySequence();
@@ -87,6 +81,7 @@ public class ArticleService {
 
             article.setArticleElement(atj.getArticleElement());
 
+            logger.info("Add Article for atj.");
             articleDAO.saveAndFlush(article);
 
             atj.getArticleElement().setArticle(article);
@@ -99,7 +94,7 @@ public class ArticleService {
                     throw new AssembleArtException("No 4 Art ele files under :" + atj.getArticleElement().getFileLocation(), atj);
                 }
                 for (File f : fileList) {
-                    atj.getTempMap().put(f.getName(), FileUtils.readFileToString(f, "UTF-8"));
+                    atj.getTempMap().put(f.getName(), FileUtils.readFileToString(f, CommonConsts.UTF8));
                 }
             }
 
@@ -167,8 +162,7 @@ public class ArticleService {
     public ArticleTaskJob deploy(ArticleTaskJob atj){
         try{
             // 1. update article state
-            logger.info("Deploy");
-//            int i = 1/0;
+            logger.info("Deploy article for atj " + atj.getName());
 
             //  generate and move categpry list.html
             Map<String,Object> map = new HashMap<>();
@@ -200,8 +194,8 @@ public class ArticleService {
 
             freemarkerHelper.assemble(map,"template.ftl",destFileName);
 
-            //todo move categpry list.html
-            // todo 2. move article.html to deployed floder
+            //move categpry list.html
+            //move article.html to deployed floder
             String deployFloder = TaskConstants.DEPLOY_FLODER + CommonConsts.SLASH + article.getArticleCategory().getPathName();
             File destFloder = new File(deployFloder);
             if(!destFloder.exists()){
@@ -222,7 +216,7 @@ public class ArticleService {
             FileUtils.copyFileToDirectory(new File(article.getArtFileName()), destFloder, false);
 
         }catch (Exception e){
-            logger.error("Error occurs when deploy article:" +e.getMessage());
+            logger.error("Error occurs when deploy article for atj " + atj.getName() + ", " + e.getMessage());
             throw new DeployArtException(e,atj);
         }
         return atj;

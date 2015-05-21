@@ -11,10 +11,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.util.ParserException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -32,7 +33,7 @@ import java.util.Map;
 @Component
 public class ParseService {
 
-    private Logger logger = Logger.getLogger(ParseService.class);
+    private Logger logger = LoggerFactory.getLogger(ParseService.class);
 
 
     public ArticleTaskJob parse(ArticleTaskJob atj){
@@ -54,11 +55,12 @@ public class ParseService {
             parseForEach(bytes, atj.getTempMap(), nodeFilterMap);
             if(StringUtils.isEmpty(atj.getTempMap().get("title").toString()) ||
                     StringUtils.isEmpty(atj.getTempMap().get("content").toString())){
+                logger.error("Title or content is empty for " + atj.getName());
                 throw new RuntimeException("Title or content is empty!");
             }
             logger.info("Finish parse article.");
         } catch (Exception e) {
-            logger.error("Error occurs when parse atj:" + atj.getId());
+            logger.error("Error occurs when parse atj:" + atj.getName() + ", " + e.getMessage());
             throw new GenerateArtEleException(e,atj);
         }
         return atj;
@@ -75,10 +77,10 @@ public class ParseService {
         //empty bytes release memory
         resultMap.clear();
 
-        String htmlStr = new String(htmlBytes,"UTF-8");
+        String htmlStr = new String(htmlBytes,CommonConsts.UTF8);
 
         Parser parser = new Parser();
-        parser.setEncoding("UTF-8");
+        parser.setEncoding(CommonConsts.UTF8);
 
         for(Map.Entry<String,NodeFilter> entry : nodeMap.entrySet()){
             parser.setResource(htmlStr);

@@ -17,9 +17,9 @@
                 <li>
                     <a href="/default/list.html">庄稼</a>
                 </li>
-                <li>
-                    <a href="/exp.html">收成</a>
-                </li>
+                <#--<li>-->
+                    <#--<a href="/exp.html">收成</a>-->
+                <#--</li>-->
                 <li>
                     <a href="/info.html">老农</a>
                 </li>

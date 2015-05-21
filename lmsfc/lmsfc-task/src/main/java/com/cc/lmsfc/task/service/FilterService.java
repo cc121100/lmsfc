@@ -4,7 +4,8 @@ import com.cc.lmsfc.common.constant.CommonConsts;
 import com.cc.lmsfc.common.model.task.ArticleTaskJob;
 import com.cc.lmsfc.task.exception.GenerateArtEleException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
@@ -16,12 +17,13 @@ import java.util.regex.Pattern;
 @Component
 public class FilterService {
 
-    private Logger logger = Logger.getLogger(FilterService.class);
+    private Logger logger = LoggerFactory.getLogger(FilterService.class);
 
-    private final static String regxpForHtml = "<([^>]*)>"; // 过滤所有以<开头以>结尾的标签
+//    private final static String regxpForHtml = "<([^>]*)>"; // 过滤所有以<开头以>结尾的标签
 
     public ArticleTaskJob filter(ArticleTaskJob atj){
 
+        logger.info("Filter " + atj.getName());
         String preUrl = ""; // http://jinnianshilongnian.iteye.com
         String url = atj.getUrl(); // http://jinnianshilongnian.iteye.com/blog/2018936/
         String[] urls = url.split("//");
@@ -62,7 +64,7 @@ public class FilterService {
             }
 
         }catch (Exception e){
-            logger.error("Error occurs when filte atj.", e);
+            logger.error("Error occurs when filte atj" + atj.getName() + ", " + e.getMessage());
             throw new GenerateArtEleException(e,atj);
         }
 

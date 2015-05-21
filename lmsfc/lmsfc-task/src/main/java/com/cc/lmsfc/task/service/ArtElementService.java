@@ -8,7 +8,8 @@ import com.cc.lmsfc.task.constant.TaskConstants;
 import com.cc.lmsfc.task.exception.GenerateArtEleException;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,13 +24,16 @@ import java.util.Map;
 @Component
 public class ArtElementService {
 
-    private Logger logger = Logger.getLogger(ArtElementService.class);
+    private Logger logger = LoggerFactory.getLogger(ArtElementService.class);
+
 
     @Autowired
     private ArticleElementDAO articleElementDAO;
 
     @Transactional
     public ArticleTaskJob generate(ArticleTaskJob atj) {
+
+        logger.info("Generate elements for atj " + atj.getName());
 
         try{
             // 1 generate article element
@@ -50,12 +54,12 @@ public class ArtElementService {
 
                 artEle.setFileLocation(TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + artEle.getId());
                 articleElementDAO.saveAndFlush(artEle);
-                artEle.setFileLocation(TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + artEle.getId());
+//                artEle.setFileLocation(TaskConstants.ART_ELE_FLODER + CommonConsts.SLASH + artEle.getId());
             }
 
             atj.setArticleElement(artEle);
 
-
+            logger.info("Store element files in " + artEle.getFileLocation());
             // 2 store related files in disk
             for (Map.Entry<String,Object> entry : atj.getTempMap().entrySet()){
                 String fileName = entry.getKey();
@@ -67,7 +71,7 @@ public class ArtElementService {
             return atj;
 
         }catch (Exception e){
-            logger.error("Error occurs when generate article element for atj:" + atj.getName());
+            logger.error("Error occurs when generate article element for atj:" + atj.getName() + ", " + e.getMessage());
             throw new GenerateArtEleException(e,atj);
         }
 

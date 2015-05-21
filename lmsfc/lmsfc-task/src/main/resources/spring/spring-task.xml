@@ -23,16 +23,10 @@
     <import resource="classpath*:spring/spring-task-integration.xml"/>
 
     <bean id="freemarkerConfig" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
-        <!--<property name="templateLoaderPath" value="classpath:/template/" />-->
-        <property name="templateLoaderPath" value="file:${TEMPLATE_FILE}" />
+        <property name="templateLoaderPath" value="classpath:/template/" />
+        <!--<property name="templateLoaderPath" value="file:${TEMPLATE_FILE}" />-->
         <property name="defaultEncoding" value="UTF-8"></property>
     </bean>
-
-    <!--<bean id="freemarkerConfig" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">-->
-        <!--&lt;!&ndash;<property name="templateLoaderPath" value="classpath:/template/" />&ndash;&gt;-->
-        <!--<property name="templateLoaderPath" value="${TEMPLATE_FILE}" />-->
-        <!--<property name="defaultEncoding" value="UTF-8"></property>-->
-    <!--</bean>-->
 
     <!--<bean id="freemarkerFileSystemResourceLoader" class="org.springframework.core.io.FileSystemResourceLoader"></bean>-->
 

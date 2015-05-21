@@ -30,7 +30,6 @@ public class LmsfcWebConfig extends JFinalConfig {
     @Override
     public void configPlugin(Plugins me) {
         me.add(new RedisPlugin(getProperty("redisHost"),getPropertyToInt("redisPort"),getProperty("redisPassword"),getPropertyToInt("redisDB")));
-
     }
 
     @Override

@@ -171,6 +171,7 @@ CREATE TABLE `tbl_article` (
   `state` int(11) NOT NULL,
   `art_cate_id` varchar(255) DEFAULT NULL,
   `art_ele_id` varchar(255) DEFAULT NULL,
+  `view_count` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_5exbvobr6wnhmpfdqi0l6ea8l` (`art_cate_id`),
   KEY `FK_emilslsudrvfsbvd75sjanwa3` (`art_ele_id`),

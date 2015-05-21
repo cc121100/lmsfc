@@ -24,7 +24,7 @@
         <property name="ignoreUnresolvablePlaceholders" value="true" />
         <property name="locations">
             <list>
-                <value>classpath*:jdbc.properties</value>
+                <value>classpath*:jdbc_prd.properties</value>
             </list>
         </property>
     </bean>

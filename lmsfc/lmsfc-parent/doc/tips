@@ -1,0 +1,19 @@
+forword port:80 to others
+
+    1、 首先应该做的是/etc/sysctl.conf配置文件的 net.ipv4.ip_forward = 1 默认是0    这样允许iptalbes FORWARD。
+
+    2、 service iptables stop  关闭防火墙
+
+    3、 重新配置规则
+
+    iptables -t nat -A PREROUTING --dst 61.144.14.72 -p tcp --dport 3389 -j DNAT --to-destination 116.6.73.229:3389
+    iptables -t nat -A POSTROUTING --dst 116.6.73.229 -p tcp --dport 3389 -j SNAT --to-source 61.144.14.72
+    iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+
+    service iptables save
+    将当前规则保存到 /etc/sysconfig/iptables
+    若你对这个文件很熟悉直接修改这里的内容也等于命令行方式输入规则。
+
+    5、 启动iptables 服务, service iptables start
+
+

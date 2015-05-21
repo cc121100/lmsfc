@@ -1,0 +1,25 @@
+# cription: Tomcat Start Stop Restart
+# processname: tomcat
+# chkconfig: 234 20 80
+JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk.x86_64
+export JAVA_HOME
+PATH=$JAVA_HOME/bin:$PATH
+export PATH
+CATALINA_HOME=/opt/tomcat7_web
+
+case $1 in
+start)
+echo $ "Start tomcat7:"
+sh $CATALINA_HOME/bin/startup.sh
+;;
+stop)
+echo $ "Start tomcat7:"
+sh $CATALINA_HOME/bin/shutdown.sh
+;;
+restart)
+echo $ "Restart tomcat7:"
+sh $CATALINA_HOME/bin/shutdown.sh
+sh $CATALINA_HOME/bin/startup.sh
+;;
+esac
+exit 0

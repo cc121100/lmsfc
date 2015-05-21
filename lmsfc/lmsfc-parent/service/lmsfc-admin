@@ -1,11 +1,11 @@
-cription: Tomcat Start Stop Restart
+# cription: Tomcat Start Stop Restart
 # processname: tomcat
 # chkconfig: 234 20 80
 JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk.x86_64
 export JAVA_HOME
 PATH=$JAVA_HOME/bin:$PATH
 export PATH
-CATALINA_HOME=/usr/share/apache-tomcat-7.0.59
+CATALINA_HOME=/opt/tomcat7_admin
 
 case $1 in
 start)

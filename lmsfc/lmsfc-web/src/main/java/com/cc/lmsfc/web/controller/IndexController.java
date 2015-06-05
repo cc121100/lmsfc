@@ -32,6 +32,10 @@ public class IndexController extends Controller {
         renderJson(list);
     }
 
+    public void test_do1(){
+        renderText("Test");
+    }
+
     @ActionKey("loadmore_do")
     public void loadmore(){
 

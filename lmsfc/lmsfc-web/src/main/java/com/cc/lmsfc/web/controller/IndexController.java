@@ -10,6 +10,8 @@ import com.jfinal.core.Controller;
 import com.jfinal.ext.interceptor.POST;
 import com.jfinal.kit.JsonKit;
 import com.jfinal.log.Logger;
+import com.jfinal.plugin.activerecord.Db;
+import com.jfinal.plugin.activerecord.Record;
 import redis.clients.jedis.Pipeline;
 
 import java.text.SimpleDateFormat;
@@ -26,7 +28,8 @@ public class IndexController extends Controller {
     private static int pageCount = 10;
 
     public void test_do(){
-        renderText("Hello JFinal");
+        List<Record> list = Db.find("show tables from lmsfc");
+        renderJson(list);
     }
 
     @ActionKey("loadmore_do")

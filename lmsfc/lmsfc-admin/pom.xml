@@ -82,7 +82,7 @@
             <artifactId>shiro-quartz</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.jagregory</groupId>
+            <groupId>net.mingsoft</groupId>
             <artifactId>shiro-freemarker-tags</artifactId>
         </dependency>
 
